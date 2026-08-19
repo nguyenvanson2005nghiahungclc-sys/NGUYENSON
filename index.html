@@ -1,324 +1,597 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thủy Sản Miền Quê - Thủy Sản Tươi Sống Sông Nước & Nước Ngọt</title>
-    <!-- Liên kết file CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome Icon (Icon giỏ hàng, tìm kiếm, sao) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ĐỒ GỖ ĐIỆN NGỌC - Nội Thất Nam Định</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>">
+  <style>
+    :root {
+      --primary-color: #cb7b26;
+      --secondary-color: #881b1b;
+      --accent-color: #c0392b;
+      --bg-color: #ffffff;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --text-muted: #666666;
+      --border-color: #eeeeee;
+      --topbar-bg: #cb7b26;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-color: #e0e0e0;
+      --text-muted: #aaa;
+      --border-color: #333333;
+      --topbar-bg: #1f1f1f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
+
+    /* Top Bar */
+    .top-bar { background-color: var(--topbar-bg); padding: 8px 15px; color: #fff; }
+    .top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .top-left { display: flex; align-items: center; gap: 12px; }
+    .hotline-btn { background: #fff; color: #cb7b26; padding: 4px 12px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 13px; }
+    .top-link { color: #fff; text-decoration: none; font-size: 13px; font-weight: 500; }
+    
+    .top-right { display: flex; align-items: center; gap: 12px; }
+    .theme-toggle, .icon-btn-top { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+    .theme-toggle:hover, .icon-btn-top:hover { background: rgba(255,255,255,0.35); }
+    .badge { background: var(--accent-color); color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold; }
+
+    /* Main Nav & Dropdown Menu */
+    .main-nav { background: var(--card-bg); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
+    .logo { font-size: 22px; font-weight: 900; color: var(--primary-color); letter-spacing: 1px; padding: 12px 0; }
+    
+    .nav-links { display: flex; list-style: none; margin: 0; }
+    .nav-item { position: relative; }
+    .nav-item > a { display: block; padding: 16px 14px; text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 14px; cursor: pointer; }
+    .nav-item:hover > a { color: var(--primary-color); }
+
+    .dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--card-bg);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15); border-radius: 4px; border-top: 3px solid var(--primary-color);
+      list-style: none; padding: 6px 0; z-index: 500;
+    }
+    .nav-item:hover .dropdown-menu { display: block; }
+    .dropdown-menu li a { display: block; padding: 9px 16px; color: var(--text-color); text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 1px solid var(--border-color); }
+    .dropdown-menu li a:hover { background: rgba(203,123,38,0.1); color: var(--primary-color); padding-left: 20px; }
+
+    /* Main Container */
+    .container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
+    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+
+    /* Advanced Toolbar (Search, Filter, Sort) */
+    .filter-toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px; }
+    .search-box { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 3px 12px; flex: 1; max-width: 320px; }
+    .search-box input { border: none; outline: none; background: transparent; color: var(--text-color); padding: 5px; font-size: 13px; width: 100%; }
+    
+    .filter-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .select-control { padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 13px; outline: none; cursor: pointer; }
+
+    /* Category Tags */
+    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; }
+    .tag-btn { background: var(--secondary-color); color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; }
+    .tag-btn.active, .tag-btn:hover { background: var(--primary-color); }
+
+    /* Product Grid (6 Cột Responsive) */
+    .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
+    .product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: var(--primary-color); }
+    .card-img-box { position: relative; width: 100%; height: 140px; overflow: hidden; }
+    .card-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .btn-wishlist { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #ccc; }
+    .btn-wishlist.active { color: #e74c3c; }
+
+    .card-body { padding: 10px 8px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .product-title { font-size: 13px; color: var(--text-color); font-weight: 600; margin-bottom: 6px; line-height: 1.3; min-height: 34px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+    .price { color: var(--accent-color); font-size: 14px; font-weight: bold; }
+    .btn-add-cart-fast { background: var(--primary-color); color: #fff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: bold; }
+
+    /* Drawer Giỏ Hàng */
+    .cart-drawer { position: fixed; top: 0; right: -380px; width: 350px; height: 100%; background: var(--card-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 1001; transition: right 0.3s ease; display: flex; flex-direction: column; }
+    .cart-drawer.open { right: 0; }
+    .cart-header { padding: 15px; background: var(--primary-color); color: white; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+    .cart-body { flex: 1; padding: 15px; overflow-y: auto; }
+    .cart-item { display: flex; gap: 10px; margin-bottom: 12px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; align-items: center; }
+    .cart-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+    .cart-item-info { flex: 1; font-size: 12px; }
+    .cart-item-info h5 { font-size: 13px; color: var(--text-color); }
+    .cart-footer { padding: 15px; border-top: 1px solid var(--border-color); background: var(--bg-color); }
+    .cart-total { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
+    .btn-checkout { width: 100%; background: var(--accent-color); color: white; border: none; padding: 10px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+
+    /* Modals */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 20px; }
+    .modal-content { background: var(--card-bg); max-width: 950px; margin: 30px auto; border-radius: 8px; padding: 25px; position: relative; color: var(--text-color); }
+    .modal-close { position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+    .detail-container { display: flex; gap: 30px; margin-top: 15px; }
+    .detail-gallery { flex: 1.2; }
+    #modalMainImg { width: 100%; height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); }
+    .thumbnail-list { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; }
+    .thumbnail-list img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid var(--border-color); }
+    .thumbnail-list img.active-thumb { border-color: var(--accent-color); }
+
+    .detail-info { flex: 1.2; }
+    .promo-box { background: var(--accent-color); color: white; border-radius: 6px; padding: 15px; margin-bottom: 20px; }
+    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 10px; }
+    .sale-price { font-size: 24px; font-weight: 900; }
+    .old-price { font-size: 15px; text-decoration: line-through; color: #ffcccc; }
+    .promo-desc { font-size: 13px; border-top: 1px dashed rgba(255,255,255,0.4); padding-top: 10px; line-height: 1.6; }
+
+    .order-form { background: var(--bg-color); border: 1px solid var(--border-color); padding: 15px; border-radius: 6px; }
+    .form-group { margin-bottom: 8px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 4px; font-size: 13px; outline: none; }
+    .btn-submit-order { width: 100%; background: var(--accent-color); color: white; border: none; padding: 12px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+
+    /* Floating Contact Buttons */
+    .floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
+    .btn-floating { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s; }
+    .btn-floating:hover { transform: scale(1.1); }
+    .btn-phone { background-color: #ff0000; }
+    .btn-zalo { background-color: #0088ff; color: #fff; font-weight: 900; font-size: 11px; }
+    .btn-map { background-color: #00a651; }
+    .btn-scrolltop { background-color: #636e72; border: none; }
+    .btn-ai-chat { background-color: #5c67f2; border: none; font-size: 20px; }
+
+    /* AI Box */
+    .native-ai-box { display: none; position: fixed; right: 70px; bottom: 20px; width: 320px; height: 420px; background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color); }
+    .ai-header { background: #5c67f2; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: var(--bg-color); display: flex; flex-direction: column; gap: 8px; }
+    .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; max-width: 85%; }
+    .msg-ai { background: var(--border-color); color: var(--text-color); align-self: flex-start; }
+    .msg-user { background: var(--primary-color); color: white; align-self: flex-end; }
+    .ai-footer { display: flex; border-top: 1px solid var(--border-color); padding: 6px; background: var(--card-bg); }
+    .ai-footer input { flex: 1; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
+    .ai-footer button { background: #5c67f2; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+    /* Toast Notification */
+    #toastContainer { position: fixed; bottom: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
+    .toast { background: #333; color: #fff; padding: 10px 16px; border-radius: 4px; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 768px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .detail-container { flex-direction: column; }
+      .nav-links { display: none; }
+      .filter-toolbar { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; }
+    }
+    @media (max-width: 500px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
 </head>
 <body>
 
-    <!-- 1. HEADER & NAVIGATION -->
-    <header>
-        <div class="top-bar">
-            <div class="container top-bar-content">
-                <span><i class="fa-solid fa-truck-fast"></i> Giao hàng hỏa tốc trong 2h tại Quần Liêu village</span>
-                <span><i class="fa-solid fa-phone"></i> Hotline đặt hàng: <strong>0362.442.952</strong></span>
-            </div>
+  <div id="toastContainer"></div>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="top-container">
+      <div class="top-left">
+        <a href="tel:0912208061" class="hotline-btn">📞 Hotline: 0912208061</a>
+        <a href="#about" class="top-link">Giới thiệu</a>
+        <a href="#map-section" class="top-link">Địa chỉ xưởng</a>
+      </div>
+      <div class="top-right">
+        <button class="icon-btn-top" onclick="filterWishlist()">❤️ Yêu thích <span class="badge" id="wishlistCount">0</span></button>
+        <button class="icon-btn-top" onclick="toggleCartDrawer()">🛒 Giỏ hàng <span class="badge" id="cartCount">0</span></button>
+        <button class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙 Tối</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="logo">ĐIỆN NGỌC</div>
+      <ul class="nav-links">
+        <li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>
+        <li class="nav-item">
+          <a onclick="filterCategory('giuong')">Giường Ngủ ▾</a>
+          <ul class="dropdown-menu">
+            <li><a onclick="filterCategory('giuong-1m6')">Giường Modern 1m6</a></li>
+            <li><a onclick="filterCategory('giuong-1m8')">Giường Cao Cấp 1m8</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a onclick="filterCategory('tu')">Tủ Quần Áo ▾</a>
+          <ul class="dropdown-menu">
+            <li><a onclick="filterCategory('tu-2canh')">Tủ Áo 2 Cánh</a></li>
+            <li><a onclick="filterCategory('tu-3canh')">Tủ Áo 3 Cánh</a></li>
+            <li><a onclick="filterCategory('tu-4canh')">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a onclick="filterCategory('ban-an')">Bàn Ghế Ăn ▾</a>
+          <ul class="dropdown-menu">
+            <li><a onclick="filterCategory('ban-an-4ghe')">Bộ Bàn Ăn 4 Ghế</a></li>
+            <li><a onclick="filterCategory('ban-an-6ghe')">Bộ Bàn Ăn 6 Ghế</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a onclick="filterCategory('sofa')">Sofa Khách ▾</a>
+          <ul class="dropdown-menu">
+            <li><a onclick="filterCategory('sofa-vang')">Sofa Văng Nệm</a></li>
+            <li><a onclick="filterCategory('sofa-da')">Sofa Da Bò</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a onclick="filterCategory('ke-tivi')">Kệ Tivi & Tủ Giày</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" id="products">
+    <div class="breadcrumb" id="breadcrumbText">Trang chủ &gt; Tất cả sản phẩm</div>
+
+    <!-- Toolbar Tiện Ích: Tìm kiếm, Lọc Giá, Sắp xếp -->
+    <div class="filter-toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Tìm tên hoặc mã sản phẩm..." onkeyup="applyFilters()">
+      </div>
+      <div class="filter-controls">
+        <select class="select-control" id="priceFilter" onchange="applyFilters()">
+          <option value="all">Tất cả khoảng giá</option>
+          <option value="under2">Dưới 2 Triệu</option>
+          <option value="2to4">Từ 2 đến 4 Triệu</option>
+          <option value="above4">Trên 4 Triệu</option>
+        </select>
+        <select class="select-control" id="sortFilter" onchange="applyFilters()">
+          <option value="default">Mặc định</option>
+          <option value="price-asc">Giá: Thấp đến Cao</option>
+          <option value="price-desc">Giá: Cao đến Thấp</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Category Filter Tags -->
+    <div class="category-tags">
+      <button type="button" class="tag-btn active" onclick="setCategoryTag('all', this)">Tất cả</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('giuong', this)">Giường ngủ</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('tu', this)">Tủ quần áo</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('ban-an', this)">Bàn ghế ăn</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('sofa', this)">Sofa</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('ke-tivi', this)">Kệ Tivi</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('khac', this)">Khác</button>
+    </div>
+
+    <!-- Product Grid (Hàng sản phẩm mở rộng) -->
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <span>Giỏ Hàng Của Bạn</span>
+      <button style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" onclick="toggleCartDrawer()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Tổng tiền:</span>
+        <span id="cartTotalPrice" style="color:var(--accent-color);">0 đ</span>
+      </div>
+      <button class="btn-checkout" onclick="checkoutCart()">ĐẶT MUA TOÀN BỘ GIỎ HÀNG</button>
+    </div>
+  </div>
+
+  <!-- Modal Chi Tiết Sản Phẩm -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal()">✕ Đóng</button>
+      <div class="detail-container">
+        <div class="detail-gallery">
+          <img id="modalMainImg" src="" alt="Ảnh sản phẩm">
+          <div class="thumbnail-list" id="modalThumbnails"></div>
         </div>
-        
-        <div class="container header-main">
-            <a href="#" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-fish"></i></div>
-                <div class="logo-text">THỦY SẢN MIỀN QUÊ</div>
-            </a>
+        <div class="detail-info">
+          <h2 id="modalTitle">Tên sản phẩm</h2>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Mã: <span id="modalCode"></span> | <span style="color:#27ae60; font-weight:bold;">✔ Còn hàng</span></p>
 
-            <div class="search-box">
-                <input type="text" placeholder="Tìm cá lóc, tôm sông, cua đồng, cá chép...">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+          <div class="promo-box">
+            <div class="promo-header">
+              <div class="sale-price" id="modalPrice">0 đ</div>
+              <div class="old-price" id="modalOldPrice">0 đ</div>
             </div>
+            <div class="promo-desc" id="modalDesc"></div>
+          </div>
 
-            <div class="header-actions">
-                <a href="#" class="action-item">
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Yêu thích</span>
-                </a>
-                <a href="#" class="action-item cart-btn">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="cart-count">3</span>
-                    <span>Giỏ hàng</span>
-                </a>
-            </div>
+          <form class="order-form" onsubmit="event.preventDefault(); handleOrderSubmit();">
+            <h4 style="font-size:14px; color:var(--secondary-color); margin-bottom:6px;">ĐẶT MUA GIAO HÀNG TẬN NƠI</h4>
+            <input type="hidden" id="orderProductName">
+            <div class="form-group"><input type="text" placeholder="Họ và tên *" required></div>
+            <div class="form-group"><input type="tel" placeholder="Số điện thoại *" required></div>
+            <div class="form-group"><input type="text" placeholder="Địa chỉ giao nhận *" required></div>
+            <div class="form-group"><textarea rows="2" placeholder="Ghi chú thêm..."></textarea></div>
+            <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG (THANH TOÁN COD)</button>
+          </form>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <nav class="main-nav">
-            <div class="container">
-                <ul>
-                    <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
-                    <li><a href="#products">Cá Nước Ngọt</a></li>
-                    <li><a href="#products">Tôm Sông & Tôm Càng</a></li>
-                    <li><a href="#products">Cua - Cà Rạm - Ốc</a></li>
-                    <li><a href="#commitments">Cam Kết Chất Lượng</a></li>
-                    <li><a href="#footer">Lưu Ý & Liên Hệ</a></li>
-                </ul>
+  <!-- Floating Buttons -->
+  <div class="floating-contact-bar">
+    <a href="tel:0912208061" class="btn-floating btn-phone" title="Gọi ngay">📞</a>
+    <a href="https://zalo.me/0912208061" target="_blank" class="btn-floating btn-zalo" title="Zalo">Zalo</a>
+    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu">⬆</button>
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Trợ lý AI">🤖</button>
+  </div>
+
+  <!-- AI Chat Box -->
+  <div class="native-ai-box" id="aiChatBox">
+    <div class="ai-header">
+      <span>Trợ lý Đồ Gỗ Điện Ngọc</span>
+      <button type="button" style="background:none; border:none; color:white; cursor:pointer;" onclick="toggleAIChat()">✕</button>
+    </div>
+    <div class="ai-body" id="aiChatBody">
+      <div class="msg msg-ai">Xin chào! Tôi có thể giúp gì cho bác về kích thước, loại gỗ hay giá cả ạ?</div>
+    </div>
+    <div class="ai-footer">
+      <input type="text" id="aiInput" placeholder="Hỏi giá giường, tủ, ship..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <button type="button" onclick="handleAISend()">Gửi</button>
+    </div>
+  </div>
+
+  <script>
+    // Dữ liệu mở rộng 18 sản phẩm (Nhiều hàng hơn)
+    const products = [
+      { id: 1, rawPrice: 1800000, category: "giuong", sub: "giuong-1m6", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m. Chất liệu MDF phủ Melamine chống trầy." },
+      { id: 2, rawPrice: 2100000, category: "giuong", sub: "giuong-1m8", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước rộng rãi 1m8 x 2m cho gia đình." },
+      { id: 3, rawPrice: 1950000, category: "tu", sub: "tu-2canh", title: "Tủ Quần Áo 2 Cánh Nhỏ Gọn", code: "DN-T02", price: "1.950.000 đ", oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước R1m2 x C2m. Tối ưu không gian hẹp." },
+      { id: 4, rawPrice: 2500000, category: "tu", sub: "tu-3canh", title: "Tủ Quần Áo 3 Cánh Vân Sồi", code: "DN-T03", price: "2.500.000 đ", oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước R1m6 x C2m. Bản lề giảm chấn êm ái." },
+      { id: 5, rawPrice: 3400000, category: "tu", sub: "tu-4canh", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước R2m x C2m. Sức chứa lớn." },
+      { id: 6, rawPrice: 2800000, category: "ban-an", sub: "ban-an-4ghe", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Bàn chữ nhật + 4 ghế bọc nệm êm ái." },
+      { id: 7, rawPrice: 3900000, category: "ban-an", sub: "ban-an-6ghe", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế chắc chắn." },
+      { id: 8, rawPrice: 3200000, category: "sofa", sub: "sofa-vang", title: "Sofa Văng Nệm Hiện Đại", code: "DN-SF01", price: "3.200.000 đ", oldPrice: "3.800.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Khung gỗ bọc nệm mút D40 chống xẹp." },
+      { id: 9, rawPrice: 4800000, category: "sofa", sub: "sofa-da", title: "Sofa Da Bò Cao Cấp Phòng Khách", code: "DN-SF02", price: "4.800.000 đ", oldPrice: "5.600.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Chất liệu da công nghiệp bọc dày cao cấp." },
+      { id: 10, rawPrice: 1250000, category: "ke-tivi", sub: "ke-tivi", title: "Kệ Tivi Gỗ Rút 2 Đầu Thông Minh", code: "DN-K01", price: "1.250.000 đ", oldPrice: "1.500.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Có thể tùy chỉnh độ dài từ 1m4 đến 2m." },
+      { id: 11, rawPrice: 950000, category: "khac", sub: "tu-giay", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Thiết kế siêu mỏng, chứa được 20 đôi giày." },
+      { id: 12, rawPrice: 1100000, category: "khac", sub: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn", code: "DN-BTD01", price: "1.100.000 đ", oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Kèm 1 ghế đôn nhỏ xinh xắn." },
+      { id: 13, rawPrice: 850000, category: "khac", sub: "ban-hoc", title: "Bàn Làm Việc Liền Giá Sách", code: "DN-BH01", price: "850.000 đ", oldPrice: "1.000.000 đ", mainImg: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80", images: ["https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80"], desc: "▶ Kích thước 1m x 50cm tiện lợi." },
+      { id: 14, rawPrice: 2300000, category: "giuong", sub: "giuong-1m6", title: "Giường Bọc Nệm Đầu Giường 1m6", code: "DN-G03", price: "2.300.000 đ", oldPrice: "2.700.000 đ", mainImg: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", images: ["https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80"], desc: "▶ Đầu giường bọc da êm ái chống va đập." },
+      { id: 15, rawPrice: 2800000, category: "tu", sub: "tu-3canh", title: "Tủ Quần Áo Cánh Lùa Tiết Kiệm Diện Tích", code: "DN-T05", price: "2.800.000 đ", oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Cửa trượt lùa ray nhôm trượt nhẹ nhàng." },
+      { id: 16, rawPrice: 1600000, category: "ke-tivi", sub: "ke-tivi", title: "Kệ Tivi Hiện Đại Chân Gỗ", code: "DN-K02", price: "1.600.000 đ", oldPrice: "1.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước 1m6 kèm 2 ngăn kéo để đồ." },
+      { id: 17, rawPrice: 4200000, category: "sofa", sub: "sofa-vang", title: "Bộ Sofa Góc L Phòng Khách", code: "DN-SF03", price: "4.200.000 đ", oldPrice: "4.900.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Thiết kế góc chữ L tối ưu góc chết phòng khách." },
+      { id: 18, rawPrice: 1450000, category: "khac", sub: "ban-trang-diem", title: "Bàn Trang Điểm Đèn LED Cảm Ứng", code: "DN-BTD02", price: "1.450.000 đ", oldPrice: "1.750.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tích hợp đèn LED 3 chế độ ánh sáng." }
+    ];
+
+    let currentCategory = "all";
+    let wishlist = [];
+    let cart = [];
+
+    // Hiển thị danh sách sản phẩm
+    function renderProducts(list) {
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = "";
+      if (list.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">Không tìm thấy sản phẩm nào phù hợp.</div>`;
+        return;
+      }
+      list.forEach(p => {
+        const isFav = wishlist.includes(p.id);
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="card-img-box">
+            <img src="${p.mainImg}" alt="${p.title}" onclick="openModal(${p.id})">
+            <button class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})">♥</button>
+          </div>
+          <div class="card-body">
+            <h4 class="product-title" onclick="openModal(${p.id})">${p.title}</h4>
+            <div class="price-row">
+              <span class="price">${p.price}</span>
+              <button class="btn-add-cart-fast" onclick="addToCart(${p.id})">+ Giỏ</button>
             </div>
-        </nav>
-    </header>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
-    <!-- 2. HERO BANNER -->
-    <section class="hero-banner">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <span class="badge-tag">100% Đánh Bắt & Nuôi Tự Nhiên</span>
-                <h1>Thủy Sản Nước Ngọt Tươi Sống Mỗi Ngày</h1>
-                <p>Chuyên cung cấp Cá Lóc, Cá Chép Giòn, Tôm Càng Xanh, Cua Đồng... Đánh bắt trong ngày, đóng thùng oxy giao tận bếp vẫn còn bơi khỏe!</p>
-                <div class="hero-btns">
-                    <a href="#products" class="btn-primary">Xem Sản Phẩm <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href="tel:0988123456" class="btn-secondary"><i class="fa-solid fa-phone"></i> Gọi Tư Vấn</a>
-                </div>
-            </div>
-            <div class="hero-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80" alt="Thủy sản tươi sống" class="hero-img">
-            </div>
-        </div>
-    </section>
+    // Tiện ích 1: Bộ lọc & Sắp xếp linh hoạt
+    function applyFilters() {
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const priceVal = document.getElementById("priceFilter").value;
+      const sortVal = document.getElementById("sortFilter").value;
 
-    <!-- 3. MAIN SHOP LAYOUT (SIDEBAR + PRODUCTS) -->
-    <section class="shop-section container" id="products">
-        <!-- Sidebar Lọc -->
-        <aside class="sidebar">
-            <div class="filter-group">
-                <h3><i class="fa-solid fa-filter"></i> Danh Mục Thủy Sản</h3>
-                <ul class="filter-list">
-                    <li><label><input type="checkbox" checked> Tất cả sản phẩm</label></li>
-                    <li><label><input type="checkbox"> Cá nước ngọt (Cá lóc, cá chép...)</label></li>
-                    <li><label><input type="checkbox"> Tôm sông, Tôm càng xanh</label></li>
-                    <li><label><input type="checkbox"> Cua đồng, Cà rạm, Ốc nhồi</label></li>
-                    <li><label><input type="checkbox"> Lươn, Trạch, Mạch sông</label></li>
-                </ul>
-            </div>
+      let filtered = products.filter(p => {
+        const matchCat = (currentCategory === "all") || (p.category === currentCategory) || (p.sub === currentCategory);
+        const matchSearch = p.title.toLowerCase().includes(query) || p.code.toLowerCase().includes(query);
+        let matchPrice = true;
+        if (priceVal === "under2") matchPrice = p.rawPrice < 2000000;
+        else if (priceVal === "2to4") matchPrice = p.rawPrice >= 2000000 && p.rawPrice <= 4000000;
+        else if (priceVal === "above4") matchPrice = p.rawPrice > 4000000;
 
-            <div class="filter-group">
-                <h3><i class="fa-solid fa-droplet"></i> Quy Cách Đóng Gói</h3>
-                <ul class="filter-list">
-                    <li><label><input type="checkbox"> Cần oxy bơi sống tại nhà</label></li>
-                    <li><label><input type="checkbox"> Sơ chế sạch sẽ (Miễn phí)</label></li>
-                    <li><label><input type="checkbox"> Hút chân không đông lạnh</label></li>
-                </ul>
-            </div>
+        return matchCat && matchSearch && matchPrice;
+      });
 
-            <div class="promo-box">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h4>Bảo Hành Tươi Sống</h4>
-                <p>Đổi trả hoặc hoàn tiền 100% nếu sản phẩm giao tới không còn ngạt thở / không đúng chất lượng.</p>
-            </div>
-        </aside>
+      if (sortVal === "price-asc") filtered.sort((a, b) => a.rawPrice - b.rawPrice);
+      else if (sortVal === "price-desc") filtered.sort((a, b) => b.rawPrice - a.rawPrice);
 
-        <!-- Danh Sách Sản Phẩm -->
-        <main class="product-grid-container">
-            <div class="sort-bar">
-                <h2>Cá, Tôm, Cua Nước Ngọt Nổi Bật</h2>
-                <div class="sort-options">
-                    <label>Sắp xếp:</label>
-                    <select>
-                        <option>Bán chạy nhất</option>
-                        <option>Giá: Thấp đến Cao</option>
-                        <option>Giá: Cao đến Thấp</option>
-                    </select>
-                </div>
-            </div>
+      renderProducts(filtered);
+    }
 
-            <div class="products-grid">
+    function setCategoryTag(cat, btn) {
+      document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
+      if(btn) btn.classList.add("active");
+      currentCategory = cat;
+      document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
+      applyFilters();
+    }
 
-                <!-- Sản phẩm 1: Tôm càng xanh -->
-                <div class="product-card">
-                    <div class="card-badge discount">-15%</div>
-                    <div class="card-badge live">Bơi Sống</div>
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80" alt="Tôm Càng Xanh Nước Ngọt">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Tôm Nước Ngọt</span>
-                        <h3 class="product-title"><a href="#">Tôm Càng Xanh Bơi Sống (Size 8-10 con/kg)</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span>(48 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">285.000đ <small>/kg</small></span>
-                            <span class="old-price">330.000đ</span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
+      applyFilters();
+    }
 
-                <!-- Sản phẩm 2: Cá chép giòn -->
-                <div class="product-card">
-                    <div class="card-badge hot">Hot</div>
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=600&q=80" alt="Cá Chép Giòn Sông">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Cá Nước Ngọt</span>
-                        <h3 class="product-title"><a href="#">Cá Chép Giòn Sông Dày Thịt (Size 2.5 - 3kg/con)</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                            <span>(32 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">195.000đ <small>/kg</small></span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+    // Tiện ích 2: Yêu thích (Wishlist)
+    function toggleWishlist(e, id) {
+      e.stopPropagation();
+      const idx = wishlist.indexOf(id);
+      if (idx > -1) {
+        wishlist.splice(idx, 1);
+        showToast("Đã xóa khỏi danh sách yêu thích");
+      } else {
+        wishlist.push(id);
+        showToast("Đã thêm vào danh sách yêu thích ❤️");
+      }
+      document.getElementById("wishlistCount").innerText = wishlist.length;
+      applyFilters();
+    }
 
-                <!-- Sản phẩm 3: Cua đồng tự nhiên -->
-                <div class="product-card">
-                    <div class="card-badge live">Tự Nhiên</div>
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1559742811-822863c46f43?auto=format&fit=crop&w=600&q=80" alt="Cua Đồng Tươi Sống">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Cua & Cà Rạm</span>
-                        <h3 class="product-title"><a href="#">Cua Đồng Xay Hoặc Nguyên Con Giã Tươi</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span>(89 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">160.000đ <small>/kg</small></span>
-                            <span class="old-price">180.000đ</span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+    function filterWishlist() {
+      const favProducts = products.filter(p => wishlist.includes(p.id));
+      document.getElementById("breadcrumbText").innerText = "Trang chủ > Sản phẩm yêu thích";
+      renderProducts(favProducts);
+    }
 
-                <!-- Sản phẩm 4: Cá lóc đồng -->
-                <div class="product-card">
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Cá Lóc Đồng Bơi Sống">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Cá Nước Ngọt</span>
-                        <h3 class="product-title"><a href="#">Cá Lóc Đồng Bơi Sống (Làm sạch miễn phí)</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span>(15 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">130.000đ <small>/kg</small></span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+    // Tiện ích 3: Giỏ hàng (Cart)
+    function addToCart(id) {
+      const item = products.find(p => p.id === id);
+      const inCart = cart.find(c => c.id === id);
+      if (inCart) inCart.qty++;
+      else cart.push({ ...item, qty: 1 });
+      updateCartUI();
+      showToast("Đã thêm sản phẩm vào giỏ hàng 🛒");
+    }
 
-                <!-- Sản phẩm 5: Tôm sông tự nhiên -->
-                <div class="product-card">
-                    <div class="card-badge discount">-10%</div>
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1508615070457-7baeba4003ab?auto=format&fit=crop&w=600&q=80" alt="Tôm Sông Tự Nhiên">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Tôm Nước Ngọt</span>
-                        <h3 class="product-title"><a href="#">Tôm Sông Tự Nhiên Đánh Bắt Trong Ngày</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            <span>(22 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">210.000đ <small>/kg</small></span>
-                            <span class="old-price">235.000đ</span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+    function updateCartUI() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cartCount").innerText = totalQty;
+      const cartBody = document.getElementById("cartBody");
+      cartBody.innerHTML = "";
 
-                <!-- Sản phẩm 6: Ốc nhồi đồng -->
-                <div class="product-card">
-                    <div class="product-thumb">
-                        <img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=600&q=80" alt="Ốc Nhồi Đồng">
-                    </div>
-                    <div class="product-details">
-                        <span class="category">Cua & Cà Rạm & Ốc</span>
-                        <h3 class="product-title"><a href="#">Ốc Nhồi Đồng Béo Ngậy bơ béo béo</a></h3>
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                            <span>(19 đánh giá)</span>
-                        </div>
-                        <div class="price-box">
-                            <span class="current-price">95.000đ <small>/kg</small></span>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> Thêm giỏ</button>
-                            <button class="btn-buy-now">Mua Ngay</button>
-                        </div>
-                    </div>
-                </div>
+      let totalPrice = 0;
+      cart.forEach(item => {
+        totalPrice += item.rawPrice * item.qty;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.mainImg}" alt="${item.title}">
+          <div class="cart-item-info">
+            <h5>${item.title}</h5>
+            <p style="color:var(--accent-color); font-weight:bold;">${item.price} x ${item.qty}</p>
+          </div>
+          <button style="border:none; background:none; cursor:pointer;" onclick="removeFromCart(${item.id})">❌</button>
+        `;
+        cartBody.appendChild(div);
+      });
+      document.getElementById("cartTotalPrice").innerText = totalPrice.toLocaleString('vi-VN') + " đ";
+    }
 
-            </div>
-        </main>
-    </section>
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartUI();
+    }
 
-    <!-- 4. CAM KẾT CHẤT LƯỢNG (COMMITMENTS) -->
-    <section class="commitments-section" id="commitments">
-        <div class="container">
-            <h2 class="section-title">Tại Sao Nên Chọn Thủy Sản Miền Quê?</h2>
-            <div class="commitments-grid">
-                <div class="commit-item">
-                    <div class="commit-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                    <h3>Giao Hàng Bơi Sống</h3>
-                    <p>Sử dụng thùng Oxy chuyên dụng giúp tôm, cá, cua tươi sống 100% đến tay bạn.</p>
-                </div>
-                <div class="commit-item">
-                    <div class="commit-icon"><i class="fa-solid fa-kitchen-set"></i></div>
-                    <h3>Sơ Chế Miễn Phí</h3>
-                    <p>Hỗ trợ làm sạch, mổ vây, mổ ruột, cắt khúc theo yêu cầu món ăn của quý khách.</p>
-                </div>
-                <div class="commit-item">
-                    <div class="commit-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                    <h3>Bao Đổi Trả 1 - 1</h3>
-                    <p>Cam kết hoàn tiền hoặc đổi mới nếu sản phẩm không tươi ngon như mô tả.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    function toggleCartDrawer() {
+      document.getElementById("cartDrawer").classList.toggle("open");
+    }
 
-    <!-- 5. FOOTER -->
-    <footer id="footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>THỦY SẢN MIỀN QUÊ</h3>
-                <p>Hệ thống cung cấp hải sản & thủy sản nước ngọt uy tín hàng đầu. Mang hương vị sông nước tươi ngon nguyên bản đến căn bếp gia đình bạn.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Liên Hệ Đặt Hàng</h4>
-                <ul class="contact-info">
-                    <li><i class="fa-solid fa-location-dot"></i> Quần Liêu village</li>
-                    <li><i class="fa-solid fa-phone"></i> Hotline: 0362.442.952</li>
-                    <li><i class="fa-solid fa-envelope"></i> Email: haisanmienque@gmail.com</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Chính Sách Khách Hàng</h4>
-                <ul>
-                    <li><a href="#">Chính sách giao hàng oxy</a></li>
-                    <li><a href="#">Chính sách đổi trả hoàn tiền</a></li>
-                    <li><a href="#">Hướng dẫn làm sạch thủy sản</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Thủy Sản Miền Quê. Bản quyền thuộc về thương hiệu Thủy Sản Miền Quê.</p>
-        </div>
-    </footer>
+    function checkoutCart() {
+      if (cart.length === 0) return alert("Giỏ hàng của bạn đang trống!");
+      alert("Cảm ơn bạn đã đặt hàng! Xưởng Đồ Gỗ Điện Ngọc sẽ gọi điện xác nhận ngay.");
+      cart = [];
+      updateCartUI();
+      toggleCartDrawer();
+    }
 
+    // Tiện ích 4: Dark Mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.getElementById("themeBtn");
+      btn.innerText = document.body.classList.contains("dark-mode") ? "☀️ Sáng" : "🌙 Tối";
+    }
+
+    // Tiện ích 5: Toast Notification
+    function showToast(msg) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerText = msg;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 2500);
+    }
+
+    // Popup Chi tiết
+    function openModal(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById("modalTitle").innerText = p.title;
+      document.getElementById("modalCode").innerText = p.code;
+      document.getElementById("modalPrice").innerText = p.price;
+      document.getElementById("modalOldPrice").innerText = p.oldPrice;
+      document.getElementById("modalDesc").innerHTML = p.desc;
+      document.getElementById("modalMainImg").src = p.mainImg;
+      
+      const thumbBox = document.getElementById("modalThumbnails");
+      thumbBox.innerHTML = "";
+      p.images.forEach((img, idx) => {
+        const t = document.createElement("img");
+        t.src = img;
+        if(idx === 0) t.className = "active-thumb";
+        t.onclick = () => {
+          document.getElementById("modalMainImg").src = img;
+          document.querySelectorAll(".thumbnail-list img").forEach(i => i.classList.remove("active-thumb"));
+          t.classList.add("active-thumb");
+        };
+        thumbBox.appendChild(t);
+      });
+
+      document.getElementById("productModal").style.display = "block";
+    }
+
+    function closeModal() { document.getElementById("productModal").style.display = "none"; }
+    function handleOrderSubmit() {
+      alert("Đặt hàng thành công! Xưởng sẽ gọi thoại lại ngay để chốt giờ giao.");
+      closeModal();
+    }
+
+    // Chatbot AI
+    function toggleAIChat() {
+      const box = document.getElementById("aiChatBox");
+      box.style.display = (box.style.display === "flex") ? "none" : "flex";
+    }
+
+    function handleAISend() {
+      const input = document.getElementById("aiInput");
+      const text = input.value.trim();
+      if (!text) return;
+      const body = document.getElementById("aiChatBody");
+      
+      const uMsg = document.createElement("div");
+      uMsg.className = "msg msg-user";
+      uMsg.innerText = text;
+      body.appendChild(uMsg);
+      input.value = "";
+
+      setTimeout(() => {
+        let reply = "Xưởng nhận đóng theo kích thước yêu cầu. Vui lòng gọi trực tiếp 0912208061 để được hỗ trợ ạ!";
+        const t = text.toLowerCase();
+        if (t.includes("giường")) reply = "Giường gỗ MDF giá chỉ từ 1.800.000đ[cite: 1] (Bao ship & lắp đặt tận nơi tại Nam Định)[cite: 1].";
+        else if (t.includes("tủ")) reply = "Tủ quần áo 2, 3, 4 cánh giá từ 1.950.000đ đến 3.400.000đ ạ[cite: 1].";
+        else if (t.includes("ship") || t.includes("lắp")) reply = "Xưởng miễn phí giao hàng & thợ dựng tận nơi tại Nam Định, kiểm tra mới thanh toán COD[cite: 1]!";
+
+        const aMsg = document.createElement("div");
+        aMsg.className = "msg msg-ai";
+        aMsg.innerText = reply;
+        body.appendChild(aMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 300);
+    }
+
+    // Khởi tạo
+    renderProducts(products);
+  </script>
 </body>
 </html>
