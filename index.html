@@ -558,37 +558,114 @@
       closeModal();
     }
 
+    // ====== CẤU HÌNH GEMINI AI (Google) ======
+    // 1) Lấy API key miễn phí tại: https://aistudio.google.com/apikey
+    // 2) Dán key vào bên dưới.
+    // 3) BẮT BUỘC: vào Google Cloud Console / AI Studio > API key > "Application restrictions"
+    //    chọn "Websites" và chỉ cho phép domain thật của bạn (vd: thuysanmienque.com/*)
+    //    Vì đây là hosting tĩnh (không có backend), key sẽ nằm trong mã nguồn trình duyệt,
+    //    nên PHẢI giới hạn theo domain để tránh người khác lấy key dùng trộm.
+    const GEMINI_API_KEY = "DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY";
+    const GEMINI_MODEL = "gemini-2.5-flash";
+    let chatHistory = []; // lưu lịch sử hội thoại để AI nhớ ngữ cảnh
+
+    // Tạo phần "system context" mô tả shop + toàn bộ sản phẩm/giá hiện có
+    function buildShopContext() {
+      const list = products.map(p => `- ${p.title}: ${p.price} (mã ${p.code})`).join("\n");
+      return `Bạn là nhân viên tư vấn bán hàng của cửa hàng "Thủy Sản Miền Quê" tại Quần Liêu Village.
+Quy tắc trả lời:
+- Trả lời NGẮN GỌN (tối đa 3-4 câu), giọng thân thiện, xưng "em", gọi khách là "bác/anh/chị".
+- Chỉ tư vấn về hải sản, giá cả, cách chế biến, bảo quản, và cách đặt hàng/giao hàng.
+- Hotline/Zalo đặt hàng: 0362442952. Giao hàng tận nơi khu vực Quần Liêu Village và lân cận.
+- Nếu khách hỏi giá hoặc sản phẩm không có trong danh sách dưới đây, nói rõ là hiện chưa có và gợi ý sản phẩm tương tự đang bán.
+- Không bịa thông tin ngoài phạm vi cửa hàng hải sản.
+
+Danh sách sản phẩm và giá hiện tại:
+${list}`;
+    }
+
     // Chatbot AI
     function toggleAIChat() {
       const box = document.getElementById("aiChatBox");
       box.style.display = (box.style.display === "flex") ? "none" : "flex";
     }
 
-    function handleAISend() {
+    async function handleAISend() {
       const input = document.getElementById("aiInput");
+      const sendBtn = document.querySelector(".ai-footer button");
       const text = input.value.trim();
       if (!text) return;
       const body = document.getElementById("aiChatBody");
-      
+
       const uMsg = document.createElement("div");
       uMsg.className = "msg msg-user";
       uMsg.innerText = text;
       body.appendChild(uMsg);
       input.value = "";
+      body.scrollTop = body.scrollHeight;
 
-      setTimeout(() => {
-        let reply = "Thủy Sản Miền Quê giao tận nơi tại Quần Liêu Village. Hotline / Zalo: 0362442952 ạ!";
-        const t = text.toLowerCase();
-        if (t.includes("tôm")) reply = "Bên em có Tôm Sú Biển (320k/kg), Tôm Thẻ (180k/kg), Tôm Càng Xanh (280k/kg) bơi khỏe ạ!";
-        else if (t.includes("cua") || t.includes("ghẹ")) reply = "Cua thịt Cà Mau 420k/kg, Cua gạch son 520k/kg, Ghẹ xanh 380k/kg bao chắc thịt 100% ạ!";
-        else if (t.includes("ship") || t.includes("giao")) reply = "Bên em free ship khu vực Quần Liêu Village và lân cận cho đơn từ 2kg ạ!";
+      if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("DÁN_API_KEY")) {
+        const warn = document.createElement("div");
+        warn.className = "msg msg-ai";
+        warn.innerText = "⚠️ Chatbot chưa được cấu hình API key Gemini. Vui lòng liên hệ hotline 0362442952 để được tư vấn trực tiếp ạ!";
+        body.appendChild(warn);
+        body.scrollTop = body.scrollHeight;
+        return;
+      }
 
+      // Hiện chỉ báo "đang trả lời..."
+      const typingMsg = document.createElement("div");
+      typingMsg.className = "msg msg-ai";
+      typingMsg.id = "typingIndicator";
+      typingMsg.innerText = "Đang trả lời...";
+      body.appendChild(typingMsg);
+      body.scrollTop = body.scrollHeight;
+
+      input.disabled = true;
+      if (sendBtn) sendBtn.disabled = true;
+
+      chatHistory.push({ role: "user", parts: [{ text }] });
+
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: buildShopContext() }] },
+              contents: chatHistory,
+              generationConfig: { temperature: 0.4, maxOutputTokens: 300 }
+            })
+          }
+        );
+
+        if (!res.ok) throw new Error("API lỗi: " + res.status);
+        const data = await res.json();
+        const reply =
+          data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
+          "Xin lỗi bác, em chưa trả lời được câu này. Bác gọi hotline 0362442952 giúp em nhé!";
+
+        chatHistory.push({ role: "model", parts: [{ text: reply }] });
+
+        document.getElementById("typingIndicator")?.remove();
         const aMsg = document.createElement("div");
         aMsg.className = "msg msg-ai";
         aMsg.innerText = reply;
         body.appendChild(aMsg);
+      } catch (err) {
+        document.getElementById("typingIndicator")?.remove();
+        const errMsg = document.createElement("div");
+        errMsg.className = "msg msg-ai";
+        errMsg.innerText = "Xin lỗi, kết nối AI đang gặp sự cố. Bác gọi hotline/Zalo 0362442952 để được hỗ trợ ngay ạ!";
+        body.appendChild(errMsg);
+        console.error("Gemini API error:", err);
+      } finally {
+        input.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
+        input.focus();
         body.scrollTop = body.scrollHeight;
-      }, 300);
+      }
     }
 
     // Khởi tạo
