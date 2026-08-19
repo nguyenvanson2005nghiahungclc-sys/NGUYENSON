@@ -1,230 +1,834 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thủy Sản Miền Quê - Thủy Sản Nước Ngọt Tươi Sống</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <title>Thủy Sản Miền Quê | Cá - Tôm - Cua - Ốc</title>
+
+    <meta name="description"
+          content="Thủy Sản Miền Quê - Cá, tôm, cua, ốc nước ngọt tươi sống mỗi ngày.">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
+
     <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <span class="logo-icon">🐟</span>
-                <div class="logo-text">
-                    <h1>THỦY SẢN</h1>
-                    <p>MIỀN QUÊ</p>
-                </div>
-            </div>
 
-            <nav class="nav-menu">
-                <a href="#home" class="active">Trang chủ</a>
-                <a href="#products">Sản phẩm</a>
-                <a href="#about">Giới thiệu</a>
-                <a href="#reviews">Đánh giá</a>
-                <a href="#contact">Liên hệ</a>
-            </nav>
+        <a href="#home" class="logo">
+            <span class="logo-icon">🐟</span>
 
-            <div class="header-right">
-                <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Tìm sản phẩm..." onkeyup="handleSearch(event)">
-                    <button onclick="triggerSearch()">🔍</button>
-                </div>
-                <button class="cart-btn" onclick="openCartModal()">
-                    🛒 Giỏ hàng
-                    <span id="cart-count">0</span>
-                </button>
+            <div>
+                <h1>THỦY SẢN</h1>
+                <p>MIỀN QUÊ</p>
             </div>
+        </a>
+
+        <nav class="navbar">
+
+            <a href="#home">Trang chủ</a>
+
+            <a href="#products">Sản phẩm</a>
+
+            <a href="#about">Giới thiệu</a>
+
+            <a href="#reviews">Đánh giá</a>
+
+            <a href="#contact">Liên hệ</a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="icon-button"
+                onclick="openSearch()"
+                title="Tìm kiếm">
+                🔍
+            </button>
+
+            <button
+                class="icon-button cart-button"
+                onclick="openCart()"
+                title="Giỏ hàng">
+
+                🛒
+
+                <span id="cart-count">0</span>
+
+            </button>
+
+            <button
+                class="menu-button"
+                onclick="toggleMobileMenu()">
+                ☰
+            </button>
+
         </div>
+
     </header>
 
-    <!-- HERO / BANNER -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <p class="small-title">TƯƠI NGON TỪ QUÊ NHÀ</p>
-            <h2>Thủy Sản Nước Ngọt<br>Tươi Sống Mỗi Ngày</h2>
-            <p>Cung cấp các loại Cá, Tôm, Cua, Ốc được tuyển chọn trực tiếp từ các nguồn thủy sản địa phương uy tín.</p>
-            <button class="btn-primary" onclick="scrollToProducts()">MUA NGAY KHUYẾN MÃI</button>
-        </div>
-    </section>
 
-    <!-- CAM KẾT / COMMITMENTS -->
-    <section class="commitments">
-        <div class="commitment-item">
-            <div class="icon">🐟</div>
-            <h3>100% Tươi Sống</h3>
-            <p>Sản phẩm luôn đảm bảo tươi sống, bơi khỏe khi giao đến tay khách hàng.</p>
-        </div>
-        <div class="commitment-item">
-            <div class="icon">🌱</div>
-            <h3>Nguồn Gốc Sạch</h3>
-            <p>Thu hoạch từ ao hồ tự nhiên và các trang trại nuôi trồng đạt chuẩn.</p>
-        </div>
-        <div class="commitment-item">
-            <div class="icon">⭐</div>
-            <h3>Chất Lượng Vượt Trội</h3>
-            <p>Sơ chế sạch sẻ, phân loại kỹ càng theo tiêu chuẩn nghiêm ngặt.</p>
-        </div>
-        <div class="commitment-item">
-            <div class="icon">🚚</div>
-            <h3>Giao Hàng Siêu Tốc</h3>
-            <p>Đóng thúng xốp oxy chuyên dụng, giao tận nơi trong nội thành từ 1 - 2h.</p>
-        </div>
-    </section>
+    <!-- ================= MOBILE MENU ================= -->
 
-    <!-- SẢN PHẨM / PRODUCTS SECTION -->
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <p>DANH MỤC SẢN PHẨM</p>
-            <h2>Thủy Sản Tươi Sống Trong Ngày</h2>
-            <span>Chọn danh mục bên dưới để lọc các mặt hàng bạn cần</span>
-        </div>
+    <div id="mobile-menu" class="mobile-menu">
 
-        <!-- CATEGORIES FILTER -->
-        <div class="categories">
-            <button class="category-btn active" onclick="filterCategory('all', this)">Tất cả (20)</button>
-            <button class="category-btn" onclick="filterCategory('ca', this)">🐟 Cá nước ngọt (10)</button>
-            <button class="category-btn" onclick="filterCategory('tom', this)">🦐 Tôm (4)</button>
-            <button class="category-btn" onclick="filterCategory('cua', this)">🦀 Cua (3)</button>
-            <button class="category-btn" onclick="filterCategory('oc', this)">🐚 Ốc (3)</button>
-        </div>
+        <a href="#home">Trang chủ</a>
 
-        <!-- TOOLBAR: SORT & COUNT -->
-        <div class="product-tools">
-            <span id="product-count-display">Hiển thị 20 sản phẩm</span>
-            <div class="sort-wrapper">
-                <label for="sort-select">Sắp xếp: </label>
-                <select id="sort-select" onchange="sortProducts()">
-                    <option value="default">Mặc định / Mới nhất</option>
-                    <option value="low">Giá: Thấp → Cao</option>
-                    <option value="high">Giá: Cao → Thấp</option>
-                </select>
-            </div>
-        </div>
+        <a href="#products">Sản phẩm</a>
 
-        <!-- PRODUCT GRID -->
-        <div id="product-list" class="product-grid">
-            <!-- Render từ JS -->
-        </div>
-    </section>
+        <a href="#about">Giới thiệu</a>
 
-    <!-- GIỚI THIỆU / ABOUT -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-image">
-                <div class="img-placeholder">
-                    <span>🐟 🦐 🦀 🐚</span>
-                    <p>THỦY SẢN MIỀN QUÊ</p>
-                </div>
-            </div>
-            <div class="about-content">
-                <p class="small-title">VỀ CHÚNG TÔI</p>
-                <h2>Đậm Đàm Hương Vị Thủy Sản Đồng Quê</h2>
-                <p>Thủy Sản Miền Quê tự hào là đơn vị uy tín chuyên cung cấp các loại thủy hải sản nước ngọt tươi sống chất lượng cao cho các gia đình, nhà hàng, và quán ăn.</p>
-                <p>Chúng tôi cam kết nguồn hàng rõ ràng, thu hoạch trong ngày, đảm bảo giữ trọn vị ngọt tự nhiên và dinh dưỡng cao nhất của sản phẩm.</p>
-                <button class="btn-secondary" onclick="scrollToProducts()">KÁM PHÁ SẢN PHẨM</button>
-            </div>
-        </div>
-    </section>
+        <a href="#reviews">Đánh giá</a>
 
-    <!-- ĐÁNH GIÁ KHÁCH HÀNG / REVIEWS -->
-    <section class="reviews" id="reviews">
-        <div class="section-title">
-            <p>PHẢN HỒI TỪ KHÁCH HÀNG</p>
-            <h2>Khách Hàng Nói Gì Về Chúng Tôi?</h2>
-        </div>
-        <div class="review-grid">
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Cá lóc và tôm càng xanh đặt giao sang rất tươi, cá vẫn bơi khỏe trong túi. Đóng gói rất chu đáo!"</p>
-                <h3>Anh Minh (Hà Nội)</h3>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Ốc nhồi to, béo, làm sạch sẽ về chỉ việc luộc sả. Giá cả hợp lý hơn mua ngoài chợ."</p>
-                <h3>Chị Thu Lan (Cầu Giấy)</h3>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Giao hàng cực nhanh, cua đồng xay sẵn chuẩn vị nấu canh siêu ngon. Sẽ ủng hộ lâu dài!"</p>
-                <h3>Anh Hoàng Huy (Thanh Xuân)</h3>
-            </div>
-        </div>
-    </section>
+        <a href="#contact">Liên hệ</a>
 
-    <!-- FOOTER & LIÊN HỆ -->
-    <footer id="contact">
-        <div class="footer-container">
-            <div class="footer-col">
-                <div class="logo">
-                    <span class="logo-icon">🐟</span>
-                    <div class="logo-text">
-                        <h2>THỦY SẢN</h2>
-                        <p>MIỀN QUÊ</p>
-                    </div>
-                </div>
-                <p>Chuyên cung cấp thủy sản nước ngọt tươi sống hàng đầu. Cam kết chất lượng, an toàn thực phẩm.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Danh Mục Sản Phẩm</h3>
-                <ul>
-                    <li><a href="#products" onclick="filterCategory('ca')">Cá nước ngọt</a></li>
-                    <li><a href="#products" onclick="filterCategory('tom')">Tôm sông / Tôm càng</a></li>
-                    <li><a href="#products" onclick="filterCategory('cua')">Cua đồng / Cua sông</a></li>
-                    <li><a href="#products" onclick="filterCategory('oc')">Ốc bươu / Ốc nhồi</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Thông Tin Liên Hệ</h3>
-                <p>📞 Hotline: <strong>0988 123 456</strong></p>
-                <p>📧 Email: thuysanmienque@gmail.com</p>
-                <p>📍 Địa chỉ: Số 123 Đường Sông Hồng, Hà Nội</p>
-                <p>⏰ Giờ mở cửa: 06:00 - 20:00 hằng ngày</p>
-            </div>
-            <div class="footer-col">
-                <h3>Kết Nối Với Chúng Tôi</h3>
-                <div class="social-links">
-                    <a href="#">Facebook</a> | <a href="#">Zalo OA</a> | <a href="#">TikTok</a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2026 THỦY SẢN MIỀN QUÊ. Tất cả quyền được bảo lưu.
-        </div>
-    </footer>
-
-    <!-- MODAL GIỎ HÀNG -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>🛒 Giỏ Hàng Của Bạn</h2>
-                <span class="close-btn" onclick="closeCartModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="cart-items-container">
-                    <!-- Cart items render từ JS -->
-                </div>
-                <div class="cart-summary">
-                    <p>Tổng tiền thanh toán: <strong id="cart-total-price">0đ</strong></p>
-                </div>
-                <form id="checkout-form" onsubmit="handleCheckout(event)">
-                    <h3>Thông Tin Giao Hàng</h3>
-                    <input type="text" id="customer-name" placeholder="Họ và tên người nhận" required>
-                    <input type="tel" id="customer-phone" placeholder="Số điện thoại" required>
-                    <textarea id="customer-address" placeholder="Địa chỉ nhận hàng cụ thể" rows="2" required></textarea>
-                    <button type="submit" class="btn-checkout">XÁC NHẬN ĐẶT HÀNG</button>
-                </form>
-            </div>
-        </div>
     </div>
 
-    <!-- JAVASCRIPT -->
-    <script src="js/script.js"></script>
+
+    <!-- ================= HERO ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <p class="hero-small-title">
+                TƯƠI NGON TỪ QUÊ NHÀ
+            </p>
+
+            <h2>
+                Thủy sản nước ngọt
+                <br>
+                tươi ngon mỗi ngày
+            </h2>
+
+            <p class="hero-description">
+
+                Cá, tôm, cua, ốc nước ngọt được
+                tuyển chọn kỹ càng từ nguồn địa phương,
+                mang hương vị tự nhiên đến bữa ăn gia đình.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-button"
+                    onclick="scrollToProducts()">
+
+                    MUA NGAY
+
+                </button>
+
+                <a
+                    href="#about"
+                    class="secondary-button">
+
+                    VỀ CHÚNG TÔI
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMITMENTS ================= -->
+
+    <section class="commitments">
+
+        <div class="commitment">
+
+            <div class="commitment-icon">
+                🐟
+            </div>
+
+            <h3>Tươi sống</h3>
+
+            <p>
+                Sản phẩm được tuyển chọn
+                và đảm bảo độ tươi ngon.
+            </p>
+
+        </div>
+
+
+        <div class="commitment">
+
+            <div class="commitment-icon">
+                🌱
+            </div>
+
+            <h3>Nguồn gốc rõ ràng</h3>
+
+            <p>
+                Ưu tiên nguồn thủy sản
+                từ các địa phương.
+            </p>
+
+        </div>
+
+
+        <div class="commitment">
+
+            <div class="commitment-icon">
+                ⭐
+            </div>
+
+            <h3>Chất lượng</h3>
+
+            <p>
+                Sản phẩm được lựa chọn
+                kỹ trước khi giao hàng.
+            </p>
+
+        </div>
+
+
+        <div class="commitment">
+
+            <div class="commitment-icon">
+                🚚
+            </div>
+
+            <h3>Giao hàng</h3>
+
+            <p>
+                Đóng gói cẩn thận,
+                giao hàng nhanh chóng.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section id="products" class="products-section">
+
+        <div class="section-title">
+
+            <p>THỦY SẢN TƯƠI SỐNG</p>
+
+            <h2>Sản phẩm của chúng tôi</h2>
+
+            <span>
+                Cá, tôm, cua, ốc nước ngọt
+                được tuyển chọn mỗi ngày
+            </span>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="categories">
+
+            <button
+                class="category active"
+                data-category="all"
+                onclick="filterProducts('all')">
+
+                Tất cả
+
+            </button>
+
+            <button
+                class="category"
+                data-category="ca"
+                onclick="filterProducts('ca')">
+
+                🐟 Cá
+
+            </button>
+
+            <button
+                class="category"
+                data-category="tom"
+                onclick="filterProducts('tom')">
+
+                🦐 Tôm
+
+            </button>
+
+            <button
+                class="category"
+                data-category="cua"
+                onclick="filterProducts('cua')">
+
+                🦀 Cua
+
+            </button>
+
+            <button
+                class="category"
+                data-category="oc"
+                onclick="filterProducts('oc')">
+
+                🐚 Ốc
+
+            </button>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="product-toolbar">
+
+            <div>
+
+                <strong id="product-result">
+                    20 sản phẩm
+                </strong>
+
+            </div>
+
+            <div class="sort-box">
+
+                <label for="sort">
+                    Sắp xếp:
+                </label>
+
+                <select
+                    id="sort"
+                    onchange="sortProducts()">
+
+                    <option value="default">
+                        Mặc định
+                    </option>
+
+                    <option value="low">
+                        Giá thấp → cao
+                    </option>
+
+                    <option value="high">
+                        Giá cao → thấp
+                    </option>
+
+                    <option value="name">
+                        Tên A → Z
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div
+            id="product-list"
+            class="product-grid">
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about" class="about-section">
+
+        <div class="about-image">
+
+            <img
+                src="images/about.jpg"
+                alt="Thủy sản miền quê">
+
+        </div>
+
+
+        <div class="about-content">
+
+            <p class="small-title">
+                VỀ CHÚNG TÔI
+            </p>
+
+            <h2>
+                Tươi ngon từ
+                nguồn nước quê nhà
+            </h2>
+
+            <p>
+                Thủy Sản Miền Quê cung cấp các sản phẩm
+                thủy sản nước ngọt như cá, tôm, cua và ốc.
+            </p>
+
+            <p>
+                Chúng tôi hướng đến việc mang những sản phẩm
+                tươi ngon, chất lượng và gần gũi với thiên nhiên
+                đến với mỗi gia đình.
+            </p>
+
+            <p>
+                Mỗi sản phẩm đều được lựa chọn cẩn thận
+                trước khi đến tay khách hàng.
+            </p>
+
+            <button
+                class="primary-button"
+                onclick="scrollToProducts()">
+
+                XEM SẢN PHẨM
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURE ================= -->
+
+    <section class="feature-section">
+
+        <div class="feature-content">
+
+            <p class="small-title">
+                HƯƠNG VỊ QUÊ NHÀ
+            </p>
+
+            <h2>
+                Từ nguồn nước tự nhiên
+                đến bàn ăn gia đình
+            </h2>
+
+            <p>
+                Chúng tôi lựa chọn những sản phẩm
+                phù hợp để mang đến sự tươi ngon
+                và an tâm trong mỗi bữa ăn.
+            </p>
+
+            <button
+                class="primary-button"
+                onclick="scrollToProducts()">
+
+                MUA NGAY
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REVIEWS ================= -->
+
+    <section id="reviews" class="reviews-section">
+
+        <div class="section-title">
+
+            <p>KHÁCH HÀNG</p>
+
+            <h2>
+                Khách hàng nói gì?
+            </h2>
+
+        </div>
+
+
+        <div class="review-grid">
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Cá rất tươi, đóng gói cẩn thận.
+                    Gia đình tôi rất thích."
+                </p>
+
+                <h3>
+                    Anh Minh
+                </h3>
+
+                <span>
+                    Khách hàng
+                </span>
+
+            </div>
+
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Tôm càng xanh rất tươi và ngon.
+                    Tôi sẽ tiếp tục ủng hộ."
+                </p>
+
+                <h3>
+                    Chị Lan
+                </h3>
+
+                <span>
+                    Khách hàng
+                </span>
+
+            </div>
+
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Đặt hàng nhanh, sản phẩm đúng
+                    như mô tả. Rất hài lòng."
+                </p>
+
+                <h3>
+                    Anh Huy
+                </h3>
+
+                <span>
+                    Khách hàng
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact-section">
+
+        <div class="contact-content">
+
+            <p class="small-title">
+                LIÊN HỆ
+            </p>
+
+            <h2>
+                Đặt thủy sản tươi
+                ngay hôm nay
+            </h2>
+
+            <p>
+                Hãy liên hệ với chúng tôi để được
+                tư vấn sản phẩm và đặt hàng.
+            </p>
+
+            <div class="contact-info">
+
+                <p>
+                    📞
+                    <strong>0988 123 456</strong>
+                </p>
+
+                <p>
+                    📧
+                    thuysanmienque@gmail.com
+                </p>
+
+                <p>
+                    📍
+                    Hà Nội
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-form">
+
+            <h3>
+                Gửi yêu cầu
+            </h3>
+
+            <input
+                type="text"
+                id="contact-name"
+                placeholder="Họ và tên">
+
+            <input
+                type="tel"
+                id="contact-phone"
+                placeholder="Số điện thoại">
+
+            <textarea
+                id="contact-message"
+                placeholder="Nội dung cần tư vấn"></textarea>
+
+            <button
+                class="primary-button"
+                onclick="sendContact()">
+
+                GỬI YÊU CẦU
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="contact">
+
+        <div class="footer-container">
+
+            <div class="footer-column footer-brand">
+
+                <h2>
+                    🐟 THỦY SẢN MIỀN QUÊ
+                </h2>
+
+                <p>
+                    Tươi ngon từ quê nhà,
+                    mang hương vị tự nhiên
+                    đến mỗi gia đình.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Sản phẩm
+                </h3>
+
+                <a href="#products">
+                    Cá nước ngọt
+                </a>
+
+                <a href="#products">
+                    Tôm
+                </a>
+
+                <a href="#products">
+                    Cua
+                </a>
+
+                <a href="#products">
+                    Ốc
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Hỗ trợ
+                </h3>
+
+                <a href="#about">
+                    Giới thiệu
+                </a>
+
+                <a href="#reviews">
+                    Đánh giá
+                </a>
+
+                <a href="#contact">
+                    Liên hệ
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Liên hệ
+                </h3>
+
+                <p>
+                    📞 0988 123 456
+                </p>
+
+                <p>
+                    📧 thuysanmienque@gmail.com
+                </p>
+
+                <p>
+                    📍 Hà Nội
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Thủy Sản Miền Quê.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= SEARCH MODAL ================= -->
+
+    <div
+        id="search-modal"
+        class="modal">
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeSearch()">
+                ×
+            </button>
+
+            <h2>
+                Tìm kiếm sản phẩm
+            </h2>
+
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Nhập tên cá, tôm, cua, ốc..."
+                onkeydown="handleSearchKey(event)">
+
+            <button
+                class="primary-button"
+                onclick="performSearch()">
+
+                TÌM KIẾM
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CART MODAL ================= -->
+
+    <div
+        id="cart-modal"
+        class="modal">
+
+        <div class="cart-box">
+
+            <button
+                class="modal-close"
+                onclick="closeCart()">
+                ×
+            </button>
+
+            <h2>
+                Giỏ hàng
+            </h2>
+
+            <div id="cart-items">
+
+            </div>
+
+            <div class="cart-total">
+
+                <span>
+                    Tổng cộng:
+                </span>
+
+                <strong id="cart-total-price">
+                    0đ
+                </strong>
+
+            </div>
+
+            <button
+                class="primary-button full-button"
+                onclick="openCheckout()">
+
+                ĐẶT HÀNG
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CHECKOUT MODAL ================= -->
+
+    <div
+        id="checkout-modal"
+        class="modal">
+
+        <div class="checkout-box">
+
+            <button
+                class="modal-close"
+                onclick="closeCheckout()">
+                ×
+            </button>
+
+            <h2>
+                Thông tin đặt hàng
+            </h2>
+
+            <p class="checkout-note">
+                Vui lòng nhập thông tin để chúng tôi
+                liên hệ xác nhận đơn hàng.
+            </p>
+
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Họ và tên *">
+
+            <input
+                type="tel"
+                id="customer-phone"
+                placeholder="Số điện thoại *">
+
+            <input
+                type="text"
+                id="customer-address"
+                placeholder="Địa chỉ nhận hàng *">
+
+            <textarea
+                id="customer-note"
+                placeholder="Ghi chú đơn hàng"></textarea>
+
+            <button
+                class="primary-button full-button"
+                onclick="submitOrder()">
+
+                XÁC NHẬN ĐẶT HÀNG
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
 </body>
+
 </html>
+```
