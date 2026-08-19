@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ĐỒ GỖ ĐIỆN NGỌC - Nội Thất Nam Định</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪵</text></svg>">
+  <title>Thủy Sản Miền Quê - Quần Liêu Village</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
   <style>
     :root {
-      --primary-color: #cb7b26;
-      --secondary-color: #881b1b;
-      --accent-color: #c0392b;
-      --bg-color: #ffffff;
+      --primary-color: #0077b6;
+      --secondary-color: #023e8a;
+      --accent-color: #e63946;
+      --bg-color: #f8f9fa;
       --card-bg: #ffffff;
-      --text-color: #333333;
-      --text-muted: #666666;
-      --border-color: #eeeeee;
-      --topbar-bg: #cb7b26;
+      --text-color: #212529;
+      --text-muted: #6c757d;
+      --border-color: #e9ecef;
+      --topbar-bg: #0077b6;
     }
 
     body.dark-mode {
@@ -24,7 +24,7 @@
       --text-color: #e0e0e0;
       --text-muted: #aaa;
       --border-color: #333333;
-      --topbar-bg: #1f1f1f;
+      --topbar-bg: #0d1b2a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
@@ -34,7 +34,7 @@
     .top-bar { background-color: var(--topbar-bg); padding: 8px 15px; color: #fff; }
     .top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
     .top-left { display: flex; align-items: center; gap: 12px; }
-    .hotline-btn { background: #fff; color: #cb7b26; padding: 4px 12px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 13px; }
+    .hotline-btn { background: #fff; color: var(--primary-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 13px; }
     .top-link { color: #fff; text-decoration: none; font-size: 13px; font-weight: 500; }
     
     .top-right { display: flex; align-items: center; gap: 12px; }
@@ -45,7 +45,7 @@
     /* Main Nav & Dropdown Menu */
     .main-nav { background: var(--card-bg); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
     .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
-    .logo { font-size: 22px; font-weight: 900; color: var(--primary-color); letter-spacing: 1px; padding: 12px 0; }
+    .logo { font-size: 22px; font-weight: 900; color: var(--primary-color); letter-spacing: 1px; padding: 12px 0; display: flex; align-items: center; gap: 6px; }
     
     .nav-links { display: flex; list-style: none; margin: 0; }
     .nav-item { position: relative; }
@@ -59,7 +59,7 @@
     }
     .nav-item:hover .dropdown-menu { display: block; }
     .dropdown-menu li a { display: block; padding: 9px 16px; color: var(--text-color); text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 1px solid var(--border-color); }
-    .dropdown-menu li a:hover { background: rgba(203,123,38,0.1); color: var(--primary-color); padding-left: 20px; }
+    .dropdown-menu li a:hover { background: rgba(0,119,182,0.1); color: var(--primary-color); padding-left: 20px; }
 
     /* Main Container */
     .container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
@@ -139,18 +139,18 @@
     .btn-zalo { background-color: #0088ff; color: #fff; font-weight: 900; font-size: 11px; }
     .btn-map { background-color: #00a651; }
     .btn-scrolltop { background-color: #636e72; border: none; }
-    .btn-ai-chat { background-color: #5c67f2; border: none; font-size: 20px; }
+    .btn-ai-chat { background-color: #0077b6; border: none; font-size: 20px; }
 
     /* AI Box */
     .native-ai-box { display: none; position: fixed; right: 70px; bottom: 20px; width: 320px; height: 420px; background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color); }
-    .ai-header { background: #5c67f2; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    .ai-header { background: #0077b6; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
     .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: var(--bg-color); display: flex; flex-direction: column; gap: 8px; }
     .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; max-width: 85%; }
     .msg-ai { background: var(--border-color); color: var(--text-color); align-self: flex-start; }
     .msg-user { background: var(--primary-color); color: white; align-self: flex-end; }
     .ai-footer { display: flex; border-top: 1px solid var(--border-color); padding: 6px; background: var(--card-bg); }
     .ai-footer input { flex: 1; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
-    .ai-footer button { background: #5c67f2; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .ai-footer button { background: #0077b6; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
     /* Toast Notification */
     #toastContainer { position: fixed; bottom: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
@@ -177,9 +177,8 @@
   <header class="top-bar">
     <div class="top-container">
       <div class="top-left">
-        <a href="tel:0912208061" class="hotline-btn">📞 Hotline: 0912208061</a>
-        <a href="#about" class="top-link">Giới thiệu</a>
-        <a href="#map-section" class="top-link">Địa chỉ xưởng</a>
+        <a href="tel:0362442952" class="hotline-btn">📞 Hotline/Zalo: 0362442952</a>
+        <a href="#about" class="top-link">Địa chỉ: Quần Liêu Village</a>
       </div>
       <div class="top-right">
         <button class="icon-btn-top" onclick="filterWishlist()">❤️ Yêu thích <span class="badge" id="wishlistCount">0</span></button>
@@ -192,57 +191,58 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <div class="nav-container">
-      <div class="logo">ĐIỆN NGỌC</div>
+      <div class="logo">🦐 THỦY SẢN MIỀN QUÊ</div>
       <ul class="nav-links">
         <li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>
         <li class="nav-item">
-          <a onclick="filterCategory('giuong')">Giường Ngủ ▾</a>
+          <a onclick="filterCategory('tom')">CÁC LOẠI TÔM ▾</a>
           <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('giuong-1m6')">Giường Modern 1m6</a></li>
-            <li><a onclick="filterCategory('giuong-1m8')">Giường Cao Cấp 1m8</a></li>
+            <li><a onclick="filterCategory('tom-su')">Tôm Sú Biển</a></li>
+            <li><a onclick="filterCategory('tom-the')">Tôm Thẻ Chân Trắng</a></li>
+            <li><a onclick="filterCategory('tom-hum')">Tôm Hùm & Tôm Càng</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a onclick="filterCategory('tu')">Tủ Quần Áo ▾</a>
+          <a onclick="filterCategory('cua')">CUA & GHẸ ▾</a>
           <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('tu-2canh')">Tủ Áo 2 Cánh</a></li>
-            <li><a onclick="filterCategory('tu-3canh')">Tủ Áo 3 Cánh</a></li>
-            <li><a onclick="filterCategory('tu-4canh')">Tủ Áo 4 Cánh Cỡ Lớn</a></li>
+            <li><a onclick="filterCategory('cua-thịt')">Cua Thịt Cà Mau</a></li>
+            <li><a onclick="filterCategory('cua-gạch')">Cua Gạch Đỏ</a></li>
+            <li><a onclick="filterCategory('ghe')">Ghẹ Xanh Tươi Sống</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a onclick="filterCategory('ban-an')">Bàn Ghế Ăn ▾</a>
+          <a onclick="filterCategory('ca')">CÁ TƯƠI SỐNG ▾</a>
           <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('ban-an-4ghe')">Bộ Bàn Ăn 4 Ghế</a></li>
-            <li><a onclick="filterCategory('ban-an-6ghe')">Bộ Bàn Ăn 6 Ghế</a></li>
+            <li><a onclick="filterCategory('ca-bien')">Cá Biển Tươi</a></li>
+            <li><a onclick="filterCategory('ca-dong')">Cá Đồng & Cá Nước Ngọt</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a onclick="filterCategory('sofa')">Sofa Khách ▾</a>
+          <a onclick="filterCategory('oc')">ỐC & HẢI SẢN KHÁC ▾</a>
           <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('sofa-vang')">Sofa Văng Nệm</a></li>
-            <li><a onclick="filterCategory('sofa-da')">Sofa Da Bò</a></li>
+            <li><a onclick="filterCategory('oc-huong')">Ốc Hương & Ngao Nghêu</a></li>
+            <li><a onclick="filterCategory('muc')">Mực Tươi & Mực Một Nắng</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a onclick="filterCategory('ke-tivi')">Kệ Tivi & Tủ Giày</a></li>
+        <li class="nav-item"><a onclick="filterCategory('che-bien')">Hải Sản Sơ Chế / Khô</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="container" id="products">
-    <div class="breadcrumb" id="breadcrumbText">Trang chủ &gt; Tất cả sản phẩm</div>
+    <div class="breadcrumb" id="breadcrumbText">Trang chủ &gt; Tất cả mặt hàng thủy hải sản tươi sống</div>
 
     <!-- Toolbar Tiện Ích: Tìm kiếm, Lọc Giá, Sắp xếp -->
     <div class="filter-toolbar">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Tìm tên hoặc mã sản phẩm..." onkeyup="applyFilters()">
+        <input type="text" id="searchInput" placeholder="Tìm tên tôm, cua, cá, hải sản..." onkeyup="applyFilters()">
       </div>
       <div class="filter-controls">
         <select class="select-control" id="priceFilter" onchange="applyFilters()">
           <option value="all">Tất cả khoảng giá</option>
-          <option value="under2">Dưới 2 Triệu</option>
-          <option value="2to4">Từ 2 đến 4 Triệu</option>
-          <option value="above4">Trên 4 Triệu</option>
+          <option value="under200">Dưới 200k/kg</option>
+          <option value="200to400">Từ 200k - 400k/kg</option>
+          <option value="above400">Trên 400k/kg</option>
         </select>
         <select class="select-control" id="sortFilter" onchange="applyFilters()">
           <option value="default">Mặc định</option>
@@ -254,32 +254,32 @@
 
     <!-- Category Filter Tags -->
     <div class="category-tags">
-      <button type="button" class="tag-btn active" onclick="setCategoryTag('all', this)">Tất cả</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('giuong', this)">Giường ngủ</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('tu', this)">Tủ quần áo</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('ban-an', this)">Bàn ghế ăn</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('sofa', this)">Sofa</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('ke-tivi', this)">Kệ Tivi</button>
-      <button type="button" class="tag-btn" onclick="setCategoryTag('khac', this)">Khác</button>
+      <button type="button" class="tag-btn active" onclick="setCategoryTag('all', this)">Tất cả (20)</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('tom', this)">Tôm Tươi Sống</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('cua', this)">Cua & Ghẹ</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('ca', this)">Các Loại Cá</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('oc', this)">Ốc & Sò & Ngao</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('muc', this)">Mực Tươi</button>
+      <button type="button" class="tag-btn" onclick="setCategoryTag('che-bien', this)">Sản Phẩm Khác</button>
     </div>
 
-    <!-- Product Grid (Hàng sản phẩm mở rộng) -->
+    <!-- Product Grid (20 sản phẩm thủy sản) -->
     <div class="product-grid" id="productGrid"></div>
   </div>
 
   <!-- Cart Drawer -->
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
-      <span>Giỏ Hàng Của Bạn</span>
+      <span>Giỏ Hàng Thủy Sản</span>
       <button style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" onclick="toggleCartDrawer()">✕</button>
     </div>
     <div class="cart-body" id="cartBody"></div>
     <div class="cart-footer">
       <div class="cart-total">
-        <span>Tổng tiền:</span>
+        <span>Tổng tiền tạm tính:</span>
         <span id="cartTotalPrice" style="color:var(--accent-color);">0 đ</span>
       </div>
-      <button class="btn-checkout" onclick="checkoutCart()">ĐẶT MUA TOÀN BỘ GIỎ HÀNG</button>
+      <button class="btn-checkout" onclick="checkoutCart()">ĐẶT HÀNG THỦY SẢN TƯƠI SỐNG</button>
     </div>
   </div>
 
@@ -293,8 +293,8 @@
           <div class="thumbnail-list" id="modalThumbnails"></div>
         </div>
         <div class="detail-info">
-          <h2 id="modalTitle">Tên sản phẩm</h2>
-          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Mã: <span id="modalCode"></span> | <span style="color:#27ae60; font-weight:bold;">✔ Còn hàng</span></p>
+          <h2 id="modalTitle">Tên hải sản</h2>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Mã: <span id="modalCode"></span> | <span style="color:#27ae60; font-weight:bold;">✔ Hàng Tươi Sống Trong Ngày</span></p>
 
           <div class="promo-box">
             <div class="promo-header">
@@ -305,12 +305,12 @@
           </div>
 
           <form class="order-form" onsubmit="event.preventDefault(); handleOrderSubmit();">
-            <h4 style="font-size:14px; color:var(--secondary-color); margin-bottom:6px;">ĐẶT MUA GIAO HÀNG TẬN NƠI</h4>
+            <h4 style="font-size:14px; color:var(--secondary-color); margin-bottom:6px;">ĐẶT GIAO TẬN NƠI (QUẦN LIÊU VILLAGE & LÂN CẬN)</h4>
             <input type="hidden" id="orderProductName">
-            <div class="form-group"><input type="text" placeholder="Họ và tên *" required></div>
-            <div class="form-group"><input type="tel" placeholder="Số điện thoại *" required></div>
-            <div class="form-group"><input type="text" placeholder="Địa chỉ giao nhận *" required></div>
-            <div class="form-group"><textarea rows="2" placeholder="Ghi chú thêm..."></textarea></div>
+            <div class="form-group"><input type="text" placeholder="Họ và tên người nhận *" required></div>
+            <div class="form-group"><input type="tel" placeholder="Số điện thoại nhận hàng *" value="0362442952" required></div>
+            <div class="form-group"><input type="text" placeholder="Địa chỉ giao hàng cụ thể *" value="Quần Liêu Village" required></div>
+            <div class="form-group"><textarea rows="2" placeholder="Ghi chú (Ví dụ: Sơ chế sạch, giao ngay lúc 5h chiều...)"></textarea></div>
             <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG (THANH TOÁN COD)</button>
           </form>
         </div>
@@ -320,48 +320,49 @@
 
   <!-- Floating Buttons -->
   <div class="floating-contact-bar">
-    <a href="tel:0912208061" class="btn-floating btn-phone" title="Gọi ngay">📞</a>
-    <a href="https://zalo.me/0912208061" target="_blank" class="btn-floating btn-zalo" title="Zalo">Zalo</a>
+    <a href="tel:0362442952" class="btn-floating btn-phone" title="Gọi ngay Hotline 0362442952">📞</a>
+    <a href="https://zalo.me/0362442952" target="_blank" class="btn-floating btn-zalo" title="Zalo 0362442952">Zalo</a>
     <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu">⬆</button>
-    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Trợ lý AI">🤖</button>
+    <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Tư vấn Thủy Sản">🤖</button>
   </div>
 
   <!-- AI Chat Box -->
   <div class="native-ai-box" id="aiChatBox">
     <div class="ai-header">
-      <span>Trợ lý Đồ Gỗ Điện Ngọc</span>
+      <span>Trợ lý Thủy Sản Miền Quê</span>
       <button type="button" style="background:none; border:none; color:white; cursor:pointer;" onclick="toggleAIChat()">✕</button>
     </div>
     <div class="ai-body" id="aiChatBody">
-      <div class="msg msg-ai">Xin chào! Tôi có thể giúp gì cho bác về kích thước, loại gỗ hay giá cả ạ?</div>
+      <div class="msg msg-ai">Xin chào! Em là tư vấn viên Thủy Sản Miền Quê (Quần Liêu Village). Bác cần hỏi giá tôm, cua hay đặt hàng ngay ạ?</div>
     </div>
     <div class="ai-footer">
-      <input type="text" id="aiInput" placeholder="Hỏi giá giường, tủ, ship..." onkeypress="if(event.key === 'Enter') handleAISend()">
+      <input type="text" id="aiInput" placeholder="Hỏi giá tôm sú, cua gạch, ship..." onkeypress="if(event.key === 'Enter') handleAISend()">
       <button type="button" onclick="handleAISend()">Gửi</button>
     </div>
   </div>
 
   <script>
-    // Dữ liệu mở rộng 18 sản phẩm (Nhiều hàng hơn)
+    // Dữ liệu 20 mặt hàng Thủy Hải Sản Tươi Sống
     const products = [
-      { id: 1, rawPrice: 1800000, category: "giuong", sub: "giuong-1m6", title: "Giường Ngủ Hiện Đại MDF 1m6", code: "DN-G01", price: "1.800.000 đ", oldPrice: "2.100.000 đ", mainImg: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80", images: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80"], desc: "▶ Kích thước: 1m6 x 2m. Chất liệu MDF phủ Melamine chống trầy." },
-      { id: 2, rawPrice: 2100000, category: "giuong", sub: "giuong-1m8", title: "Giường Ngủ MDF Cao Cấp 1m8", code: "DN-G02", price: "2.100.000 đ", oldPrice: "2.450.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Kích thước rộng rãi 1m8 x 2m cho gia đình." },
-      { id: 3, rawPrice: 1950000, category: "tu", sub: "tu-2canh", title: "Tủ Quần Áo 2 Cánh Nhỏ Gọn", code: "DN-T02", price: "1.950.000 đ", oldPrice: "2.300.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Kích thước R1m2 x C2m. Tối ưu không gian hẹp." },
-      { id: 4, rawPrice: 2500000, category: "tu", sub: "tu-3canh", title: "Tủ Quần Áo 3 Cánh Vân Sồi", code: "DN-T03", price: "2.500.000 đ", oldPrice: "2.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước R1m6 x C2m. Bản lề giảm chấn êm ái." },
-      { id: 5, rawPrice: 3400000, category: "tu", sub: "tu-4canh", title: "Tủ Quần Áo 4 Cánh Cỡ Lớn", code: "DN-T04", price: "3.400.000 đ", oldPrice: "3.900.000 đ", mainImg: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80", images: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80"], desc: "▶ Kích thước R2m x C2m. Sức chứa lớn." },
-      { id: 6, rawPrice: 2800000, category: "ban-an", sub: "ban-an-4ghe", title: "Bộ Bàn Ăn 4 Ghế Gọn Gàng", code: "DN-BA04", price: "2.800.000 đ", oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Bàn chữ nhật + 4 ghế bọc nệm êm ái." },
-      { id: 7, rawPrice: 3900000, category: "ban-an", sub: "ban-an-6ghe", title: "Bộ Bàn Ăn 6 Ghế Sang Trọng", code: "DN-BA06", price: "3.900.000 đ", oldPrice: "4.500.000 đ", mainImg: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80", images: ["https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600&q=80"], desc: "▶ Bàn lớn 1m6 x 80cm kèm 6 ghế chắc chắn." },
-      { id: 8, rawPrice: 3200000, category: "sofa", sub: "sofa-vang", title: "Sofa Văng Nệm Hiện Đại", code: "DN-SF01", price: "3.200.000 đ", oldPrice: "3.800.000 đ", mainImg: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80", images: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80"], desc: "▶ Khung gỗ bọc nệm mút D40 chống xẹp." },
-      { id: 9, rawPrice: 4800000, category: "sofa", sub: "sofa-da", title: "Sofa Da Bò Cao Cấp Phòng Khách", code: "DN-SF02", price: "4.800.000 đ", oldPrice: "5.600.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Chất liệu da công nghiệp bọc dày cao cấp." },
-      { id: 10, rawPrice: 1250000, category: "ke-tivi", sub: "ke-tivi", title: "Kệ Tivi Gỗ Rút 2 Đầu Thông Minh", code: "DN-K01", price: "1.250.000 đ", oldPrice: "1.500.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Có thể tùy chỉnh độ dài từ 1m4 đến 2m." },
-      { id: 11, rawPrice: 950000, category: "khac", sub: "tu-giay", title: "Tủ Giày Dép Cánh Lật Thông Minh", code: "DN-TG01", price: "950.000 đ", oldPrice: "1.200.000 đ", mainImg: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80", images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&q=80"], desc: "▶ Thiết kế siêu mỏng, chứa được 20 đôi giày." },
-      { id: 12, rawPrice: 1100000, category: "khac", sub: "ban-trang-diem", title: "Bàn Trang Điểm Gương Tròn", code: "DN-BTD01", price: "1.100.000 đ", oldPrice: "1.350.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Kèm 1 ghế đôn nhỏ xinh xắn." },
-      { id: 13, rawPrice: 850000, category: "khac", sub: "ban-hoc", title: "Bàn Làm Việc Liền Giá Sách", code: "DN-BH01", price: "850.000 đ", oldPrice: "1.000.000 đ", mainImg: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80", images: ["https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80"], desc: "▶ Kích thước 1m x 50cm tiện lợi." },
-      { id: 14, rawPrice: 2300000, category: "giuong", sub: "giuong-1m6", title: "Giường Bọc Nệm Đầu Giường 1m6", code: "DN-G03", price: "2.300.000 đ", oldPrice: "2.700.000 đ", mainImg: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80", images: ["https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80"], desc: "▶ Đầu giường bọc da êm ái chống va đập." },
-      { id: 15, rawPrice: 2800000, category: "tu", sub: "tu-3canh", title: "Tủ Quần Áo Cánh Lùa Tiết Kiệm Diện Tích", code: "DN-T05", price: "2.800.000 đ", oldPrice: "3.200.000 đ", mainImg: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80", images: ["https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80"], desc: "▶ Cửa trượt lùa ray nhôm trượt nhẹ nhàng." },
-      { id: 16, rawPrice: 1600000, category: "ke-tivi", sub: "ke-tivi", title: "Kệ Tivi Hiện Đại Chân Gỗ", code: "DN-K02", price: "1.600.000 đ", oldPrice: "1.900.000 đ", mainImg: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80"], desc: "▶ Kích thước 1m6 kèm 2 ngăn kéo để đồ." },
-      { id: 17, rawPrice: 4200000, category: "sofa", sub: "sofa-vang", title: "Bộ Sofa Góc L Phòng Khách", code: "DN-SF03", price: "4.200.000 đ", oldPrice: "4.900.000 đ", mainImg: "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80", images: ["https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80"], desc: "▶ Thiết kế góc chữ L tối ưu góc chết phòng khách." },
-      { id: 18, rawPrice: 1450000, category: "khac", sub: "ban-trang-diem", title: "Bàn Trang Điểm Đèn LED Cảm Ứng", code: "DN-BTD02", price: "1.450.000 đ", oldPrice: "1.750.000 đ", mainImg: "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80", images: ["https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=600&q=80"], desc: "▶ Gương tích hợp đèn LED 3 chế độ ánh sáng." }
+      { id: 1, rawPrice: 320000, category: "tom", sub: "tom-su", title: "Tôm Sú Biển Tươi Sống (Size 20 con/kg)", code: "TSMQ-T01", price: "320.000 đ/kg", oldPrice: "360.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&q=80", images: ["https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&q=80"], desc: "▶ Tôm sú biển thịt săn chắc, ngọt đậm. Hàng tươi sống bơi khỏe, thích hợp hấp sả, nướng muối ớt." },
+      { id: 2, rawPrice: 180000, category: "tom", sub: "tom-the", title: "Tôm Thẻ Chân Trắng Tươi (Size 40 con/kg)", code: "TSMQ-T02", price: "180.000 đ/kg", oldPrice: "210.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1559742811-8228636d253f?w=600&q=80", images: ["https://images.unsplash.com/photo-1559742811-8228636d253f?w=600&q=80"], desc: "▶ Tôm thẻ tươi rói vỏ mỏng, thịt ngọt, chuyên dùng làm gỏi, chiên xù, nấu canh hoặc rim mặn ngọt." },
+      { id: 3, rawPrice: 650000, category: "tom", sub: "tom-hum", title: "Tôm Hùm Bông Sống (Size 0.8 - 1kg/con)", code: "TSMQ-T03", price: "650.000 đ/kg", oldPrice: "750.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1553659971-f01207815844?w=600&q=80", images: ["https://images.unsplash.com/photo-1553659971-f01207815844?w=600&q=80"], desc: "▶ Tôm hùm thượng hạng, thịt dai giòn sần sật. Bao ăn 1 đổi 1 nếu đốp, chuyên làm món nướng phô mai." },
+      { id: 4, rawPrice: 280000, category: "tom", sub: "tom-hum", title: "Tôm Càng Xanh Quần Liêu (Size 10-12 con/kg)", code: "TSMQ-T04", price: "280.000 đ/kg", oldPrice: "320.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1508313880080-c4bef0730395?w=600&q=80", images: ["https://images.unsplash.com/photo-1508313880080-c4bef0730395?w=600&q=80"], desc: "▶ Tôm càng xanh sống, gạch béo ngậy, thịt ngọt giòn. Thích hợp lẩu tôm, nướng mọi." },
+      { id: 5, rawPrice: 420000, category: "cua", sub: "cua-thịt", title: "Cua Thịt Cà Mau Y4 (Size 3-4 con/kg)", code: "TSMQ-C01", price: "420.000 đ/kg", oldPrice: "480.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80", images: ["https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80"], desc: "▶ Cua thịt chắc nịch 100%, không dây buộc dày. Đảm bảo nhiều thịt, hấp bia hay rang me cực ngon." },
+      { id: 6, rawPrice: 520000, category: "cua", sub: "cua-gạch", title: "Cua Gạch Đỏ Cà Mau Cực Béo (Size 2-3 con/kg)", code: "TSMQ-C02", price: "520.000 đ/kg", oldPrice: "600.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1559742811-8228636d253f?w=600&q=80", images: ["https://images.unsplash.com/photo-1559742811-8228636d253f?w=600&q=80"], desc: "▶ Cua gạch tràn mai, gạch son đỏ rực thơm ngậy. Bao đổi trả nếu gạch ít hoặc bị ốp." },
+      { id: 7, rawPrice: 380000, category: "cua", sub: "ghe", title: "Ghẹ Xanh Nam Định Loại 1 (Size 5-6 con/kg)", code: "TSMQ-C03", price: "380.000 đ/kg", oldPrice: "430.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80", images: ["https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80"], desc: "▶ Ghẹ xanh biển tự nhiên, đùi to thịt ngọt thanh, vỏ mỏng nhiều thịt. Hàng cập bến hàng ngày." },
+      { id: 8, rawPrice: 220000, category: "cua", sub: "ghe", title: "Ghẹ Ba Trăng Tươi Sống (Size 7-8 con/kg)", code: "TSMQ-C04", price: "220.000 đ/kg", oldPrice: "260.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80", images: ["https://images.unsplash.com/photo-1551248429-40975aa4de74?w=600&q=80"], desc: "▶ Ghẹ ba trăng giá bình dân, thịt ngọt thơm dùng nấu lẩu, nấu bánh canh ghẹ cực đậm đà." },
+      { id: 10, rawPrice: 260000, category: "ca", sub: "ca-bien", title: "Cá Bớp Biển Cắt Khúc Tươi", code: "TSMQ-CA01", price: "260.000 đ/kg", oldPrice: "290.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80", images: ["https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80"], desc: "▶ Cá bớp biển thịt béo ngậy, da giòn, giàu Omega-3. Rất hợp nấu lẩu măng chua hoặc kho tộ." },
+      { id: 11, rawPrice: 190000, category: "ca", sub: "ca-bien", title: "Cá Thu Biển Tươi Cắt Lát Cắm Trại", code: "TSMQ-CA02", price: "190.000 đ/kg", oldPrice: "220.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80", images: ["https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80"], desc: "▶ Cá thu phấn biển nguyên con tươi rói cắt lát, thịt dai ngọt thơm lừng khi rán sốt cà dốt." },
+      { id: 12, rawPrice: 130000, category: "ca", sub: "ca-dong", title: "Cá Quả / Cá Lóc Đồng Sống", code: "TSMQ-CA03", price: "130.000 đ/kg", oldPrice: "150.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80", images: ["https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80"], desc: "▶ Cá lóc đồng bơi khỏe, thịt săn chắc không mỡ. Chuyên làm món cá lóc nướng trui hoặc nấu canh chua." },
+      { id: 13, rawPrice: 160000, category: "ca", sub: "ca-dong", title: "Cá Chép Giòn Sống Nguyện Con", code: "TSMQ-CA04", price: "160.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80", images: ["https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&q=80"], desc: "▶ Cá chép giòn thịt sần sật đặc trưng, nuôi đậu tằm chất lượng. Tuyệt vời làm món xào nấm, nhúng dấm." },
+      { id: 14, rawPrice: 270000, category: "oc", sub: "oc-huong", title: "Ốc Hương Biển Tươi Sống (Size 80-90 con/kg)", code: "TSMQ-O01", price: "270.000 đ/kg", oldPrice: "310.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80", images: ["https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80"], desc: "▶ Ốc hương biển tự nhiên thịt giòn ngọt, thơm nức mũi. Chuyên chế biến ốc hương sốt trứng muối, hấp sả." },
+      { id: 15, rawPrice: 90000, category: "oc", sub: "oc-huong", title: "Ngao Biển Trắng Béo Ngậy", code: "TSMQ-O02", price: "90.000 đ/kg", oldPrice: "110.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80", images: ["https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80"], desc: "▶ Ngao trắng ngâm sạch cát, ruột béo mộng nước. Dùng nấu canh mồng mùng, hấp thái cay ngọt." },
+      { id: 16, rawPrice: 150000, category: "oc", sub: "oc-huong", title: "Sò Dương / Sò Huyết Đại", code: "TSMQ-O03", price: "150.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80", images: ["https://images.unsplash.com/photo-1535567465397-7523840f2ae9?w=600&q=80"], desc: "▶ Sò huyết tươi rói bổ dưỡng, nhiều huyết, thịt béo bùi. Tốt cho sức khỏe khi nướng mỡ hành." },
+      { id: 17, rawPrice: 240000, category: "muc", sub: "muc", title: "Mực Lá Tươi Cực Dày Thịt", code: "TSMQ-M01", price: "240.000 đ/kg", oldPrice: "280.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80", images: ["https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80"], desc: "▶ Mực lá nhón nháy tươi rói, tai mực dày ngọt giòn. Thích hợp xào sa tế, làm chả mực hoặc nướng." },
+      { id: 18, rawPrice: 210000, category: "muc", sub: "muc", title: "Mực Ống Đổ Cửa Tươi Sống (Size 15-20cm)", code: "TSMQ-M02", price: "210.000 đ/kg", oldPrice: "240.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80", images: ["https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80"], desc: "▶ Mực ống biển da còn nhấp nháy mi nơ, dồn thịt hấp gừng hoặc xào cần tây cực giòn." },
+      { id: 19, rawPrice: 350000, category: "muc", sub: "muc", title: "Mực Một Nắng Cô Tô Cao Cấp", code: "TSMQ-M03", price: "350.000 đ/kg", oldPrice: "400.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80", images: ["https://images.unsplash.com/photo-1545247181-516773cae754?w=600&q=80"], desc: "▶ Mực ống phơi đúng 1 nắng giòn ngoài mềm trong, thơm nức khi chiên mắm hoặc nướng sa tế." },
+      { id: 20, rawPrice: 170000, category: "che-bien", sub: "che-bien", title: "Chả Cá Hải Phòng Nguyên Chất 100%", code: "TSMQ-CB01", price: "170.000 đ/kg", oldPrice: "200.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80", images: ["https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80"], desc: "▶ Chả cá thu cá thác lợt giã tay dai ngon tự nhiên, không hàn the, không chất bảo quản." }
     ];
 
     let currentCategory = "all";
@@ -373,7 +374,7 @@
       const grid = document.getElementById("productGrid");
       grid.innerHTML = "";
       if (list.length === 0) {
-        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">Không tìm thấy sản phẩm nào phù hợp.</div>`;
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">Không tìm thấy mặt hàng hải sản nào phù hợp.</div>`;
         return;
       }
       list.forEach(p => {
@@ -389,7 +390,7 @@
             <h4 class="product-title" onclick="openModal(${p.id})">${p.title}</h4>
             <div class="price-row">
               <span class="price">${p.price}</span>
-              <button class="btn-add-cart-fast" onclick="addToCart(${p.id})">+ Giỏ</button>
+              <button class="btn-add-cart-fast" onclick="addToCart(${p.id})">+ Mua</button>
             </div>
           </div>
         `;
@@ -407,9 +408,9 @@
         const matchCat = (currentCategory === "all") || (p.category === currentCategory) || (p.sub === currentCategory);
         const matchSearch = p.title.toLowerCase().includes(query) || p.code.toLowerCase().includes(query);
         let matchPrice = true;
-        if (priceVal === "under2") matchPrice = p.rawPrice < 2000000;
-        else if (priceVal === "2to4") matchPrice = p.rawPrice >= 2000000 && p.rawPrice <= 4000000;
-        else if (priceVal === "above4") matchPrice = p.rawPrice > 4000000;
+        if (priceVal === "under200") matchPrice = p.rawPrice < 200000;
+        else if (priceVal === "200to400") matchPrice = p.rawPrice >= 200000 && p.rawPrice <= 400000;
+        else if (priceVal === "above400") matchPrice = p.rawPrice > 400000;
 
         return matchCat && matchSearch && matchPrice;
       });
@@ -443,7 +444,7 @@
         showToast("Đã xóa khỏi danh sách yêu thích");
       } else {
         wishlist.push(id);
-        showToast("Đã thêm vào danh sách yêu thích ❤️");
+        showToast("Đã lưu hải sản yêu thích ❤️");
       }
       document.getElementById("wishlistCount").innerText = wishlist.length;
       applyFilters();
@@ -451,7 +452,7 @@
 
     function filterWishlist() {
       const favProducts = products.filter(p => wishlist.includes(p.id));
-      document.getElementById("breadcrumbText").innerText = "Trang chủ > Sản phẩm yêu thích";
+      document.getElementById("breadcrumbText").innerText = "Trang chủ > Hải sản đã lưu";
       renderProducts(favProducts);
     }
 
@@ -462,7 +463,7 @@
       if (inCart) inCart.qty++;
       else cart.push({ ...item, qty: 1 });
       updateCartUI();
-      showToast("Đã thêm sản phẩm vào giỏ hàng 🛒");
+      showToast("Đã thêm vào giỏ hàng 🛒");
     }
 
     function updateCartUI() {
@@ -480,7 +481,7 @@
           <img src="${item.mainImg}" alt="${item.title}">
           <div class="cart-item-info">
             <h5>${item.title}</h5>
-            <p style="color:var(--accent-color); font-weight:bold;">${item.price} x ${item.qty}</p>
+            <p style="color:var(--accent-color); font-weight:bold;">${item.price} x ${item.qty}kg</p>
           </div>
           <button style="border:none; background:none; cursor:pointer;" onclick="removeFromCart(${item.id})">❌</button>
         `;
@@ -500,7 +501,7 @@
 
     function checkoutCart() {
       if (cart.length === 0) return alert("Giỏ hàng của bạn đang trống!");
-      alert("Cảm ơn bạn đã đặt hàng! Xưởng Đồ Gỗ Điện Ngọc sẽ gọi điện xác nhận ngay.");
+      alert("Cảm ơn bạn đã đặt hàng! Thủy Sản Miền Quê (SĐT: 0362442952) tại Quần Liêu Village sẽ gọi xác nhận và giao hàng ngay.");
       cart = [];
       updateCartUI();
       toggleCartDrawer();
@@ -553,7 +554,7 @@
 
     function closeModal() { document.getElementById("productModal").style.display = "none"; }
     function handleOrderSubmit() {
-      alert("Đặt hàng thành công! Xưởng sẽ gọi thoại lại ngay để chốt giờ giao.");
+      alert("Đặt hàng thành công! Thủy Sản Miền Quê sẽ liên hệ giao hàng tận nơi tới Quần Liêu Village!");
       closeModal();
     }
 
@@ -576,11 +577,11 @@
       input.value = "";
 
       setTimeout(() => {
-        let reply = "Xưởng nhận đóng theo kích thước yêu cầu. Vui lòng gọi trực tiếp 0912208061 để được hỗ trợ ạ!";
+        let reply = "Thủy Sản Miền Quê giao tận nơi tại Quần Liêu Village. Hotline / Zalo: 0362442952 ạ!";
         const t = text.toLowerCase();
-        if (t.includes("giường")) reply = "Giường gỗ MDF giá chỉ từ 1.800.000đ[cite: 1] (Bao ship & lắp đặt tận nơi tại Nam Định)[cite: 1].";
-        else if (t.includes("tủ")) reply = "Tủ quần áo 2, 3, 4 cánh giá từ 1.950.000đ đến 3.400.000đ ạ[cite: 1].";
-        else if (t.includes("ship") || t.includes("lắp")) reply = "Xưởng miễn phí giao hàng & thợ dựng tận nơi tại Nam Định, kiểm tra mới thanh toán COD[cite: 1]!";
+        if (t.includes("tôm")) reply = "Bên em có Tôm Sú Biển (320k/kg), Tôm Thẻ (180k/kg), Tôm Càng Xanh (280k/kg) bơi khỏe ạ!";
+        else if (t.includes("cua") || t.includes("ghẹ")) reply = "Cua thịt Cà Mau 420k/kg, Cua gạch son 520k/kg, Ghẹ xanh 380k/kg bao chắc thịt 100% ạ!";
+        else if (t.includes("ship") || t.includes("giao")) reply = "Bên em free ship khu vực Quần Liêu Village và lân cận cho đơn từ 2kg ạ!";
 
         const aMsg = document.createElement("div");
         aMsg.className = "msg msg-ai";
