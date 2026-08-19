@@ -1,108 +1,87 @@
+const productsData = {
+    1: { id: 1, name: "Tôm Càng Xanh Bơi Sống (Size 8-10 con/kg)", price: 285000, img: "https://images.unsplash.com/photo-1559742811-822863c46f43?auto=format&fit=crop&w=600&q=80", desc: "Tôm càng xanh nước ngọt bơi khỏe, thịt chắc ngọt lịm. Đóng oxy giao tận nơi sống 100%." },
+    2: { id: 2, name: "Cá Chép Giòn Sông Dày Thịt (Size 2.5 - 3kg/con)", price: 195000, img: "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=600&q=80", desc: "Cá chép giòn nuôi đậu tằm chuẩn sông, thịt giòn sần sật. Hỗ trợ mổ vây sơ chế miễn phí." },
+    3: { id: 3, name: "Cua Đồng Xay Hoặc Nguyên Con Giã Tươi", price: 160000, img: "https://images.unsplash.com/photo-1628191010210-a59de33e5941?auto=format&fit=crop&w=600&q=80", desc: "Cua đồng tự nhiên nhiều gạch, ngọt nước. Nhận xay sẵn hoặc giã tươi chia túi tiện lợi." }
+};
+
 let cart = [];
 
-// Định dạng giá tiền VNĐ
-function formatPrice(amount) {
+function formatVND(amount) {
     return amount.toLocaleString('vi-VN') + 'đ';
 }
 
-// Cập nhật giao diện giỏ hàng
 function updateCartUI() {
-    const cartCountEl = document.getElementById('cart-count');
-    const cartItemsList = document.getElementById('cart-items-list');
-    const cartTotalPriceEl = document.getElementById('cart-total-price');
+    const badge = document.getElementById('cart-badge');
+    const itemsContainer = document.getElementById('cart-items');
+    const totalPriceEl = document.getElementById('cart-total-price');
 
-    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = totalCount;
+    const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+    badge.textContent = totalQty;
 
-    cartItemsList.innerHTML = '';
-    let totalPrice = 0;
+    itemsContainer.innerHTML = '';
+    let total = 0;
 
     if (cart.length === 0) {
-        cartItemsList.innerHTML = '<p>Giỏ hàng của bạn đang trống.</p>';
+        itemsContainer.innerHTML = '<p style="text-align:center; color:#888;">Giỏ hàng chưa có sản phẩm.</p>';
     } else {
         cart.forEach(item => {
-            totalPrice += item.price * item.quantity;
-            const itemEl = document.createElement('div');
-            itemEl.className = 'cart-item';
-            itemEl.innerHTML = `
-                <div>
-                    <strong>${item.name}</strong>
-                    <div>${formatPrice(item.price)} x ${item.quantity}</div>
+            total += item.price * item.qty;
+            itemsContainer.innerHTML += `
+                <div class="cart-drawer-item">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <div>${formatVND(item.price)} x ${item.qty}</div>
+                    </div>
+                    <div><strong>${formatVND(item.price * item.qty)}</strong></div>
                 </div>
-                <div><strong>${formatPrice(item.price * item.quantity)}</strong></div>
             `;
-            cartItemsList.appendChild(itemEl);
         });
     }
-
-    cartTotalPriceEl.textContent = formatPrice(totalPrice);
+    totalPriceEl.textContent = formatVND(total);
 }
 
-// Thêm sản phẩm vào giỏ
-function addToCart(product) {
-    const existing = cart.find(item => item.id === product.id);
-    if (existing) {
-        existing.quantity += 1;
+function addToCart(id, qty = 1) {
+    const p = productsData[id];
+    const itemIndex = cart.findIndex(i => i.id === id);
+    if (itemIndex > -1) {
+        cart[itemIndex].qty += qty;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({ ...p, qty });
     }
     updateCartUI();
-    alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
+    toggleCartDrawer(true);
 }
 
-// Sự kiện bấm nút Thêm giỏ / Mua ngay / Xem chi tiết
-document.querySelectorAll('.product-card').forEach(card => {
-    const productData = {
-        id: card.dataset.id,
-        name: card.dataset.name,
-        price: parseInt(card.dataset.price),
-        img: card.dataset.img,
-        desc: card.dataset.desc
+function buyNow(id) {
+    addToCart(id, 1);
+}
+
+function toggleCartDrawer(open) {
+    document.getElementById('cart-drawer').classList.toggle('active', open);
+    document.getElementById('cart-drawer-overlay').classList.toggle('active', open);
+}
+
+function openProductModal(id) {
+    const p = productsData[id];
+    document.getElementById('pm-img').src = p.img;
+    document.getElementById('pm-title').textContent = p.name;
+    document.getElementById('pm-price').textContent = formatVND(p.price) + ' / kg';
+    document.getElementById('pm-desc').textContent = p.desc;
+    document.getElementById('pm-qty').value = 1;
+
+    document.getElementById('pm-add-btn').onclick = () => {
+        const qty = parseInt(document.getElementById('pm-qty').value) || 1;
+        addToCart(id, qty);
+        closeProductModal();
     };
 
-    // Bấm Thêm giỏ
-    card.querySelector('.btn-add-cart').addEventListener('click', (e) => {
-        e.stopPropagation();
-        addToCart(productData);
-    });
+    document.getElementById('product-modal').classList.add('active');
+}
 
-    // Bấm Mua ngay -> Mở chi tiết hoặc giỏ hàng
-    card.querySelector('.btn-buy-now').addEventListener('click', (e) => {
-        e.stopPropagation();
-        addToCart(productData);
-        document.getElementById('cart-modal').classList.add('active');
-    });
-
-    // Bấm vào ảnh/tên -> Mở Modal Chi tiết
-    card.querySelectorAll('.product-thumb, .view-detail').forEach(el => {
-        el.addEventListener('click', () => {
-            document.getElementById('modal-img').src = productData.img;
-            document.getElementById('modal-title').textContent = productData.name;
-            document.getElementById('modal-price').textContent = formatPrice(productData.price);
-            document.getElementById('modal-desc').textContent = productData.desc;
-
-            const modalAddBtn = document.getElementById('modal-add-cart');
-            modalAddBtn.onclick = () => addToCart(productData);
-
-            document.getElementById('product-modal').classList.add('active');
-        });
-    });
-});
-
-// Đóng/mở Modal Giỏ hàng & Chi tiết
-document.getElementById('open-cart-btn').addEventListener('click', () => {
-    document.getElementById('cart-modal').classList.add('active');
-});
-
-document.getElementById('close-cart-modal').addEventListener('click', () => {
-    document.getElementById('cart-modal').classList.remove('active');
-});
-
-document.getElementById('close-product-modal').addEventListener('click', () => {
+function closeProductModal() {
     document.getElementById('product-modal').classList.remove('active');
-});
+}
 
-// Cuộn lên đầu trang
-document.getElementById('scrollTopBtn').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+// Bắt sự kiện click mở giỏ hàng & cuộn trang
+document.getElementById('cart-toggle-btn').onclick = () => toggleCartDrawer(true);
+document.getElementById('scrollTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
