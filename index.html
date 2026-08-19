@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thủy Sản Miền Quê - Thủy Sản Tươi Sống Mỹ Vị Từ Thiên Nhiên</title>
+    <style>
+        :root {
+            --primary-color: #1b4d3e;
+            --primary-light: #2c7a5e;
+            --accent-color: #d97706;
+            --accent-hover: #b45309;
+            --bg-gradient: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --white: #ffffff;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+        }
+
+        .btn-contact {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--bg-gradient);
+            padding: 70px 0;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 18px;
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-img-circle {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid var(--white);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Commitment Section */
+        .commitments {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .commitment-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+            background-color: #e8f5e9;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 0 80px;
+        }
+
+        .product-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .product-row.reverse {
+            direction: rtl;
+        }
+
+        .product-row.reverse .product-info {
+            direction: ltr;
+        }
+
+        .product-img-wrapper {
+            text-align: center;
+        }
+
+        .product-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #e8f5e9;
+        }
+
+        .product-info h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-buy:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--white);
+            padding: 80px 0;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '“';
+            font-size: 60px;
+            color: var(--primary-light);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .quote-text {
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .author-role {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: #a7f3d0;
+            max-width: 300px;
+        }
+
+        .footer-contact h4, .footer-social h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #a7f3d0;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #a7f3d0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-grid, .commitment-cards, .product-row, .testimonial-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-row.reverse {
+                direction: ltr;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-img-circle, .product-img {
+                width: 260px;
+                height: 260px;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">TS</div>
+                <div class="logo-text">Thủy Sản Miền Quê</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#commitments">Cam kết</a></li>
+                    <li><a href="#products">Sản phẩm</a></li>
+                    <li><a href="#testimonials">Đánh giá</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn-contact">Liên hệ ngay</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="subtitle">Freshwater Delights: Quality You Can Trust Every Day</div>
+                <h1>Thủy Sản Tươi Sống Mỹ Vị Từ Thiên Nhiên</h1>
+                <p>Khám phá các sản phẩm thủy sản nước ngọt được đánh bắt và giao mới mỗi ngày từ các ngư trường địa phương. Mỗi sản phẩm đều được tuyển chọn kỹ lưỡng, đảm bảo độ tươi ngon, an toàn và mang lại sự yên tâm tuyệt đối cho bữa ăn gia đình bạn.</p>
+                <a href="#products" class="btn-buy">Khám phá sản phẩm</a>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="Thủy sản tổng hợp" class="hero-img-circle">
+            </div>
+        </div>
+    </section>
+
+    <!-- Commitments Section -->
+    <section class="commitments" id="commitments">
+        <div class="container">
+            <h2 class="section-title">Cam Kết Chất Lượng</h2>
+            <div class="commitment-cards">
+                <div class="card">
+                    <div class="card-icon">🐟</div>
+                    <h3>Sản Phẩm Tươi Sống</h3>
+                    <p>Sản phẩm luôn tươi sống, chất lượng hàng đầu được đánh bắt từ tự nhiên mỗi ngày.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌿</div>
+                    <h3>Nuôi Trồng Bền Vững</h3>
+                    <p>Quy trình nuôi trồng và khai thác bền vững, chú trọng bảo vệ môi trường sông nước.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👨‍🔬</div>
+                    <h3>Chuyên Gia Kinh Nghiệm</h3>
+                    <p>Đội ngũ chuyên gia nhiệt huyết, giàu kinh nghiệm trong kiểm định chất lượng thủy sản.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+
+            <!-- Product 1 -->
+            <div class="product-row">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80" alt="Tôm nước ngọt" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h2>Tôm Nước Ngọt Tươi Ngon</h2>
+                    <p>Sản phẩm tôm nước ngọt của chúng tôi luôn đảm bảo tươi sống và an toàn. Mỗi con tôm đều được chọn lọc kỹ càng từ nguồn cung cấp uy tín, giúp bạn yên tâm khi chế biến những món ăn ngon cho gia đình. Hãy trải nghiệm hương vị tuyệt vời ngay hôm nay!</p>
+                    <a href="#contact" class="btn-buy">MUA NGAY</a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-row reverse">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1559742811-822863c46f43?auto=format&fit=crop&w=600&q=80" alt="Tôm càng xanh" class="product-img">
+                </div>
+                <div class="product-info">
+                    <h2>Tôm Càng Xanh Loại 1</h2>
+                    <p>Đắm chìm trong hương vị tươi ngon của tôm càng xanh – nguồn thực phẩm sạch, an toàn, giàu dinh dưỡng. Chúng tôi cam kết cung cấp tôm tươi sống chất lượng tốt nhất cho bạn mỗi ngày.</p>
+                    <a href="#contact" class="btn-buy">MUA NGAY</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ý Kiến Khách Hàng</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="quote-text">"Hải sản cực kỳ tươi ngon và giúp nâng tầm các món ăn của tôi, mang lại hương vị tuyệt vời cho từng công thức nấu ăn."</p>
+                    <div class="author-info">
+                        <div class="author-avatar">M</div>
+                        <div>
+                            <div class="author-name">MINH</div>
+                            <div class="author-role">Bếp Trưởng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote-text">"Tôi rất thích chất lượng và hương vị của tôm. Đây luôn là lựa chọn hàng đầu của tôi cho các bữa ăn gia đình."</p>
+                    <div class="author-info">
+                        <div class="author-avatar">L</div>
+                        <div>
+                            <div class="author-name">LAN</div>
+                            <div class="author-role">Giáo Viên</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote-text">"Mỗi lần tôi đặt hàng, sản phẩm đều giao đến tươi sống và đạt chất lượng xuất sắc. Rất đề xuất cho ai yêu thích hải sản!"</p>
+                    <div class="author-info">
+                        <div class="author-avatar">H</div>
+                        <div>
+                            <div class="author-name">HUY</div>
+                            <div class="author-role">Doanh Nhân</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>THỦY SẢN MIỀN QUÊ</h3>
+                    <p>Chuyên cung cấp thủy sản nước ngọt tươi sống hàng ngày từ nguồn nuôi trồng bền vững và uy tín.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Liên hệ với chúng tôi</h4>
+                    <ul class="contact-list">
+                        <li>📞 (12) 3456-7890</li>
+                        <li>✉️ hello@reallygreatsite.com</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Mạng xã hội</h4>
+                    <ul class="contact-list">
+                        <li>🌐 @reallygreatsite</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Thủy Sản Miền Quê. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
