@@ -1,4 +1,4 @@
-css_content = """/* Theme Variables */
+/* 1. KHAI BÁO BIẾN MÀU SẮC & PHÔNG NỀN */
 :root {
     --primary-color: #0c6440;
     --primary-hover: #08492e;
@@ -6,13 +6,19 @@ css_content = """/* Theme Variables */
     --accent-red: #d32f2f;
     --text-dark: #212529;
     --text-muted: #6c757d;
-    --bg-light: #f8f9fa;
-    --white: #ffffff;
-    --border-color: #e9ecef;
-    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    
+    /* Phông nền chuẩn */
+    --bg-page: #f0f4f2;        /* Màu nền trang web (Kem xanh nhạt) */
+    --bg-card: #ffffff;        /* Màu nền ô sản phẩm & sidebar */
+    --border-color: #e0e0e0;    /* Viền ô sản phẩm */
+    
+    /* Hiệu ứng bóng đổ */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Reset Styles */
+/* 2. CẤU TRÚC CHUNG */
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +27,7 @@ css_content = """/* Theme Variables */
 }
 
 body {
-    background-color: var(--bg-light);
+    background-color: var(--bg-page);
     color: var(--text-dark);
     line-height: 1.5;
 }
@@ -32,12 +38,12 @@ body {
     padding: 0 15px;
 }
 
-/* TOP BAR & HEADER */
+/* 3. TOP BAR & HEADER */
 .top-bar {
     background: #063d27;
     color: #a3e6cd;
     font-size: 13px;
-    padding: 6px 0;
+    padding: 8px 0;
 }
 
 .top-bar-content {
@@ -46,8 +52,8 @@ body {
 }
 
 header {
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -98,6 +104,7 @@ header {
     border: 2px solid var(--primary-color);
     border-radius: 20px 0 0 20px;
     outline: none;
+    background: #fff;
 }
 
 .search-box button {
@@ -164,10 +171,11 @@ header {
     background: var(--primary-hover);
 }
 
-/* HERO BANNER */
+/* 4. HERO BANNER */
 .hero-banner {
-    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-    padding: 50px 0;
+    background: linear-gradient(135deg, #e2f2e6, #c8e6c9);
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .hero-grid {
@@ -187,7 +195,7 @@ header {
 }
 
 .hero-text h1 {
-    font-size: 36px;
+    font-size: 34px;
     color: var(--primary-color);
     margin: 15px 0;
 }
@@ -218,32 +226,36 @@ header {
 
 .hero-img {
     width: 100%;
-    max-height: 350px;
+    max-height: 320px;
     object-fit: cover;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
 }
 
-/* SHOP LAYOUT */
+/* 5. SHOP LAYOUT (SIDEBAR & PRODUCTS) */
 .shop-section {
     display: grid;
     grid-template-columns: 260px 1fr;
-    gap: 30px;
-    margin: 40px auto;
+    gap: 25px;
+    margin: 30px auto;
 }
 
+/* Sidebar lọc */
 .filter-group {
-    background: white;
+    background: var(--bg-card);
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .filter-group h3 {
     font-size: 16px;
     color: var(--primary-color);
     margin-bottom: 15px;
+    border-bottom: 2px solid var(--bg-page);
+    padding-bottom: 8px;
 }
 
 .filter-list {
@@ -251,12 +263,12 @@ header {
 }
 
 .filter-list li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: 14px;
 }
 
 .promo-box {
-    background: #fff3e0;
+    background: #fff8e1;
     border: 1px dashed var(--accent-orange);
     padding: 20px;
     border-radius: 12px;
@@ -269,37 +281,42 @@ header {
     margin-bottom: 10px;
 }
 
-/* PRODUCTS GRID */
+/* Bảng xếp sắp */
 .sort-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
+    background: var(--bg-card);
     padding: 15px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
+/* Danh sách thẻ sản phẩm */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
 }
 
 .product-card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: #b2dfdb;
 }
 
 .card-badge {
@@ -318,10 +335,20 @@ header {
 .card-badge.live { background: #2e7d32; right: 10px; left: auto; }
 .card-badge.hot { background: #ed6c02; }
 
+.product-thumb {
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
 .product-thumb img {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-thumb img {
+    transform: scale(1.05);
 }
 
 .product-details {
@@ -339,11 +366,16 @@ header {
 .product-title {
     font-size: 15px;
     margin: 5px 0 10px;
+    font-weight: 600;
 }
 
 .product-title a {
     text-decoration: none;
     color: var(--text-dark);
+}
+
+.product-title a:hover {
+    color: var(--primary-color);
 }
 
 .rating {
@@ -384,6 +416,12 @@ header {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-add-cart:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
 .btn-buy-now {
@@ -394,13 +432,19 @@ header {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    transition: 0.2s;
 }
 
-/* COMMITMENTS */
+.btn-buy-now:hover {
+    background: #bf360c;
+}
+
+/* 6. COMMITMENTS SECTION */
 .commitments-section {
-    background: white;
+    background: var(--bg-card);
     padding: 50px 0;
     margin-top: 40px;
+    border-top: 1px solid var(--border-color);
 }
 
 .section-title {
@@ -416,15 +460,21 @@ header {
     text-align: center;
 }
 
+.commit-item {
+    padding: 20px;
+    background: var(--bg-page);
+    border-radius: 12px;
+}
+
 .commit-icon {
-    font-size: 40px;
+    font-size: 36px;
     color: var(--primary-color);
     margin-bottom: 15px;
 }
 
-/* FOOTER */
+/* 7. FOOTER */
 footer {
-    background: #093322;
+    background: #072b1d;
     color: #c2e7d9;
     padding: 40px 0 0;
 }
@@ -451,13 +501,13 @@ footer {
 }
 
 .footer-bottom {
-    background: #041f14;
+    background: #03170e;
     text-align: center;
     padding: 15px;
     font-size: 13px;
 }
 
-/* RESPONSIVE */
+/* 8. RESPONSIVE HOẠT ĐỘNG TRÊN DI ĐỘNG */
 @media (max-width: 768px) {
     .hero-grid, .shop-section, .commitments-grid, .footer-grid {
         grid-template-columns: 1fr;
@@ -466,9 +516,3 @@ footer {
         display: none;
     }
 }
-"""
-
-with open("style.css", "w", encoding="utf-8") as f:
-    f.write(css_content)
-
-print("CSS file updated successfully.")
