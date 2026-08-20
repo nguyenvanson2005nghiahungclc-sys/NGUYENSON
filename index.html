@@ -212,6 +212,24 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
 .cart-table th { background: var(--bg-color); padding: 10px; text-align: left; border-bottom: 2px solid var(--border-color); }
 .cart-table td { padding: 10px; border-bottom: 1px solid var(--border-color); }
 
+/* ================= MAP SECTION (VỊ TRÍ CỬA HÀNG) ================= */
+.map-section { max-width: 1250px; margin: 10px auto 40px; padding: 0 15px; }
+.map-section h2 { color: var(--secondary-color); margin-bottom: 8px; font-size: 24px; }
+.map-section .sub-text { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+.map-box { display: flex; gap: 20px; flex-wrap: wrap; }
+.map-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 24px; flex: 1; min-width: 280px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+.map-card h4 { color: var(--text-color); margin-bottom: 14px; font-size: 18px; }
+.map-card p { margin-bottom: 10px; color: var(--text-color); font-size: 14px; }
+.map-card p b { color: var(--secondary-color); }
+.map-buttons-wrapper { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+.map-buttons-wrapper a { flex: 1; min-width: 140px; text-align: center; text-decoration: none; padding: 10px 14px; border-radius: 6px; font-weight: bold; font-size: 13px; transition: transform .2s; }
+.map-buttons-wrapper a:hover { transform: translateY(-2px); }
+.map-btn-solid { background: var(--primary-color); color: #fff; }
+.map-btn-solid:hover { background: var(--secondary-color); }
+.map-btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+.map-iframe-box { flex: 1.3; min-width: 280px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); min-height: 280px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+.map-iframe-box iframe { width: 100%; height: 100%; border: 0; min-height: 280px; }
+
 /* ================= FLOATING BUTTONS ================= */
 .floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
 .btn-floating { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.25s cubic-bezier(.175,.885,.32,1.275); }
@@ -404,6 +422,27 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
 
     <!-- Product Grid -->
     <div class="product-grid" id="productGrid"></div>
+
+    <!-- Vị Trí Cửa Hàng -->
+    <section class="map-section reveal" id="about">
+      <h2>Vị Trí Cửa Hàng Thủy Sản Miền Quê</h2>
+      <p class="sub-text">Kính mời quý khách ghé thăm trực tiếp cửa hàng hoặc bấm chỉ đường bên dưới.</p>
+      <div class="map-box">
+        <div class="map-card">
+          <h4>Thủy Sản Miền Quê</h4>
+          <p><strong>Địa chỉ:</strong> Đ. Làng Quần Liêu, Nghĩa Sơn (Quần Liêu Village)</p>
+          <p><strong>Điện thoại/Zalo:</strong> 0362442952</p>
+          <p><strong>Giờ mở cửa:</strong> Cả ngày (7:00 - 21:00)</p>
+          <div class="map-buttons-wrapper">
+            <a href="tel:0362442952" class="map-btn-outline">📞 GỌI ĐẶT HÀNG</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=T%C3%ADn+CAPTAIN&destination_place_id=ChIJEfZpTwANNjERcVYbSEq-lf8" target="_blank" class="map-btn-solid">🗺️ CHỈ ĐƯỜNG NGAY</a>
+          </div>
+        </div>
+        <div class="map-iframe-box">
+          <iframe src="https://maps.google.com/maps?q=20.1893397,106.1728041&z=16&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- Cart Drawer -->
@@ -488,6 +527,7 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
   <div class="floating-contact-bar">
     <a href="tel:0362442952" class="btn-floating btn-phone" title="Gọi ngay Hotline 0362442952">📞</a>
     <a href="https://zalo.me/0362442952" target="_blank" class="btn-floating btn-zalo" title="Zalo 0362442952">Zalo</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=T%C3%ADn+CAPTAIN&destination_place_id=ChIJEfZpTwANNjERcVYbSEq-lf8" target="_blank" class="btn-floating btn-map" title="Chỉ đường đến cửa hàng">🗺️</a>
     <button type="button" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu">⬆</button>
     <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Tư vấn Thủy Sản">🤖</button>
   </div>
@@ -1006,6 +1046,7 @@ Quy tắc trả lời:
 - Trả lời NGẮN GỌN (tối đa 3-4 câu), giọng thân thiện, xưng "em", gọi khách là "bác/anh/chị".
 - Chỉ tư vấn về hải sản, giá cả, cách chế biến, bảo quản, và cách đặt hàng/giao hàng.
 - Hotline/Zalo đặt hàng: 0362442952. Giao hàng tận nơi khu vực Quần Liêu Village và lân cận.
+- Địa chỉ cửa hàng: Đ. Làng Quần Liêu, Nghĩa Sơn. Nếu khách hỏi đường đi, hướng dẫn khách bấm nút "🗺️" hoặc mục "Vị Trí Cửa Hàng" trên web để xem bản đồ và bấm chỉ đường.
 - Nếu khách hỏi giá hoặc sản phẩm không có trong danh sách dưới đây, nói rõ là hiện chưa có và gợi ý sản phẩm tương tự đang bán.
 - Không bịa thông tin ngoài phạm vi cửa hàng hải sản.
 
