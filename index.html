@@ -1,48 +1,35 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thủy Sản Miền Quê - Quần Liêu Village</title>
-  
-  <!-- 1. Icon hiển thị trên TAB trình duyệt (Favicon) -->
-  <link rel="icon" href="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thủy Sản Miền Quê - Quần Liêu Village</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='🦀' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+  <style>
+    :root {
+      --primary-color: #0077b6;
+      --secondary-color: #023e8a;
+      --accent-color: #e63946;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #212529;
+      --text-muted: #6c757d;
+      --border-color: #e9ecef;
+      --topbar-bg: #0077b6;
+    }
 
-  <style>
-    :root {
-      --primary-color: #0077b6;
-      --secondary-color: #023e8a;
-      --accent-color: #e63946;
-      --bg-color: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-color: #212529;
-      --text-muted: #6c757d;
-      --border-color: #e9ecef;
-      --topbar-bg: #0077b6;
-    }
+    body.dark-mode {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-color: #e0e0e0;
+      --text-muted: #aaa;
+      --border-color: #333333;
+      --topbar-bg: #0d1b2a;
+    }
 
-    body.dark-mode {
-      --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --text-color: #e0e0e0;
-      --text-muted: #aaa;
-      --border-color: #333333;
-      --topbar-bg: #0d1b2a;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
+    body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
-    body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
-    
-    /* Style riêng cho logo con tàu */
-    .brand-logo { 
-      height: 40px; 
-      width: 40px; 
-      object-fit: cover; 
-      border-radius: 50%; 
-    }
-  </style>
-</head>
-<body>
 
   <!-- 2. Logo hiển thị trên GIAO DIỆN TRANG WEB -->
   <header style="padding: 15px; background: var(--card-bg);">
