@@ -212,6 +212,22 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
 .cart-table th { background: var(--bg-color); padding: 10px; text-align: left; border-bottom: 2px solid var(--border-color); }
 .cart-table td { padding: 10px; border-bottom: 1px solid var(--border-color); }
 
+/* ================= GIỚI THIỆU CỬA HÀNG ================= */
+.intro-section { max-width: 1250px; margin: 10px auto 40px; padding: 0 15px; }
+.intro-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); text-align: center; }
+.intro-card h2 { color: var(--secondary-color); font-size: 26px; margin-bottom: 6px; }
+.intro-card .intro-slogan { color: var(--primary-color); font-weight: 700; font-size: 15px; margin-bottom: 22px; font-style: italic; }
+.intro-card .intro-lead { color: var(--text-color); font-size: 15px; line-height: 1.8; max-width: 850px; margin: 0 auto 30px; text-align: left; }
+.intro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left; margin-bottom: 30px; }
+.intro-block { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 22px; }
+.intro-block h3 { color: var(--secondary-color); font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.intro-block p { color: var(--text-muted); font-size: 13.5px; line-height: 1.7; }
+.intro-footer { border-top: 1px dashed var(--border-color); padding-top: 24px; }
+.intro-footer p { color: var(--text-color); font-size: 15px; line-height: 1.8; max-width: 800px; margin: 0 auto 16px; }
+.intro-tagline { color: var(--accent-color); font-weight: 900; font-size: 17px; margin-top: 6px; }
+.intro-tagline small { display: block; color: var(--primary-color); font-weight: 700; font-size: 13px; margin-top: 6px; letter-spacing: .3px; }
+@media (max-width: 768px) { .intro-grid { grid-template-columns: 1fr; } .intro-card { padding: 26px 18px; } }
+
 /* ================= MAP SECTION (VỊ TRÍ CỬA HÀNG) ================= */
 .map-section { max-width: 1250px; margin: 10px auto 40px; padding: 0 15px; }
 .map-section h2 { color: var(--secondary-color); margin-bottom: 8px; font-size: 24px; }
@@ -423,6 +439,41 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
     <!-- Product Grid -->
     <div class="product-grid" id="productGrid"></div>
 
+    <!-- Giới Thiệu Cửa Hàng -->
+    <section class="intro-section reveal">
+      <div class="intro-card">
+        <h2>Giới Thiệu Thủy Sản Miền Quê – Quần Liêu Village</h2>
+        <p class="intro-slogan">Mang hương vị quê nhà đến mỗi bữa cơm</p>
+        <p class="intro-lead">
+          Thủy Sản Miền Quê – Quần Liêu Village là cửa hàng chuyên cung cấp các loại thủy sản nước ngọt tươi sống, phục vụ nhu cầu mua sắm và chế biến món ăn của các gia đình.<br><br>
+          Với định hướng lấy chất lượng sản phẩm và sự tin tưởng của khách hàng làm nền tảng, chúng tôi lựa chọn những sản phẩm thủy sản có độ tươi ngon, đảm bảo nguồn hàng và được bảo quản phù hợp trước khi giao đến khách hàng.
+        </p>
+
+        <div class="intro-grid">
+          <div class="intro-block">
+            <h3>🐟 Sản phẩm đa dạng</h3>
+            <p>Cửa hàng cung cấp nhiều nhóm thủy sản nước ngọt như cá, tôm, cua, ốc và các sản phẩm thủy sản khác. Các sản phẩm được lựa chọn phù hợp với nhu cầu chế biến món ăn gia đình, các bữa tiệc và nhu cầu kinh doanh ăn uống.</p>
+          </div>
+          <div class="intro-block">
+            <h3>✔️ Chất lượng là ưu tiên hàng đầu</h3>
+            <p>Chúng tôi chú trọng từ khâu lựa chọn nguồn hàng, kiểm tra chất lượng, bảo quản đến đóng gói và giao hàng. Mục tiêu là mang đến cho khách hàng những sản phẩm tươi ngon, chất lượng và có mức giá hợp lý.</p>
+          </div>
+          <div class="intro-block">
+            <h3>💙 Giá trị chúng tôi hướng đến</h3>
+            <p>Thủy Sản Miền Quê mong muốn trở thành địa chỉ đáng tin cậy cho những khách hàng yêu thích các sản phẩm thủy sản nước ngọt và hương vị ẩm thực truyền thống.</p>
+          </div>
+        </div>
+
+        <div class="intro-footer">
+          <p>Không chỉ bán thủy sản, chúng tôi hướng đến việc mang những sản phẩm gần gũi, chất lượng từ quê hương đến với mỗi gia đình.</p>
+          <div class="intro-tagline">
+            Thủy Sản Miền Quê – Quần Liêu Village
+            <small>Tươi ngon mỗi ngày – Chất lượng từ quê nhà.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Vị Trí Cửa Hàng -->
     <section class="map-section reveal" id="about">
       <h2>Vị Trí Cửa Hàng Thủy Sản Miền Quê</h2>
@@ -432,7 +483,7 @@ body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
           <h4>Thủy Sản Miền Quê</h4>
           <p><strong>Địa chỉ:</strong> Đ. Làng Quần Liêu, Nghĩa Sơn (Quần Liêu Village)</p>
           <p><strong>Điện thoại/Zalo:</strong> 0362442952</p>
-          <p><strong>Giờ mở cửa:</strong> Tất cả các ngày trong tuần (7:00 - 21:00)</p>
+          <p><strong>Giờ mở cửa:</strong> Cả ngày (7:00 - 21:00)</p>
           <div class="map-buttons-wrapper">
             <a href="tel:0362442952" class="map-btn-outline">📞 GỌI ĐẶT HÀNG</a>
             <a href="https://www.google.com/maps/dir/?api=1&destination=T%C3%ADn+CAPTAIN&destination_place_id=ChIJEfZpTwANNjERcVYbSEq-lf8" target="_blank" class="map-btn-solid">🗺️ CHỈ ĐƯỜNG NGAY</a>
