@@ -542,7 +542,12 @@ const GOOGLE_SHEET_DATA_URL = "https://docs.google.com/spreadsheets/d/e/PASTE_YO
 
 /* Formspree (hoặc dịch vụ tương tự) để đơn hàng gửi thẳng về email/Zalo của bạn.
    Đăng ký miễn phí tại https://formspree.io, dán endpoint riêng vào đây. */
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/yourFormID";
+/* Đơn hàng sẽ được gửi thẳng vào email này qua dịch vụ FormSubmit.co (miễn phí, không cần đăng ký).
+   LƯU Ý QUAN TRỌNG: Lần đặt hàng ĐẦU TIÊN, FormSubmit sẽ gửi 1 email xác nhận về hộp thư dưới đây,
+   bạn cần mở email đó và bấm "Confirm my email address" một lần duy nhất thì các đơn hàng sau
+   mới tự động gửi vào mail. Nếu muốn đổi email nhận đơn, chỉ cần sửa địa chỉ trong dòng dưới đây. */
+const ORDER_RECEIVER_EMAIL = "nguyenvanson2005.nghiahungclc@gmail.com";
+const FORMSPREE_ENDPOINT = "https://formsubmit.co/ajax/" + ORDER_RECEIVER_EMAIL;
 
 const GEMINI_API_KEY = "aaaaaaaaaa";
 const GEMINI_MODEL = "gemini-2.5-flash";
@@ -878,8 +883,17 @@ function openConfirmFromModal() {
 }
 
 async function sendOrderToServer(payload) {
-  if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("yourFormID")) return Promise.resolve();
-  return fetch(FORMSPREE_ENDPOINT, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  const body = {
+    ...payload,
+    _subject: "🦐 ĐƠN HÀNG MỚI - Thủy Sản Miền Quê",
+    _template: "table",
+    _captcha: "false"
+  };
+  return fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: { "Accept": "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
 }
 
 function executeFinalOrderSend() {
