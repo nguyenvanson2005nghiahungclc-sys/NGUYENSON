@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thủy Sản Miền Quê - Quần Liêu Village</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+  
+  <!-- 1. Icon hiển thị trên TAB trình duyệt (Favicon) -->
+  <link rel="icon" href="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png">
+
   <style>
     :root {
       --primary-color: #0077b6;
@@ -29,6 +32,28 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
     body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
+    
+    /* Style riêng cho logo con tàu */
+    .brand-logo { 
+      height: 40px; 
+      width: 40px; 
+      object-fit: cover; 
+      border-radius: 50%; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 2. Logo hiển thị trên GIAO DIỆN TRANG WEB -->
+  <header style="padding: 15px; background: var(--card-bg);">
+    <a href="#" style="text-decoration: none; color: var(--primary-color); font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 10px;">
+      <img src="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png" alt="Logo Con Tàu" class="brand-logo">
+      <span>THỦY SẢN MIỀN QUÊ</span>
+    </a>
+  </header>
+
+</body>
+</html>
 
     /* Top Bar */
     .top-bar { background-color: var(--topbar-bg); padding: 8px 15px; color: #fff; }
