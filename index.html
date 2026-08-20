@@ -4,175 +4,278 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thủy Sản Miền Quê - Quần Liêu Village</title>
-  
-  <!-- Đã thay icon tab trình duyệt bằng ảnh con tàu -->
   <link rel="icon" href="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png">
-
   <style>
-    :root {
-      --primary-color: #0077b6;
-      --secondary-color: #023e8a;
-      --accent-color: #e63946;
-      --bg-color: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-color: #212529;
-      --text-muted: #6c757d;
-      --border-color: #e9ecef;
-      --topbar-bg: #0077b6;
-    }
+/* ============================================================
+   THỦY SẢN MIỀN QUÊ - style.css
+   Giữ nguyên tông màu xanh biển gốc, bổ sung hiệu ứng & tính năng
+   ============================================================ */
 
-    body.dark-mode {
-      --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --text-color: #e0e0e0;
-      --text-muted: #aaa;
-      --border-color: #333333;
-      --topbar-bg: #0d1b2a;
-    }
+:root {
+  --primary-color: #0077b6;
+  --secondary-color: #023e8a;
+  --accent-color: #e63946;
+  --success-color: #27ae60;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --border-color: #e9ecef;
+  --topbar-bg: #0077b6;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s; }
-    body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; }
+body.dark-mode {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --text-muted: #aaa;
+  --border-color: #333333;
+  --topbar-bg: #0d1b2a;
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+html { scroll-behavior: smooth; }
+body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.5; overflow-x: hidden; }
 
+/* ================= HIỆU ỨNG SCROLL REVEAL ================= */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal.delay-1 { transition-delay: .08s; }
+.reveal.delay-2 { transition-delay: .16s; }
+.reveal.delay-3 { transition-delay: .24s; }
 
+/* ================= TOP BAR ================= */
+.top-bar { background-color: var(--topbar-bg); padding: 8px 15px; color: #fff; }
+.top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.top-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hotline-btn { background: #fff; color: var(--primary-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 13px; transition: transform .2s; }
+.hotline-btn:hover { transform: translateY(-2px); }
+.top-link { color: #fff; text-decoration: none; font-size: 13px; font-weight: 500; }
+.top-link:hover { text-decoration: underline; }
 
-    /* Top Bar */
-    .top-bar { background-color: var(--topbar-bg); padding: 8px 15px; color: #fff; }
-    .top-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .top-left { display: flex; align-items: center; gap: 12px; }
-    .hotline-btn { background: #fff; color: var(--primary-color); padding: 4px 12px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 13px; }
-    .top-link { color: #fff; text-decoration: none; font-size: 13px; font-weight: 500; }
-    
-    .top-right { display: flex; align-items: center; gap: 12px; }
-    .theme-toggle, .icon-btn-top { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 5px; }
-    .theme-toggle:hover, .icon-btn-top:hover { background: rgba(255,255,255,0.35); }
-    .badge { background: var(--accent-color); color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold; }
+.top-right { display: flex; align-items: center; gap: 12px; }
+.theme-toggle, .icon-btn-top { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+.theme-toggle:hover, .icon-btn-top:hover { background: rgba(255,255,255,0.35); }
+.badge { background: var(--accent-color); color: #fff; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold; min-width: 18px; text-align: center; display: inline-block; }
 
-    /* Main Nav & Dropdown Menu */
-    .main-nav { background: var(--card-bg); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
-    .logo { font-size: 22px; font-weight: 900; color: var(--primary-color); letter-spacing: 1px; padding: 12px 0; display: flex; align-items: center; gap: 6px; }
-    
-    .nav-links { display: flex; list-style: none; margin: 0; }
-    .nav-item { position: relative; }
-    .nav-item > a { display: block; padding: 16px 14px; text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 14px; cursor: pointer; }
-    .nav-item:hover > a { color: var(--primary-color); }
+/* ================= MAIN NAV & DROPDOWN ================= */
+.main-nav { background: var(--card-bg); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.nav-container { max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; }
+.logo { font-size: 22px; font-weight: 900; color: var(--primary-color); letter-spacing: 1px; padding: 12px 0; display: flex; align-items: center; gap: 6px; }
 
-    .dropdown-menu {
-      display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--card-bg);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15); border-radius: 4px; border-top: 3px solid var(--primary-color);
-      list-style: none; padding: 6px 0; z-index: 500;
-    }
-    .nav-item:hover .dropdown-menu { display: block; }
-    .dropdown-menu li a { display: block; padding: 9px 16px; color: var(--text-color); text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 1px solid var(--border-color); }
-    .dropdown-menu li a:hover { background: rgba(0,119,182,0.1); color: var(--primary-color); padding-left: 20px; }
+.nav-links { display: flex; list-style: none; margin: 0; }
+.nav-item { position: relative; }
+.nav-item > a { display: block; padding: 16px 14px; text-decoration: none; color: var(--text-color); font-weight: 600; font-size: 14px; cursor: pointer; }
+.nav-item:hover > a { color: var(--primary-color); }
 
-    /* Main Container */
-    .container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
-    .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+.dropdown-menu {
+  display: none; position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--card-bg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15); border-radius: 4px; border-top: 3px solid var(--primary-color);
+  list-style: none; padding: 6px 0; z-index: 500;
+}
+.nav-item:hover .dropdown-menu { display: block; animation: dropFade .25s ease; }
+@keyframes dropFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.dropdown-menu li a { display: block; padding: 9px 16px; color: var(--text-color); text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+.dropdown-menu li a:hover { background: rgba(0,119,182,0.1); color: var(--primary-color); padding-left: 20px; }
 
-    /* Advanced Toolbar (Search, Filter, Sort) */
-    .filter-toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px; }
-    .search-box { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 3px 12px; flex: 1; max-width: 320px; }
-    .search-box input { border: none; outline: none; background: transparent; color: var(--text-color); padding: 5px; font-size: 13px; width: 100%; }
-    
-    .filter-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .select-control { padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 13px; outline: none; cursor: pointer; }
+.nav-right-box { display: flex; align-items: center; gap: 10px; }
+.hamburger-btn { display: none; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); width: 40px; height: 40px; border-radius: 10px; cursor: pointer; align-items: center; justify-content: center; font-size: 20px; }
 
-    /* Category Tags */
-    .category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; }
-    .tag-btn { background: var(--secondary-color); color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; }
-    .tag-btn.active, .tag-btn:hover { background: var(--primary-color); }
+/* ================= MOBILE MENU ================= */
+.mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1200; backdrop-filter: blur(3px); }
+.mobile-menu-overlay.open { display: block; }
+.mobile-menu-panel { position: fixed; top: 0; left: 0; width: 82%; max-width: 320px; height: 100%; background: var(--card-bg); z-index: 1201; transform: translateX(-100%); transition: transform .35s ease; overflow-y: auto; box-shadow: 5px 0 30px rgba(0,0,0,.2); }
+.mobile-menu-overlay.open .mobile-menu-panel { transform: translateX(0); }
+.mobile-menu-header { background: var(--topbar-bg); color: #fff; padding: 18px; display: flex; justify-content: space-between; align-items: center; }
+.mobile-menu-header span { font-weight: 800; font-size: 16px; text-transform: uppercase; }
+.mobile-menu-header button { background: rgba(255,255,255,.2); border: none; color: #fff; font-size: 18px; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; }
+.mobile-menu-list { list-style: none; }
+.mobile-menu-list > li > a { display: block; padding: 15px 18px; font-size: 15px; font-weight: 700; color: var(--text-color); text-decoration: none; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+.mobile-menu-contact { padding: 18px; }
 
-    /* Product Grid (6 Cột Responsive) */
-    .product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
-    .product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: var(--primary-color); }
-    .card-img-box { position: relative; width: 100%; height: 140px; overflow: hidden; }
-    .card-img-box img { width: 100%; height: 100%; object-fit: cover; }
-    
-    .btn-wishlist { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #ccc; }
-    .btn-wishlist.active { color: #e74c3c; }
+/* ================= CONTAINER, TOOLBAR ================= */
+.container { max-width: 1250px; margin: 15px auto; padding: 0 15px; }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
 
-    .card-body { padding: 10px 8px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-title { font-size: 13px; color: var(--text-color); font-weight: 600; margin-bottom: 6px; line-height: 1.3; min-height: 34px; }
-    .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
-    .price { color: var(--accent-color); font-size: 14px; font-weight: bold; }
-    .btn-add-cart-fast { background: var(--primary-color); color: #fff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: bold; }
+.filter-toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px; }
+.search-box { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 3px 12px; flex: 1; max-width: 320px; }
+.search-box input { border: none; outline: none; background: transparent; color: var(--text-color); padding: 5px; font-size: 13px; width: 100%; }
 
-    /* Drawer Giỏ Hàng */
-    .cart-drawer { position: fixed; top: 0; right: -380px; width: 350px; height: 100%; background: var(--card-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 1001; transition: right 0.3s ease; display: flex; flex-direction: column; }
-    .cart-drawer.open { right: 0; }
-    .cart-header { padding: 15px; background: var(--primary-color); color: white; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-    .cart-body { flex: 1; padding: 15px; overflow-y: auto; }
-    .cart-item { display: flex; gap: 10px; margin-bottom: 12px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; align-items: center; }
-    .cart-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
-    .cart-item-info { flex: 1; font-size: 12px; }
-    .cart-item-info h5 { font-size: 13px; color: var(--text-color); }
-    .cart-footer { padding: 15px; border-top: 1px solid var(--border-color); background: var(--bg-color); }
-    .cart-total { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
-    .btn-checkout { width: 100%; background: var(--accent-color); color: white; border: none; padding: 10px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+.filter-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.select-control { padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 13px; outline: none; cursor: pointer; }
 
-    /* Modals */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 20px; }
-    .modal-content { background: var(--card-bg); max-width: 950px; margin: 30px auto; border-radius: 8px; padding: 25px; position: relative; color: var(--text-color); }
-    .modal-close { position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+/* ================= CATEGORY TAGS ================= */
+.category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; }
+.tag-btn { background: var(--secondary-color); color: #fff; border: none; padding: 7px 14px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform .2s, background .2s; }
+.tag-btn.active, .tag-btn:hover { background: var(--primary-color); transform: translateY(-2px); }
 
-    .detail-container { display: flex; gap: 30px; margin-top: 15px; }
-    .detail-gallery { flex: 1.2; }
-    #modalMainImg { width: 100%; height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); }
-    .thumbnail-list { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; }
-    .thumbnail-list img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid var(--border-color); }
-    .thumbnail-list img.active-thumb { border-color: var(--accent-color); }
+/* ================= PRODUCT GRID ================= */
+.product-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 40px; }
+.product-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color .25s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 22px rgba(0,0,0,0.12); border-color: var(--primary-color); }
+.card-img-box { position: relative; width: 100%; height: 140px; overflow: hidden; background: #eee; }
+.card-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.product-card:hover .card-img-box img { transform: scale(1.08); }
 
-    .detail-info { flex: 1.2; }
-    .promo-box { background: var(--accent-color); color: white; border-radius: 6px; padding: 15px; margin-bottom: 20px; }
-    .promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 10px; }
-    .sale-price { font-size: 24px; font-weight: 900; }
-    .old-price { font-size: 15px; text-decoration: line-through; color: #ffcccc; }
-    .promo-desc { font-size: 13px; border-top: 1px dashed rgba(255,255,255,0.4); padding-top: 10px; line-height: 1.6; }
+.btn-wishlist { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,0.85); border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #ccc; transition: transform .2s; }
+.btn-wishlist:hover { transform: scale(1.15); }
+.btn-wishlist.active { color: var(--accent-color); }
 
-    .order-form { background: var(--bg-color); border: 1px solid var(--border-color); padding: 15px; border-radius: 6px; }
-    .form-group { margin-bottom: 8px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 4px; font-size: 13px; outline: none; }
-    .btn-submit-order { width: 100%; background: var(--accent-color); color: white; border: none; padding: 12px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+.badge-card-soldout { position: absolute; top: 6px; left: 6px; background: var(--accent-color); color: #fff; font-size: 10.5px; font-weight: 900; padding: 4px 8px; border-radius: 4px; letter-spacing: .3px; text-transform: uppercase; z-index: 5; box-shadow: 0 3px 8px rgba(0,0,0,.3); }
+.product-card.card-out-of-stock { opacity: .68; filter: grayscale(20%); }
 
-    /* Floating Contact Buttons */
-    .floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
-    .btn-floating { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.2s; }
-    .btn-floating:hover { transform: scale(1.1); }
-    .btn-phone { background-color: #ff0000; }
-    .btn-zalo { background-color: #0088ff; color: #fff; font-weight: 900; font-size: 11px; }
-    .btn-map { background-color: #00a651; }
-    .btn-scrolltop { background-color: #636e72; border: none; }
-    .btn-ai-chat { background-color: #0077b6; border: none; font-size: 20px; }
+.card-body { padding: 10px 8px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.product-title { font-size: 13px; color: var(--text-color); font-weight: 600; margin-bottom: 6px; line-height: 1.3; min-height: 34px; }
+.price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+.price { color: var(--accent-color); font-size: 14px; font-weight: bold; }
+.btn-add-cart-fast { background: var(--primary-color); color: #fff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 11px; cursor: pointer; font-weight: bold; transition: background .2s, transform .15s; }
+.btn-add-cart-fast:hover { background: var(--secondary-color); transform: scale(1.05); }
+.btn-add-cart-fast:disabled { background: #aaa; cursor: not-allowed; }
 
-    /* AI Box */
-    .native-ai-box { display: none; position: fixed; right: 70px; bottom: 20px; width: 320px; height: 420px; background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color); }
-    .ai-header { background: #0077b6; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-    .ai-body { flex: 1; padding: 12px; overflow-y: auto; background: var(--bg-color); display: flex; flex-direction: column; gap: 8px; }
-    .msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; max-width: 85%; }
-    .msg-ai { background: var(--border-color); color: var(--text-color); align-self: flex-start; }
-    .msg-user { background: var(--primary-color); color: white; align-self: flex-end; }
-    .ai-footer { display: flex; border-top: 1px solid var(--border-color); padding: 6px; background: var(--card-bg); }
-    .ai-footer input { flex: 1; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
-    .ai-footer button { background: #0077b6; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+/* ================= CART DRAWER ================= */
+.cart-drawer { position: fixed; top: 0; right: -380px; width: 350px; max-width: 92vw; height: 100%; background: var(--card-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 1001; transition: right 0.3s ease; display: flex; flex-direction: column; }
+.cart-drawer.open { right: 0; }
+.cart-header { padding: 15px; background: var(--primary-color); color: white; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+.cart-body { flex: 1; padding: 15px; overflow-y: auto; }
+.cart-item { display: flex; gap: 10px; margin-bottom: 12px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; align-items: center; }
+.cart-item img { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+.cart-item-info { flex: 1; font-size: 12px; }
+.cart-item-info h5 { font-size: 13px; color: var(--text-color); margin-bottom: 4px; }
+.cart-qty-control { display: inline-flex; align-items: center; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 4px; }
+.cart-qty-control button { border: none; background: var(--bg-color); color: var(--text-color); width: 22px; height: 22px; cursor: pointer; font-weight: 900; font-size: 13px; }
+.cart-qty-control button:hover { background: var(--primary-color); color: #fff; }
+.cart-qty-control span { padding: 0 8px; font-weight: 800; font-size: 12px; min-width: 18px; text-align: center; }
+.cart-item-remove { border: none; background: none; cursor: pointer; font-size: 14px; color: var(--text-muted); }
+.cart-item-remove:hover { color: var(--accent-color); }
+.cart-empty-msg { text-align: center; padding: 40px 10px; color: var(--text-muted); font-weight: 600; }
 
-    /* Toast Notification */
-    #toastContainer { position: fixed; bottom: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
-    .toast { background: #333; color: #fff; padding: 10px 16px; border-radius: 4px; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.cart-footer { padding: 15px; border-top: 1px solid var(--border-color); background: var(--bg-color); }
+.cart-total { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; font-size: 14px; }
+.btn-checkout { width: 100%; background: var(--accent-color); color: white; border: none; padding: 10px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: transform .2s, background .2s; }
+.btn-checkout:hover { background: #c92e3b; transform: translateY(-2px); }
+.btn-checkout:disabled { background: #aaa; cursor: not-allowed; transform: none; }
 
-    /* Responsive */
-    @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width: 768px) {
-      .product-grid { grid-template-columns: repeat(3, 1fr); }
-      .detail-container { flex-direction: column; }
-      .nav-links { display: none; }
-      .filter-toolbar { flex-direction: column; align-items: stretch; }
-      .search-box { max-width: 100%; }
-    }
-    @media (max-width: 500px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+/* ================= MODALS (chung) ================= */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 20px; backdrop-filter: blur(2px); }
+.modal-content { background: var(--card-bg); max-width: 950px; margin: 30px auto; border-radius: 8px; padding: 25px; position: relative; color: var(--text-color); animation: modalPop .25s ease; }
+@keyframes modalPop { from { opacity: 0; transform: translateY(20px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-close { position: absolute; top: 15px; right: 15px; background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.modal-close:hover { background: #c0392b; }
+
+.detail-container { display: flex; gap: 30px; margin-top: 15px; }
+.detail-gallery { flex: 1.2; }
+#modalMainImg { width: 100%; height: 350px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); }
+.thumbnail-list { display: flex; gap: 10px; margin-top: 10px; overflow-x: auto; }
+.thumbnail-list img { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid var(--border-color); transition: .2s; opacity: .65; }
+.thumbnail-list img:hover, .thumbnail-list img.active-thumb { opacity: 1; border-color: var(--accent-color); transform: translateY(-2px); }
+
+.detail-info { flex: 1.2; }
+.product-sku { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.stock-tag { font-weight: 800; padding: 3px 10px; border-radius: 5px; font-size: 12.5px; white-space: nowrap; display: inline-block; }
+.stock-in { color: var(--success-color); background: rgba(39,174,96,.12); border: 1px solid rgba(39,174,96,.35); }
+.stock-out { color: var(--accent-color); background: rgba(230,57,70,.12); border: 1px solid rgba(230,57,70,.35); }
+
+.promo-box { background: var(--accent-color); color: white; border-radius: 6px; padding: 15px; margin-bottom: 20px; }
+.promo-header { display: flex; align-items: baseline; gap: 15px; margin-bottom: 10px; }
+.sale-price { font-size: 24px; font-weight: 900; }
+.old-price { font-size: 15px; text-decoration: line-through; color: #ffcccc; }
+.promo-desc { font-size: 13px; border-top: 1px dashed rgba(255,255,255,0.4); padding-top: 10px; line-height: 1.6; }
+
+.modal-actions { margin-bottom: 16px; }
+.btn-modal-action { width: 100%; background: var(--primary-color); color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background .2s, transform .15s; }
+.btn-modal-action:hover { background: var(--secondary-color); transform: translateY(-2px); }
+.btn-modal-zalo { background: #0088ff; }
+.btn-modal-zalo:hover { background: #0068cc; }
+
+.order-form { background: var(--bg-color); border: 1px solid var(--border-color); padding: 15px; border-radius: 6px; }
+.order-form h4 { font-size: 14px; color: var(--secondary-color); margin-bottom: 10px; }
+.form-group { margin-bottom: 8px; }
+.form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 4px; font-size: 13px; outline: none; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0,119,182,.15); }
+.btn-submit-order { width: 100%; background: var(--accent-color); color: white; border: none; padding: 12px; font-size: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: background .2s, transform .15s; }
+.btn-submit-order:hover { background: #c92e3b; transform: translateY(-2px); }
+.btn-submit-order:disabled { background: #aaa; cursor: wait; animation: pulseBtn 1s infinite alternate; }
+@keyframes pulseBtn { from { opacity: 1; } to { opacity: .7; } }
+
+/* ================= MODAL XÁC NHẬN ĐƠN (2 bước) ================= */
+#confirmOrderModal .modal-content { max-width: 560px; }
+.confirm-summary-box { background: var(--bg-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 10px; margin-bottom: 20px; font-size: 14.5px; }
+.confirm-summary-box .row { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.confirm-note-box { background: #fff8e1; color: #6b4c00; border-left: 4px solid #d35400; padding: 12px 14px; font-size: 13px; border-radius: 0 6px 6px 0; margin-bottom: 20px; font-weight: 600; }
+body.dark-mode .confirm-note-box { background: #3a3320; color: #ffd98a; }
+.confirm-buttons-wrapper { display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px; }
+.btn-outline-small { background: transparent; border: 2px solid var(--border-color); color: var(--text-color); padding: 11px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.btn-outline-small:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+/* ================= CART TABLE (nếu dùng bảng) ================= */
+.cart-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.cart-table th { background: var(--bg-color); padding: 10px; text-align: left; border-bottom: 2px solid var(--border-color); }
+.cart-table td { padding: 10px; border-bottom: 1px solid var(--border-color); }
+
+/* ================= FLOATING BUTTONS ================= */
+.floating-contact-bar { position: fixed; right: 15px; bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 999; }
+.btn-floating { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.25); cursor: pointer; transition: transform 0.25s cubic-bezier(.175,.885,.32,1.275); }
+.btn-floating:hover { transform: scale(1.12) translateY(-3px); }
+.btn-phone { background-color: #ff0000; animation: ringPulse 2.5s infinite; }
+@keyframes ringPulse { 0%,100% { box-shadow: 0 4px 10px rgba(0,0,0,.25), 0 0 0 0 rgba(255,0,0,.5);} 70% { box-shadow: 0 4px 10px rgba(0,0,0,.25), 0 0 0 12px rgba(255,0,0,0);} }
+.btn-zalo { background-color: #0088ff; color: #fff; font-weight: 900; font-size: 11px; }
+.btn-map { background-color: #00a651; }
+.btn-scrolltop { background-color: #636e72; border: none; opacity: 0; pointer-events: none; }
+.btn-scrolltop.show { opacity: 1; pointer-events: auto; }
+.btn-ai-chat { background-color: #0077b6; border: none; font-size: 20px; }
+
+/* ================= AI CHAT BOX ================= */
+.native-ai-box { display: none; position: fixed; right: 70px; bottom: 20px; width: 320px; height: 420px; background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color); }
+.ai-header { background: #0077b6; color: white; padding: 12px; font-size: 13px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.ai-header button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; }
+.ai-body { flex: 1; padding: 12px; overflow-y: auto; background: var(--bg-color); display: flex; flex-direction: column; gap: 8px; }
+.msg { padding: 8px 12px; border-radius: 8px; font-size: 13px; max-width: 85%; line-height: 1.45; }
+.msg-ai { background: var(--border-color); color: var(--text-color); align-self: flex-start; }
+.msg-user { background: var(--primary-color); color: white; align-self: flex-end; }
+.msg-typing { display: inline-flex; gap: 4px; align-items: center; }
+.msg-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: typingBounce 1s infinite ease-in-out; }
+.msg-typing span:nth-child(2) { animation-delay: .15s; }
+.msg-typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.ai-footer { display: flex; border-top: 1px solid var(--border-color); padding: 6px; background: var(--card-bg); }
+.ai-footer input { flex: 1; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); padding: 8px; border-radius: 4px; outline: none; font-size: 12px; }
+.ai-footer button { background: #0077b6; color: white; border: none; padding: 0 12px; margin-left: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.ai-footer button:hover { background: var(--secondary-color); }
+.ai-suggest-row { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 12px 10px; }
+.ai-suggest-chip { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); font-size: 11.5px; padding: 5px 10px; border-radius: 14px; cursor: pointer; }
+.ai-suggest-chip:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+/* ================= TOAST NOTIFICATION ================= */
+#toastContainer { position: fixed; bottom: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; max-width: calc(100vw - 40px); }
+.toast { background: #2c2c2c; color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.35); display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--success-color); transform: translateX(-120%); opacity: 0; transition: all .35s cubic-bezier(.175,.885,.32,1.275); }
+.toast.show { transform: translateX(0); opacity: 1; }
+.toast.toast-error { border-left-color: var(--accent-color); }
+.toast-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--success-color); font-weight: 900; font-size: 12px; flex-shrink: 0; }
+.toast.toast-error .toast-icon { background: var(--accent-color); }
+
+/* Skeleton loading cho grid khi tải dữ liệu */
+.skeleton-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.skeleton-img { width: 100%; height: 140px; background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-color) 50%, var(--border-color) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+.skeleton-line { height: 10px; margin: 10px 8px; border-radius: 4px; background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-color) 50%, var(--border-color) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 768px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .detail-container { flex-direction: column; }
+  .nav-links { display: none; }
+  .hamburger-btn { display: flex; }
+  .filter-toolbar { flex-direction: column; align-items: stretch; }
+  .search-box { max-width: 100%; }
+  .confirm-buttons-wrapper { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .native-ai-box { width: calc(100vw - 24px); right: 12px; height: 68vh; max-height: 460px; }
+  .modal-content { padding: 18px; margin: 10px auto; }
+}
+
   </style>
 </head>
 <body>
@@ -187,63 +290,89 @@
         <a href="#about" class="top-link">Địa chỉ: Quần Liêu Village</a>
       </div>
       <div class="top-right">
-        <button class="icon-btn-top" onclick="filterWishlist()">❤️ Yêu thích <span class="badge" id="wishlistCount">0</span></button>
-        <button class="icon-btn-top" onclick="toggleCartDrawer()">🛒 Giỏ hàng <span class="badge" id="cartCount">0</span></button>
-        <button class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙 Tối</button>
+        <button type="button" class="icon-btn-top" onclick="filterWishlist()">❤️ Yêu thích <span class="badge" id="wishlistCount">0</span></button>
+        <button type="button" class="icon-btn-top" onclick="toggleCartDrawer()">🛒 Giỏ hàng <span class="badge" id="cartCount">0</span></button>
+        <button type="button" class="theme-toggle" onclick="toggleDarkMode()" id="themeBtn">🌙 Tối</button>
       </div>
     </div>
   </header>
 
   <!-- Navigation -->
-<nav class="main-nav">
-  <div class="nav-container">
-    <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px;">
-      <!-- Đã thay con tôm thành thẻ img con tàu, có thể tăng/giảm height để chỉnh độ to nhỏ -->
-      <img src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png" alt="Logo Tàu" style="height: 50px; width: auto; object-fit: contain; border-radius: 4px;">
-      <span>THỦY SẢN MIỀN QUÊ</span>
-    </div>
-    <ul class="nav-links">
-        <li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>
-        <li class="nav-item">
-          <a onclick="filterCategory('tom')">CÁC LOẠI TÔM ▾</a>
-          <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('tom-su')">Tôm Sú Biển</a></li>
-            <li><a onclick="filterCategory('tom-the')">Tôm Thẻ Chân Trắng</a></li>
-            <li><a onclick="filterCategory('tom-hum')">Tôm Hùm & Tôm Càng</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a onclick="filterCategory('cua')">CUA & GHẸ ▾</a>
-          <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('cua-thịt')">Cua Thịt Cà Mau</a></li>
-            <li><a onclick="filterCategory('cua-gạch')">Cua Gạch Đỏ</a></li>
-            <li><a onclick="filterCategory('ghe')">Ghẹ Xanh Tươi Sống</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a onclick="filterCategory('ca')">CÁ TƯƠI SỐNG ▾</a>
-          <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('ca-bien')">Cá Biển Tươi</a></li>
-            <li><a onclick="filterCategory('ca-dong')">Cá Đồng & Cá Nước Ngọt</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a onclick="filterCategory('oc')">ỐC & HẢI SẢN KHÁC ▾</a>
-          <ul class="dropdown-menu">
-            <li><a onclick="filterCategory('oc-huong')">Ốc Hương & Ngao Nghêu</a></li>
-            <li><a onclick="filterCategory('muc')">Mực Tươi & Mực Một Nắng</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a onclick="filterCategory('che-bien')">Hải Sản Sơ Chế / Khô</a></li>
-      </ul>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px;">
+        <img src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/482757zVl/anh-mo-ta.png" alt="Logo Tàu" style="height: 50px; width: auto; object-fit: contain; border-radius: 4px;">
+        <span>THỦY SẢN MIỀN QUÊ</span>
+      </div>
+
+      <div class="nav-right-box">
+        <ul class="nav-links">
+          <li class="nav-item"><a onclick="filterCategory('all')">Trang chủ</a></li>
+          <li class="nav-item">
+            <a onclick="filterCategory('tom')">CÁC LOẠI TÔM ▾</a>
+            <ul class="dropdown-menu">
+              <li><a onclick="filterCategory('tom-su')">Tôm Sú Biển</a></li>
+              <li><a onclick="filterCategory('tom-the')">Tôm Thẻ Chân Trắng</a></li>
+              <li><a onclick="filterCategory('tom-hum')">Tôm Hùm & Tôm Càng</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a onclick="filterCategory('cua')">CUA & GHẸ ▾</a>
+            <ul class="dropdown-menu">
+              <li><a onclick="filterCategory('cua-thịt')">Cua Thịt Cà Mau</a></li>
+              <li><a onclick="filterCategory('cua-gạch')">Cua Gạch Đỏ</a></li>
+              <li><a onclick="filterCategory('ghe')">Ghẹ Xanh Tươi Sống</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a onclick="filterCategory('ca')">CÁ TƯƠI SỐNG ▾</a>
+            <ul class="dropdown-menu">
+              <li><a onclick="filterCategory('ca-bien')">Cá Biển Tươi</a></li>
+              <li><a onclick="filterCategory('ca-dong')">Cá Đồng & Cá Nước Ngọt</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a onclick="filterCategory('oc')">ỐC & HẢI SẢN KHÁC ▾</a>
+            <ul class="dropdown-menu">
+              <li><a onclick="filterCategory('oc-huong')">Ốc Hương & Ngao Nghêu</a></li>
+              <li><a onclick="filterCategory('muc')">Mực Tươi & Mực Một Nắng</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a onclick="filterCategory('che-bien')">Hải Sản Sơ Chế / Khô</a></li>
+        </ul>
+
+        <button type="button" class="hamburger-btn" onclick="toggleMobileMenu(true)" aria-label="Menu">☰</button>
+      </div>
     </div>
   </nav>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="if(event.target===this) toggleMobileMenu(false)">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-header">
+        <span>Danh Mục Hải Sản</span>
+        <button type="button" onclick="toggleMobileMenu(false)">✕</button>
+      </div>
+      <ul class="mobile-menu-list">
+        <li><a onclick="filterCategory('all'); toggleMobileMenu(false);">Trang chủ</a></li>
+        <li><a onclick="filterCategory('tom'); toggleMobileMenu(false);">Các Loại Tôm</a></li>
+        <li><a onclick="filterCategory('cua'); toggleMobileMenu(false);">Cua & Ghẹ</a></li>
+        <li><a onclick="filterCategory('ca'); toggleMobileMenu(false);">Cá Tươi Sống</a></li>
+        <li><a onclick="filterCategory('oc'); toggleMobileMenu(false);">Ốc & Hải Sản Khác</a></li>
+        <li><a onclick="filterCategory('muc'); toggleMobileMenu(false);">Mực Tươi</a></li>
+        <li><a onclick="filterCategory('che-bien'); toggleMobileMenu(false);">Hải Sản Sơ Chế / Khô</a></li>
+      </ul>
+      <div class="mobile-menu-contact">
+        <a href="tel:0362442952" class="hotline-btn" style="display:block; text-align:center; padding:12px;">GỌI TƯ VẤN: 0362442952</a>
+      </div>
+    </div>
+  </div>
 
   <div class="container" id="products">
     <div class="breadcrumb" id="breadcrumbText">Trang chủ &gt; Tất cả mặt hàng thủy hải sản tươi sống</div>
 
-    <!-- Toolbar Tiện Ích: Tìm kiếm, Lọc Giá, Sắp xếp -->
-    <div class="filter-toolbar">
+    <!-- Toolbar -->
+    <div class="filter-toolbar reveal">
       <div class="search-box">
         <input type="text" id="searchInput" placeholder="Tìm tên tôm, cua, cá, hải sản..." onkeyup="applyFilters()">
       </div>
@@ -262,9 +391,9 @@
       </div>
     </div>
 
-    <!-- Category Filter Tags -->
-    <div class="category-tags">
-      <button type="button" class="tag-btn active" onclick="setCategoryTag('all', this)">Tất cả (50)</button>
+    <!-- Category Tags -->
+    <div class="category-tags reveal">
+      <button type="button" class="tag-btn active" onclick="setCategoryTag('all', this)">Tất cả</button>
       <button type="button" class="tag-btn" onclick="setCategoryTag('tom', this)">Tôm Tươi Sống</button>
       <button type="button" class="tag-btn" onclick="setCategoryTag('cua', this)">Cua & Ghẹ</button>
       <button type="button" class="tag-btn" onclick="setCategoryTag('ca', this)">Các Loại Cá</button>
@@ -273,7 +402,7 @@
       <button type="button" class="tag-btn" onclick="setCategoryTag('che-bien', this)">Sản Phẩm Khác</button>
     </div>
 
-    <!-- Product Grid (50 sản phẩm thủy sản) -->
+    <!-- Product Grid -->
     <div class="product-grid" id="productGrid"></div>
   </div>
 
@@ -281,22 +410,32 @@
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
       <span>Giỏ Hàng Thủy Sản</span>
-      <button style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" onclick="toggleCartDrawer()">✕</button>
+      <button type="button" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;" onclick="toggleCartDrawer()">✕</button>
     </div>
     <div class="cart-body" id="cartBody"></div>
+    <div id="cartOrderFormArea" style="display:none; padding: 0 15px 15px;">
+      <form class="order-form" onsubmit="event.preventDefault(); openConfirmFromCart();">
+        <h4>THÔNG TIN NHẬN HÀNG</h4>
+        <div class="form-group"><input type="text" id="cartCustName" placeholder="Họ và tên người nhận *" required></div>
+        <div class="form-group"><input type="tel" id="cartCustPhone" placeholder="Số điện thoại nhận hàng *" required></div>
+        <div class="form-group"><input type="text" id="cartCustAddress" placeholder="Địa chỉ giao hàng cụ thể *" value="Quần Liêu Village" required></div>
+        <div class="form-group"><textarea id="cartCustNote" rows="2" placeholder="Ghi chú (VD: sơ chế sạch, giao lúc 5h chiều...)"></textarea></div>
+        <button type="submit" class="btn-submit-order">XÁC NHẬN THÔNG TIN</button>
+      </form>
+    </div>
     <div class="cart-footer">
       <div class="cart-total">
         <span>Tổng tiền tạm tính:</span>
         <span id="cartTotalPrice" style="color:var(--accent-color);">0 đ</span>
       </div>
-      <button class="btn-checkout" onclick="checkoutCart()">ĐẶT HÀNG THỦY SẢN TƯƠI SỐNG</button>
+      <button type="button" class="btn-checkout" id="checkoutBtn" onclick="checkoutCart()" disabled>ĐẶT HÀNG THỦY SẢN TƯƠI SỐNG</button>
     </div>
   </div>
 
   <!-- Modal Chi Tiết Sản Phẩm -->
   <div class="modal-overlay" id="productModal">
     <div class="modal-content">
-      <button type="button" class="modal-close" onclick="closeModal()">✕ Đóng</button>
+      <button type="button" class="modal-close" onclick="closeModal('productModal')">✕ Đóng</button>
       <div class="detail-container">
         <div class="detail-gallery">
           <img id="modalMainImg" src="" alt="Ảnh sản phẩm">
@@ -304,7 +443,7 @@
         </div>
         <div class="detail-info">
           <h2 id="modalTitle">Tên hải sản</h2>
-          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Mã: <span id="modalCode"></span> | <span style="color:#27ae60; font-weight:bold;">✔ Hàng Tươi Sống Trong Ngày</span></p>
+          <p class="product-sku">Mã: <span id="modalCode"></span> <span id="modalStock" class="stock-tag stock-in">✔ Hàng Tươi Sống Trong Ngày</span></p>
 
           <div class="promo-box">
             <div class="promo-header">
@@ -314,16 +453,33 @@
             <div class="promo-desc" id="modalDesc"></div>
           </div>
 
+          <div class="modal-actions" id="modalActionArea"></div>
+
           <form class="order-form" onsubmit="event.preventDefault(); handleOrderSubmit();">
-            <h4 style="font-size:14px; color:var(--secondary-color); margin-bottom:6px;">ĐẶT GIAO TẬN NƠI (QUẦN LIÊU VILLAGE & LÂN CẬN)</h4>
-            <input type="hidden" id="orderProductName">
-            <div class="form-group"><input type="text" placeholder="Họ và tên người nhận *" required></div>
-            <div class="form-group"><input type="tel" placeholder="Số điện thoại nhận hàng *" value="0362442952" required></div>
-            <div class="form-group"><input type="text" placeholder="Địa chỉ giao hàng cụ thể *" value="Quần Liêu Village" required></div>
-            <div class="form-group"><textarea rows="2" placeholder="Ghi chú (Ví dụ: Sơ chế sạch, giao ngay lúc 5h chiều...)"></textarea></div>
-            <button type="submit" class="btn-submit-order">XÁC NHẬN ĐẶT HÀNG (THANH TOÁN COD)</button>
+            <h4>ĐẶT GIAO TẬN NƠI (QUẦN LIÊU VILLAGE & LÂN CẬN)</h4>
+            <div class="form-group"><input type="text" id="directName" placeholder="Họ và tên người nhận *" required></div>
+            <div class="form-group"><input type="tel" id="directPhone" placeholder="Số điện thoại nhận hàng *" value="0362442952" required></div>
+            <div class="form-group"><input type="text" id="directAddress" placeholder="Địa chỉ giao hàng cụ thể *" value="Quần Liêu Village" required></div>
+            <div class="form-group"><textarea id="directNote" rows="2" placeholder="Ghi chú (Ví dụ: Sơ chế sạch, giao ngay lúc 5h chiều...)"></textarea></div>
+            <button type="submit" class="btn-submit-order" id="directSubmitBtn">XÁC NHẬN ĐẶT HÀNG (THANH TOÁN COD)</button>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Xác Nhận Đơn (Bước 2) -->
+  <div class="modal-overlay" id="confirmOrderModal">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('confirmOrderModal')">✕ Đóng</button>
+      <h3 style="margin-bottom: 18px; color: var(--text-color);">Phiếu Xác Nhận Đơn Hàng</h3>
+      <div class="confirm-summary-box" id="confirmOrderSummary"></div>
+      <div class="confirm-note-box">
+        <b>Cam kết:</b> Không yêu cầu chuyển khoản trước. Kiểm tra hàng tươi ngon mới thanh toán (COD).
+      </div>
+      <div class="confirm-buttons-wrapper">
+        <button type="button" onclick="closeModal('confirmOrderModal')" class="btn-outline-small">QUAY LẠI SỬA</button>
+        <button type="button" id="finalConfirmBtn" onclick="executeFinalOrderSend()" class="btn-submit-order">ĐỒNG Ý GỬI ĐƠN</button>
       </div>
     </div>
   </div>
@@ -332,7 +488,7 @@
   <div class="floating-contact-bar">
     <a href="tel:0362442952" class="btn-floating btn-phone" title="Gọi ngay Hotline 0362442952">📞</a>
     <a href="https://zalo.me/0362442952" target="_blank" class="btn-floating btn-zalo" title="Zalo 0362442952">Zalo</a>
-    <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu">⬆</button>
+    <button type="button" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-floating btn-scrolltop" title="Lên đầu">⬆</button>
     <button type="button" onclick="toggleAIChat()" class="btn-floating btn-ai-chat" title="Tư vấn Thủy Sản">🤖</button>
   </div>
 
@@ -340,10 +496,15 @@
   <div class="native-ai-box" id="aiChatBox">
     <div class="ai-header">
       <span>Trợ lý Thủy Sản Miền Quê</span>
-      <button type="button" style="background:none; border:none; color:white; cursor:pointer;" onclick="toggleAIChat()">✕</button>
+      <button type="button" onclick="toggleAIChat()">✕</button>
     </div>
     <div class="ai-body" id="aiChatBody">
       <div class="msg msg-ai">Xin chào! Em là tư vấn viên Thủy Sản Miền Quê (Quần Liêu Village). Bác cần hỏi giá tôm, cua hay đặt hàng ngay ạ?</div>
+    </div>
+    <div class="ai-suggest-row">
+      <button type="button" class="ai-suggest-chip" onclick="sendSuggestChip('Giá tôm sú hôm nay bao nhiêu?')">Giá tôm sú?</button>
+      <button type="button" class="ai-suggest-chip" onclick="sendSuggestChip('Cua gạch giá bao nhiêu?')">Giá cua gạch?</button>
+      <button type="button" class="ai-suggest-chip" onclick="sendSuggestChip('Ship về Quần Liêu Village mất phí không?')">Phí ship?</button>
     </div>
     <div class="ai-footer">
       <input type="text" id="aiInput" placeholder="Hỏi giá tôm sú, cua gạch, ship..." onkeypress="if(event.key === 'Enter') handleAISend()">
@@ -351,243 +512,482 @@
     </div>
   </div>
 
-  <script>
-    // Dữ liệu 50 mặt hàng Thủy Hải Sản Tươi Sống (Gồm 30 loại cá nước ngọt / cá đồng / cá đặc sản)
-    const products = [
-      { id: 1, rawPrice: 320000, category: "tom", sub: "tom-su", title: "Tôm Sú Biển Tươi Sống (Size 20 con/kg)", code: "TSMQ-T01", price: "320.000 đ/kg", oldPrice: "360.000 đ/kg", mainImg: "https://cdn.tgdd.vn/2021/09/CookProduct/61-1200x676.jpg", images: ["https://images.unsplash.com/photo-1548587468-971ebe4c8c3b?w=600&q=80"], desc: "▶ Tôm sú biển thịt săn chắc, ngọt đậm. Hàng tươi sống bơi khỏe, thích hợp hấp sả, nướng muối ớt." },
-      { id: 2, rawPrice: 180000, category: "tom", sub: "tom-the", title: "Tôm Thẻ Chân Trắng Tươi (Size 40 con/kg)", code: "TSMQ-T02", price: "180.000 đ/kg", oldPrice: "210.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTigSFNj1JFC-e-d-Mnv51pO4dC03t_KXVuMkUUgobLw&s=10", images: ["https://images.unsplash.com/photo-1578069744397-2f3942a02a7b?w=600&q=80"], desc: "▶ Tôm thẻ tươi rói vỏ mỏng, thịt ngọt, chuyên dùng làm gỏi, chiên xù, nấu canh hoặc rim mặn ngọt." },
-      { id: 3, rawPrice: 650000, category: "tom", sub: "tom-hum", title: "Tôm Hùm Bông Sống (Size 0.8 - 1kg/con)", code: "TSMQ-T03", price: "650.000 đ/kg", oldPrice: "750.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCcajNVG5QQ0R8l1aHVoIKPHPnESJSHhbXGjckOdu4g&s=10", images: ["https://images.unsplash.com/photo-1530511960699-9d7ccd279040?w=600&q=80"], desc: "▶ Tôm hùm thượng hạng, thịt dai giòn sần sật. Bao ăn 1 đổi 1 nếu đốp, chuyên làm món nướng phô mai." },
-      { id: 4, rawPrice: 280000, category: "tom", sub: "tom-hum", title: "Tôm Càng Xanh Quần Liêu (Size 10-12 con/kg)", code: "TSMQ-T04", price: "280.000 đ/kg", oldPrice: "320.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7lQK8GnbNG1kzq7dB4-mihbFxOV_kjqTOoKiEl0DPBQ&s=10", images: ["https://images.unsplash.com/photo-1676250249336-2b73830368b1?w=600&q=80"], desc: "▶ Tôm càng xanh sống, gạch béo ngậy, thịt ngọt giòn. Thích hợp lẩu tôm, nướng mọi." },
-      { id: 5, rawPrice: 420000, category: "cua", sub: "cua-thịt", title: "Cua Thịt Cà Mau Y4 (Size 3-4 con/kg)", code: "TSMQ-C01", price: "420.000 đ/kg", oldPrice: "480.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRehBODkfayFE4tX3XENN5P-IbVj-Co54ACMR8xyIpkmg&s=10", images: ["https://images.unsplash.com/photo-1553659971-f01207815844?w=600&q=80"], desc: "▶ Cua thịt chắc nịch 100%, không dây buộc dày. Đảm bảo nhiều thịt, hấp bia hay rang me cực ngon." },
-      { id: 6, rawPrice: 520000, category: "cua", sub: "cua-gạch", title: "Cua Gạch Đỏ Cà Mau Cực Béo (Size 2-3 con/kg)", code: "TSMQ-C02", price: "520.000 đ/kg", oldPrice: "600.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1580841129862-bc2a2d113c45?w=600&q=80", images: ["https://images.unsplash.com/photo-1580841129862-bc2a2d113c45?w=600&q=80"], desc: "▶ Cua gạch tràn mai, gạch son đỏ rực thơm ngậy. Bao đổi trả nếu gạch ít hoặc bị ốp." },
-      { id: 7, rawPrice: 380000, category: "cua", sub: "ghe", title: "Ghẹ Xanh Nam Định Loại 1 (Size 5-6 con/kg)", code: "TSMQ-C03", price: "380.000 đ/kg", oldPrice: "430.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1538180120372-6ff008064630?w=600&q=80", images: ["https://images.unsplash.com/photo-1538180120372-6ff008064630?w=600&q=80"], desc: "▶ Ghẹ xanh biển tự nhiên, đùi to thịt ngọt thanh, vỏ mỏng nhiều thịt. Hàng cập bến hàng ngày." },
-      { id: 8, rawPrice: 220000, category: "cua", sub: "ghe", title: "Ghẹ Ba Trăng Tươi Sống (Size 7-8 con/kg)", code: "TSMQ-C04", price: "220.000 đ/kg", oldPrice: "260.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1533759587370-e5616b8b6209?w=600&q=80", images: ["https://images.unsplash.com/photo-1533759587370-e5616b8b6209?w=600&q=80"], desc: "▶ Ghẹ ba trăng giá bình dân, thịt ngọt thơm dùng nấu lẩu, nấu bánh canh ghẹ cực đậm đà." },
-      { id: 9, rawPrice: 260000, category: "ca", sub: "ca-bien", title: "Cá Bớp Biển Cắt Khúc Tươi", code: "TSMQ-CA01", price: "260.000 đ/kg", oldPrice: "290.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZUSUvmoSKYNKEQ7qUIv-pmJ2W_h56eBWYVAact4lKxQ&s=10", images: ["https://images.unsplash.com/photo-1499125562588-29fb8a56b5d5?w=600&q=80"], desc: "▶ Cá bớp biển thịt béo ngậy, da giòn, giàu Omega-3. Rất hợp nấu lẩu măng chua hoặc kho tộ." },
-      { id: 10, rawPrice: 190000, category: "ca", sub: "ca-bien", title: "Cá Thu Biển Tươi Cắt Lát Cắm Trại", code: "TSMQ-CA02", price: "190.000 đ/kg", oldPrice: "220.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkaiTJhZIKVDxGEpIGNE5RHKZJS8dL7QjQx7ECdPBnw&s=10", images: ["https://images.unsplash.com/photo-1633244092661-4519a1ffc67e?w=600&q=80"], desc: "▶ Cá thu phấn biển nguyên con tươi rói cắt lát, thịt dai ngọt thơm lừng khi rán sốt cà dốt." },
-      
-      /* --- 30 LOẠI CÁ NƯỚC NGỌT & CÁ ĐỒNG --- */
-      { id: 11, rawPrice: 95000, category: "ca", sub: "ca-dong", title: "Cá Chép Sông Tươi Sống", code: "TSMQ-CA03", price: "95.000 đ/kg", oldPrice: "110.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKDpbGUx5JPth5TR8Iw30PK7i9m8iPYrxNPtHz0_8Rmw&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá chép thịt ngọt thơm, nành béo. Thích hợp món cá chép om dưa, hấp xì dầu, nấu cháo." },
-      { id: 12, rawPrice: 160000, category: "ca", sub: "ca-dong", title: "Cá Trắm Đen Sống (Size 4-6kg)", code: "TSMQ-CA04", price: "160.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuj1g54XOfy2zBAIBcoxcjXopNVoQBj1E722ZNGxvduA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trắm đen vảy thẫm, thịt cực kỳ săn chắc, không xương dăm. Chuyên kho riềng đất ấm áp." },
-      { id: 13, rawPrice: 85000, category: "ca", sub: "ca-dong", title: "Cá Trắm Cỏ Sông Tươi", code: "TSMQ-CA05", price: "85.000 đ/kg", oldPrice: "100.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6J7dZWiMzTL7Cs1oIznJ2f5mNUnlsyKFQ6IvNaPE8CA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trắm cỏ thịt lành, vị ngọt tự nhiên, vảy bạc. Hợp làm món lẩu cá hoặc lăn bột chiên xù." },
-      { id: 14, rawPrice: 65000, category: "ca", sub: "ca-dong", title: "Cá Trôi Đồng Tươi Sống", code: "TSMQ-CA06", price: "65.000 đ/kg", oldPrice: "80.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGB6HMfw2A6sy8E3lCX1p4hytbDy4E7HxTz3qAfaydQ&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trôi thân thon, thịt mềm ngọt đậm đà, giá bình dân. Chuyên làm món kho tộ cay thơm." },
-      { id: 15, rawPrice: 50000, category: "ca", sub: "ca-dong", title: "Cá Mè Trắng Tươi Sống", code: "TSMQ-CA07", price: "50.000 đ/kg", oldPrice: "65.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK_-SRG_1CcUhQQBDfa9x5a41iZO-CCzwexf5ccxysXQ&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá mè trắng vảy nhỏ, thịt béo mềm. Thích hợp nấu canh chua thì là hoặc hấp sả bơi." },
-      { id: 16, rawPrice: 70000, category: "ca", sub: "ca-dong", title: "Cá Mè Hoa Khổng Lồ", code: "TSMQ-CA08", price: "70.000 đ/kg", oldPrice: "85.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRilkJJ60GitLYoqkzos0nbAzZHnab-j5cCaGxlrwgkXg&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Đầu cá mè hoa to béo ngậy đặc trưng. Là nguyên liệu hàng đầu cho các món lẩu đầu cá chua cay." },
-      { id: 17, rawPrice: 55000, category: "ca", sub: "ca-dong", title: "Cá Rô Phi Ao Sống Bơi", code: "TSMQ-CA09", price: "55.000 đ/kg", oldPrice: "70.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkwtLwFr1RBO2-h5-vs0a0KQsYesuxen2fIMUTXlpdsw&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá rô phi sinh trưởng tự nhiên, thịt nành, ít xương dăm, thích hợp rán giòn hoặc làm chả cá." },
-      { id: 18, rawPrice: 75000, category: "ca", sub: "ca-dong", title: "Cá Diêu Hồng (Điêu Hồng) Sống", code: "TSMQ-CA10", price: "75.000 đ/kg", oldPrice: "90.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTWOSzwbFBKpLYE9nWgakZKuI9dzoGB72uXVMx-HO_ZA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá diêu hồng màu sắc đẹp mắt, thịt ngọt mát không hôi bùn. Chuyên chiên xù cuốn bánh tráng." },
-      { id: 19, rawPrice: 130000, category: "ca", sub: "ca-dong", title: "Cá Lóc Đồng (Cá Quả/Chuối)", code: "TSMQ-CA11", price: "130.000 đ/kg", oldPrice: "150.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2wDjyS3VP64h6r2J-V0-uhKP-ddDz6zrvX0gZYknWHw&s=10", images: ["https://images.unsplash.com/photo-1772285253181-b1257afb3698?w=600&q=80"], desc: "▶ Cá lóc đồng bơi khỏe, thịt săn chắc không mỡ. Chuyên làm món cá lóc nướng trui hoặc nấu canh chua." },
-  
-      /* --- HẢI SẢN KHÁC --- */
-      { id: 42, rawPrice: 270000, category: "oc", sub: "oc-huong", title: "Ốc Hương Biển Tươi Sống (Size 80-90 con/kg)", code: "TSMQ-O01", price: "270.000 đ/kg", oldPrice: "310.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwNJLzCUN02KcXvtW5Zf01Sw8mEmHruQo1fFIgXV9dqQ&s", images: ["https://images.unsplash.com/photo-1762062738089-5d0d3040014d?w=600&q=80"], desc: "▶ Ốc hương biển tự nhiên thịt giòn ngọt, thơm nức mũi. Chuyên chế biến ốc hương sốt trứng muối, hấp sả." },
-      { id: 43, rawPrice: 90000, category: "oc", sub: "oc-huong", title: "Ngao Biển Trắng Béo Ngậy", code: "TSMQ-O02", price: "90.000 đ/kg", oldPrice: "110.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiBPDf7bdirOU3Qx170v1rcOK9dyh-IdaZr9oypxfPg&s=10", images: ["https://images.unsplash.com/photo-1763575392558-7a83929678fd?w=600&q=80"], desc: "▶ Ngao trắng ngâm sạch cát, ruột béo mộng nước. Dùng nấu canh mồng mùng, hấp thái cay ngọt." },
-      { id: 44, rawPrice: 150000, category: "oc", sub: "oc-huong", title: "Sò Dương / Sò Huyết Đại", code: "TSMQ-O03", price: "150.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDJ8nrhfHYsL_YvS2KHoNVNzuwhqIo8UIJ1R50DvP1XA&s=10", images: ["https://images.unsplash.com/photo-1633960414108-aa45c121c4c4?w=600&q=80"], desc: "▶ Sò huyết tươi rói bổ dưỡng, nhiều huyết, thịt béo bùi. Tốt cho sức khỏe khi nướng mỡ hành." },
-      { id: 45, rawPrice: 120000, category: "oc", sub: "oc-huong", title: "Sò Lông Biển Tươi Sống", code: "TSMQ-O04", price: "120.000 đ/kg", oldPrice: "140.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGikKyrQxuV7hLSJTawRcBJ56qOw90nUdTfbJdNCqguA&s=10", images: ["https://images.unsplash.com/photo-1633960414108-aa45c121c4c4?w=600&q=80"], desc: "▶ Sò lông béo mầm, thịt ngọt bùi, thích hợp nướng mỡ hành đậu phụng." },
-      { id: 46, rawPrice: 240000, category: "muc", sub: "muc", title: "Mực Lá Tươi Cực Dày Thịt", code: "TSMQ-M01", price: "240.000 đ/kg", oldPrice: "280.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwUPFL1F6QpfhpHXbrbxFk8KtZZH6mMpIzyehW3PrLg&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực lá nhón nháy tươi rói, tai mực dày ngọt giòn. Thích hợp xào sa tế, làm chả mực hoặc nướng." },
-      { id: 47, rawPrice: 210000, category: "muc", sub: "muc", title: "Mực Ống Đổ Cửa Tươi Sống (Size 15-20cm)", code: "TSMQ-M02", price: "210.000 đ/kg", oldPrice: "240.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnElMBc3tgienWkRMLse3TwFCX2Co-rPlVMPO8miMTxw&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực ống biển da còn nhấp nháy mi nơ, dồn thịt hấp gừng hoặc xào cần tây cực giòn." },
-      { id: 48, rawPrice: 350000, category: "muc", sub: "muc", title: "Mực Một Nắng Cô Tô Cao Cấp", code: "TSMQ-M03", price: "350.000 đ/kg", oldPrice: "400.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP__ogh0bX08sdJK9FXkUA_1XBUuguOvKkIIGWd6-9kA&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực ống phơi đúng 1 nắng giòn ngoài mềm trong, thơm nức khi chiên mắm hoặc nướng sa tế." },
-      { id: 49, rawPrice: 170000, category: "che-bien", sub: "che-bien", title: "Chả Cá Hải Phòng Nguyên Chất 100%", code: "TSMQ-CB01", price: "170.000 đ/kg", oldPrice: "200.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtG_WmfvtM1ukS-B2HGCwttqviDEwAN-ru-Na6E3BvDw&s=10", images: ["https://images.unsplash.com/photo-1622925674383-92aa47e93452?w=600&q=80"], desc: "▶ Chả cá thu cá thác lợt giã tay dai ngon tự nhiên, không hàn the, không chất bảo quản." },
-      { id: 50, rawPrice: 220000, category: "che-bien", sub: "che-bien", title: "Chả Mực Hạ Long Giã Tay", code: "TSMQ-CB02", price: "220.000 đ/kg", oldPrice: "250.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkP4USzc9K9nxrBMdBYweHRDFQalYrn49xF_M0vtqEGA&s=10", images: ["https://images.unsplash.com/photo-1622925674383-92aa47e93452?w=600&q=80"], desc: "▶ Chả mực Hạ Long giã tay giòn sần sật, thơm ngậy nguyên chất." }
-    ];
-    let currentCategory = "all";
-    let wishlist = [];
-    let cart = [];
+  <script>
+/* ============================================================
+   THỦY SẢN MIỀN QUÊ - script.js
+   Giữ nguyên toàn bộ 28 sản phẩm, hình ảnh, giá, mô tả gốc.
+   Bổ sung: giỏ hàng có nhớ (localStorage), yêu thích, xác nhận
+   đơn 2 bước, hiệu ứng cuộn, menu mobile, AI tư vấn, và một
+   cách "quản lý" dữ liệu qua Google Sheet (tuỳ chọn, xem mục
+   CẤU HÌNH QUẢN LÝ DỮ LIỆU bên dưới).
+   ============================================================ */
 
-    // Hiển thị danh sách sản phẩm
-    function renderProducts(list) {
-      const grid = document.getElementById("productGrid");
-      grid.innerHTML = "";
-      if (list.length === 0) {
-        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">Không tìm thấy mặt hàng hải sản nào phù hợp.</div>`;
-        return;
-      }
-      list.forEach(p => {
-        const isFav = wishlist.includes(p.id);
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-          <div class="card-img-box">
-            <img src="${p.mainImg}" alt="${p.title}" onclick="openModal(${p.id})">
-            <button class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})">♥</button>
+/* ================= CẤU HÌNH QUẢN LÝ DỮ LIỆU =================
+   Mặc định site dùng mảng `localProducts` ngay bên dưới - bạn
+   chỉ cần sửa trực tiếp trong file này để thêm/sửa/xoá sản phẩm.
+
+   NẾU muốn quản lý sản phẩm bằng Google Sheet (không cần sửa
+   code mỗi lần đổi giá/thêm hàng), làm theo 3 bước:
+   1) Tạo Google Sheet với các cột: id, category, sub, title,
+      code, price, oldPrice, mainImg, extraImgs (cách nhau bởi
+      dấu ;), desc, stock (số lượng, để -1 nếu luôn còn hàng).
+   2) File > Chia sẻ > Xuất bản lên web > chọn định dạng TSV,
+      dán link vào biến GOOGLE_SHEET_DATA_URL bên dưới.
+   3) Đổi USE_GOOGLE_SHEET = true.
+   Nếu tải thất bại, site sẽ tự động dùng lại dữ liệu local để
+   không bao giờ bị trống trang.
+================================================================ */
+const USE_GOOGLE_SHEET = false;
+const GOOGLE_SHEET_DATA_URL = "https://docs.google.com/spreadsheets/d/e/PASTE_YOUR_PUBLISHED_ID_HERE/pub?output=tsv";
+
+/* Formspree (hoặc dịch vụ tương tự) để đơn hàng gửi thẳng về email/Zalo của bạn.
+   Đăng ký miễn phí tại https://formspree.io, dán endpoint riêng vào đây. */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/yourFormID";
+
+const GEMINI_API_KEY = "aaaaaaaaaa";
+const GEMINI_MODEL = "gemini-2.5-flash";
+
+/* ================= DỮ LIỆU SẢN PHẨM GỐC (giữ nguyên) ================= */
+const localProducts = [
+  { id: 1, rawPrice: 320000, category: "tom", sub: "tom-su", title: "Tôm Sú Biển Tươi Sống (Size 20 con/kg)", code: "TSMQ-T01", price: "320.000 đ/kg", oldPrice: "360.000 đ/kg", mainImg: "https://cdn.tgdd.vn/2021/09/CookProduct/61-1200x676.jpg", images: ["https://images.unsplash.com/photo-1548587468-971ebe4c8c3b?w=600&q=80"], desc: "▶ Tôm sú biển thịt săn chắc, ngọt đậm. Hàng tươi sống bơi khỏe, thích hợp hấp sả, nướng muối ớt.", stock: -1, videoUrl: "" },
+  { id: 2, rawPrice: 180000, category: "tom", sub: "tom-the", title: "Tôm Thẻ Chân Trắng Tươi (Size 40 con/kg)", code: "TSMQ-T02", price: "180.000 đ/kg", oldPrice: "210.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTigSFNj1JFC-e-d-Mnv51pO4dC03t_KXVuMkUUgobLw&s=10", images: ["https://images.unsplash.com/photo-1578069744397-2f3942a02a7b?w=600&q=80"], desc: "▶ Tôm thẻ tươi rói vỏ mỏng, thịt ngọt, chuyên dùng làm gỏi, chiên xù, nấu canh hoặc rim mặn ngọt.", stock: -1, videoUrl: "" },
+  { id: 3, rawPrice: 650000, category: "tom", sub: "tom-hum", title: "Tôm Hùm Bông Sống (Size 0.8 - 1kg/con)", code: "TSMQ-T03", price: "650.000 đ/kg", oldPrice: "750.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCcajNVG5QQ0R8l1aHVoIKPHPnESJSHhbXGjckOdu4g&s=10", images: ["https://images.unsplash.com/photo-1530511960699-9d7ccd279040?w=600&q=80"], desc: "▶ Tôm hùm thượng hạng, thịt dai giòn sần sật. Bao ăn 1 đổi 1 nếu đốp, chuyên làm món nướng phô mai.", stock: -1, videoUrl: "" },
+  { id: 4, rawPrice: 280000, category: "tom", sub: "tom-hum", title: "Tôm Càng Xanh Quần Liêu (Size 10-12 con/kg)", code: "TSMQ-T04", price: "280.000 đ/kg", oldPrice: "320.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7lQK8GnbNG1kzq7dB4-mihbFxOV_kjqTOoKiEl0DPBQ&s=10", images: ["https://images.unsplash.com/photo-1676250249336-2b73830368b1?w=600&q=80"], desc: "▶ Tôm càng xanh sống, gạch béo ngậy, thịt ngọt giòn. Thích hợp lẩu tôm, nướng mọi.", stock: -1, videoUrl: "" },
+  { id: 5, rawPrice: 420000, category: "cua", sub: "cua-thịt", title: "Cua Thịt Cà Mau Y4 (Size 3-4 con/kg)", code: "TSMQ-C01", price: "420.000 đ/kg", oldPrice: "480.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRehBODkfayFE4tX3XENN5P-IbVj-Co54ACMR8xyIpkmg&s=10", images: ["https://images.unsplash.com/photo-1553659971-f01207815844?w=600&q=80"], desc: "▶ Cua thịt chắc nịch 100%, không dây buộc dày. Đảm bảo nhiều thịt, hấp bia hay rang me cực ngon.", stock: -1, videoUrl: "" },
+  { id: 6, rawPrice: 520000, category: "cua", sub: "cua-gạch", title: "Cua Gạch Đỏ Cà Mau Cực Béo (Size 2-3 con/kg)", code: "TSMQ-C02", price: "520.000 đ/kg", oldPrice: "600.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1580841129862-bc2a2d113c45?w=600&q=80", images: ["https://images.unsplash.com/photo-1580841129862-bc2a2d113c45?w=600&q=80"], desc: "▶ Cua gạch tràn mai, gạch son đỏ rực thơm ngậy. Bao đổi trả nếu gạch ít hoặc bị ốp.", stock: -1, videoUrl: "" },
+  { id: 7, rawPrice: 380000, category: "cua", sub: "ghe", title: "Ghẹ Xanh Nam Định Loại 1 (Size 5-6 con/kg)", code: "TSMQ-C03", price: "380.000 đ/kg", oldPrice: "430.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1538180120372-6ff008064630?w=600&q=80", images: ["https://images.unsplash.com/photo-1538180120372-6ff008064630?w=600&q=80"], desc: "▶ Ghẹ xanh biển tự nhiên, đùi to thịt ngọt thanh, vỏ mỏng nhiều thịt. Hàng cập bến hàng ngày.", stock: -1, videoUrl: "" },
+  { id: 8, rawPrice: 220000, category: "cua", sub: "ghe", title: "Ghẹ Ba Trăng Tươi Sống (Size 7-8 con/kg)", code: "TSMQ-C04", price: "220.000 đ/kg", oldPrice: "260.000 đ/kg", mainImg: "https://images.unsplash.com/photo-1533759587370-e5616b8b6209?w=600&q=80", images: ["https://images.unsplash.com/photo-1533759587370-e5616b8b6209?w=600&q=80"], desc: "▶ Ghẹ ba trăng giá bình dân, thịt ngọt thơm dùng nấu lẩu, nấu bánh canh ghẹ cực đậm đà.", stock: -1, videoUrl: "" },
+  { id: 9, rawPrice: 260000, category: "ca", sub: "ca-bien", title: "Cá Bớp Biển Cắt Khúc Tươi", code: "TSMQ-CA01", price: "260.000 đ/kg", oldPrice: "290.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZUSUvmoSKYNKEQ7qUIv-pmJ2W_h56eBWYVAact4lKxQ&s=10", images: ["https://images.unsplash.com/photo-1499125562588-29fb8a56b5d5?w=600&q=80"], desc: "▶ Cá bớp biển thịt béo ngậy, da giòn, giàu Omega-3. Rất hợp nấu lẩu măng chua hoặc kho tộ.", stock: -1, videoUrl: "" },
+  { id: 10, rawPrice: 190000, category: "ca", sub: "ca-bien", title: "Cá Thu Biển Tươi Cắt Lát Cắm Trại", code: "TSMQ-CA02", price: "190.000 đ/kg", oldPrice: "220.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkaiTJhZIKVDxGEpIGNE5RHKZJS8dL7QjQx7ECdPBnw&s=10", images: ["https://images.unsplash.com/photo-1633244092661-4519a1ffc67e?w=600&q=80"], desc: "▶ Cá thu phấn biển nguyên con tươi rói cắt lát, thịt dai ngọt thơm lừng khi rán sốt cà dốt.", stock: -1, videoUrl: "" },
+
+  { id: 11, rawPrice: 95000, category: "ca", sub: "ca-dong", title: "Cá Chép Sông Tươi Sống", code: "TSMQ-CA03", price: "95.000 đ/kg", oldPrice: "110.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKDpbGUx5JPth5TR8Iw30PK7i9m8iPYrxNPtHz0_8Rmw&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá chép thịt ngọt thơm, nành béo. Thích hợp món cá chép om dưa, hấp xì dầu, nấu cháo.", stock: -1, videoUrl: "" },
+  { id: 12, rawPrice: 160000, category: "ca", sub: "ca-dong", title: "Cá Trắm Đen Sống (Size 4-6kg)", code: "TSMQ-CA04", price: "160.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuj1g54XOfy2zBAIBcoxcjXopNVoQBj1E722ZNGxvduA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trắm đen vảy thẫm, thịt cực kỳ săn chắc, không xương dăm. Chuyên kho riềng đất ấm áp.", stock: -1, videoUrl: "" },
+  { id: 13, rawPrice: 85000, category: "ca", sub: "ca-dong", title: "Cá Trắm Cỏ Sông Tươi", code: "TSMQ-CA05", price: "85.000 đ/kg", oldPrice: "100.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6J7dZWiMzTL7Cs1oIznJ2f5mNUnlsyKFQ6IvNaPE8CA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trắm cỏ thịt lành, vị ngọt tự nhiên, vảy bạc. Hợp làm món lẩu cá hoặc lăn bột chiên xù.", stock: -1, videoUrl: "" },
+  { id: 14, rawPrice: 65000, category: "ca", sub: "ca-dong", title: "Cá Trôi Đồng Tươi Sống", code: "TSMQ-CA06", price: "65.000 đ/kg", oldPrice: "80.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGB6HMfw2A6sy8E3lCX1p4hytbDy4E7HxTz3qAfaydQ&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá trôi thân thon, thịt mềm ngọt đậm đà, giá bình dân. Chuyên làm món kho tộ cay thơm.", stock: -1, videoUrl: "" },
+  { id: 15, rawPrice: 50000, category: "ca", sub: "ca-dong", title: "Cá Mè Trắng Tươi Sống", code: "TSMQ-CA07", price: "50.000 đ/kg", oldPrice: "65.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK_-SRG_1CcUhQQBDfa9x5a41iZO-CCzwexf5ccxysXQ&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá mè trắng vảy nhỏ, thịt béo mềm. Thích hợp nấu canh chua thì là hoặc hấp sả bơi.", stock: -1, videoUrl: "" },
+  { id: 16, rawPrice: 70000, category: "ca", sub: "ca-dong", title: "Cá Mè Hoa Khổng Lồ", code: "TSMQ-CA08", price: "70.000 đ/kg", oldPrice: "85.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRilkJJ60GitLYoqkzos0nbAzZHnab-j5cCaGxlrwgkXg&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Đầu cá mè hoa to béo ngậy đặc trưng. Là nguyên liệu hàng đầu cho các món lẩu đầu cá chua cay.", stock: -1, videoUrl: "" },
+  { id: 17, rawPrice: 55000, category: "ca", sub: "ca-dong", title: "Cá Rô Phi Ao Sống Bơi", code: "TSMQ-CA09", price: "55.000 đ/kg", oldPrice: "70.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkwtLwFr1RBO2-h5-vs0a0KQsYesuxen2fIMUTXlpdsw&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá rô phi sinh trưởng tự nhiên, thịt nành, ít xương dăm, thích hợp rán giòn hoặc làm chả cá.", stock: -1, videoUrl: "" },
+  { id: 18, rawPrice: 75000, category: "ca", sub: "ca-dong", title: "Cá Diêu Hồng (Điêu Hồng) Sống", code: "TSMQ-CA10", price: "75.000 đ/kg", oldPrice: "90.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTWOSzwbFBKpLYE9nWgakZKuI9dzoGB72uXVMx-HO_ZA&s=10", images: ["https://images.unsplash.com/photo-1773739685848-a46fb41ae4f0?w=600&q=80"], desc: "▶ Cá diêu hồng màu sắc đẹp mắt, thịt ngọt mát không hôi bùn. Chuyên chiên xù cuốn bánh tráng.", stock: -1, videoUrl: "" },
+  { id: 19, rawPrice: 130000, category: "ca", sub: "ca-dong", title: "Cá Lóc Đồng (Cá Quả/Chuối)", code: "TSMQ-CA11", price: "130.000 đ/kg", oldPrice: "150.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2wDjyS3VP64h6r2J-V0-uhKP-ddDz6zrvX0gZYknWHw&s=10", images: ["https://images.unsplash.com/photo-1772285253181-b1257afb3698?w=600&q=80"], desc: "▶ Cá lóc đồng bơi khỏe, thịt săn chắc không mỡ. Chuyên làm món cá lóc nướng trui hoặc nấu canh chua.", stock: -1, videoUrl: "" },
+
+  { id: 42, rawPrice: 270000, category: "oc", sub: "oc-huong", title: "Ốc Hương Biển Tươi Sống (Size 80-90 con/kg)", code: "TSMQ-O01", price: "270.000 đ/kg", oldPrice: "310.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwNJLzCUN02KcXvtW5Zf01Sw8mEmHruQo1fFIgXV9dqQ&s", images: ["https://images.unsplash.com/photo-1762062738089-5d0d3040014d?w=600&q=80"], desc: "▶ Ốc hương biển tự nhiên thịt giòn ngọt, thơm nức mũi. Chuyên chế biến ốc hương sốt trứng muối, hấp sả.", stock: -1, videoUrl: "" },
+  { id: 43, rawPrice: 90000, category: "oc", sub: "oc-huong", title: "Ngao Biển Trắng Béo Ngậy", code: "TSMQ-O02", price: "90.000 đ/kg", oldPrice: "110.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtiBPDf7bdirOU3Qx170v1rcOK9dyh-IdaZr9oypxfPg&s=10", images: ["https://images.unsplash.com/photo-1763575392558-7a83929678fd?w=600&q=80"], desc: "▶ Ngao trắng ngâm sạch cát, ruột béo mộng nước. Dùng nấu canh mồng mùng, hấp thái cay ngọt.", stock: -1, videoUrl: "" },
+  { id: 44, rawPrice: 150000, category: "oc", sub: "oc-huong", title: "Sò Dương / Sò Huyết Đại", code: "TSMQ-O03", price: "150.000 đ/kg", oldPrice: "180.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDJ8nrhfHYsL_YvS2KHoNVNzuwhqIo8UIJ1R50DvP1XA&s=10", images: ["https://images.unsplash.com/photo-1633960414108-aa45c121c4c4?w=600&q=80"], desc: "▶ Sò huyết tươi rói bổ dưỡng, nhiều huyết, thịt béo bùi. Tốt cho sức khỏe khi nướng mỡ hành.", stock: -1, videoUrl: "" },
+  { id: 45, rawPrice: 120000, category: "oc", sub: "oc-huong", title: "Sò Lông Biển Tươi Sống", code: "TSMQ-O04", price: "120.000 đ/kg", oldPrice: "140.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGikKyrQxuV7hLSJTawRcBJ56qOw90nUdTfbJdNCqguA&s=10", images: ["https://images.unsplash.com/photo-1633960414108-aa45c121c4c4?w=600&q=80"], desc: "▶ Sò lông béo mầm, thịt ngọt bùi, thích hợp nướng mỡ hành đậu phụng.", stock: -1, videoUrl: "" },
+  { id: 46, rawPrice: 240000, category: "muc", sub: "muc", title: "Mực Lá Tươi Cực Dày Thịt", code: "TSMQ-M01", price: "240.000 đ/kg", oldPrice: "280.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwUPFL1F6QpfhpHXbrbxFk8KtZZH6mMpIzyehW3PrLg&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực lá nhón nháy tươi rói, tai mực dày ngọt giòn. Thích hợp xào sa tế, làm chả mực hoặc nướng.", stock: -1, videoUrl: "" },
+  { id: 47, rawPrice: 210000, category: "muc", sub: "muc", title: "Mực Ống Đổ Cửa Tươi Sống (Size 15-20cm)", code: "TSMQ-M02", price: "210.000 đ/kg", oldPrice: "240.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnElMBc3tgienWkRMLse3TwFCX2Co-rPlVMPO8miMTxw&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực ống biển da còn nhấp nháy mi nơ, dồn thịt hấp gừng hoặc xào cần tây cực giòn.", stock: -1, videoUrl: "" },
+  { id: 48, rawPrice: 350000, category: "muc", sub: "muc", title: "Mực Một Nắng Cô Tô Cao Cấp", code: "TSMQ-M03", price: "350.000 đ/kg", oldPrice: "400.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP__ogh0bX08sdJK9FXkUA_1XBUuguOvKkIIGWd6-9kA&s=10", images: ["https://images.unsplash.com/photo-1749522714946-c39b846c2dac?w=600&q=80"], desc: "▶ Mực ống phơi đúng 1 nắng giòn ngoài mềm trong, thơm nức khi chiên mắm hoặc nướng sa tế.", stock: -1, videoUrl: "" },
+  { id: 49, rawPrice: 170000, category: "che-bien", sub: "che-bien", title: "Chả Cá Hải Phòng Nguyên Chất 100%", code: "TSMQ-CB01", price: "170.000 đ/kg", oldPrice: "200.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtG_WmfvtM1ukS-B2HGCwttqviDEwAN-ru-Na6E3BvDw&s=10", images: ["https://images.unsplash.com/photo-1622925674383-92aa47e93452?w=600&q=80"], desc: "▶ Chả cá thu cá thác lợt giã tay dai ngon tự nhiên, không hàn the, không chất bảo quản.", stock: -1, videoUrl: "" },
+  { id: 50, rawPrice: 220000, category: "che-bien", sub: "che-bien", title: "Chả Mực Hạ Long Giã Tay", code: "TSMQ-CB02", price: "220.000 đ/kg", oldPrice: "250.000 đ/kg", mainImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkP4USzc9K9nxrBMdBYweHRDFQalYrn49xF_M0vtqEGA&s=10", images: ["https://images.unsplash.com/photo-1622925674383-92aa47e93452?w=600&q=80"], desc: "▶ Chả mực Hạ Long giã tay giòn sần sật, thơm ngậy nguyên chất.", stock: -1, videoUrl: "" }
+];
+
+let products = [];
+let currentCategory = "all";
+let currentSelectedProduct = null;
+let pendingOrderPayload = null;
+let wishlist = JSON.parse(localStorage.getItem('tsmq_wishlist') || '[]');
+let cart = JSON.parse(localStorage.getItem('tsmq_cart') || '[]');
+let chatHistory = [];
+
+/* ================= KHỞI TẠO ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  updateCartUI();
+  document.getElementById("wishlistCount").innerText = wishlist.length;
+  if (localStorage.getItem('tsmq_dark') === '1') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('themeBtn').innerText = '☀️ Sáng';
+  }
+  window.addEventListener('scroll', handleScrollTopBtn);
+});
+
+/* ================= TẢI DỮ LIỆU SẢN PHẨM (local hoặc Google Sheet) ================= */
+async function loadProducts() {
+  if (!USE_GOOGLE_SHEET) {
+    products = localProducts;
+    renderProducts(products);
+    return;
+  }
+  renderSkeletonGrid();
+  try {
+    const res = await fetch(GOOGLE_SHEET_DATA_URL);
+    if (!res.ok) throw new Error("Fetch lỗi");
+    const raw = await res.text();
+    const lines = raw.trim().split(/\r?\n/);
+    if (lines.length < 2) throw new Error("Sheet rỗng");
+    const isTSV = lines[0].includes("\t");
+    const delim = isTSV ? "\t" : ",";
+    const headers = lines[0].split(delim).map(h => h.trim());
+    products = lines.slice(1).map(line => {
+      const vals = line.split(delim).map(v => v.trim());
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = vals[i] !== undefined ? vals[i] : "");
+      obj.id = parseInt(obj.id) || Math.floor(Math.random() * 100000);
+      obj.rawPrice = parseInt((obj.price || "").replace(/\D/g, "")) || 0;
+      obj.stock = obj.stock !== undefined && obj.stock !== "" ? parseInt(obj.stock) : -1;
+      let imgs = [obj.mainImg];
+      if (obj.extraImgs) imgs = imgs.concat(obj.extraImgs.split(";").map(s => s.trim()).filter(Boolean));
+      obj.images = imgs;
+      return obj;
+    });
+    renderProducts(products);
+  } catch (err) {
+    console.warn("Không tải được Google Sheet, dùng dữ liệu local:", err);
+    products = localProducts;
+    renderProducts(products);
+    showToast("Không tải được dữ liệu online, đang hiển thị dữ liệu có sẵn.", false);
+  }
+}
+
+function renderSkeletonGrid() {
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = Array.from({ length: 12 }).map(() => `
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-line" style="width:85%;"></div>
+      <div class="skeleton-line" style="width:50%;"></div>
+    </div>`).join("");
+}
+
+/* ================= HIỂN THỊ SẢN PHẨM ================= */
+function esc(str) {
+  const d = document.createElement('div');
+  d.innerText = (str === null || str === undefined) ? '' : String(str);
+  return d.innerHTML;
+}
+
+function renderProducts(list) {
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  if (list.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">Không tìm thấy mặt hàng hải sản nào phù hợp.</div>`;
+    return;
+  }
+  list.forEach((p, idx) => {
+    const isFav = wishlist.includes(p.id);
+    const isSoldOut = p.stock === 0;
+    const card = document.createElement("div");
+    card.className = "product-card reveal" + (isSoldOut ? " card-out-of-stock" : "") + (idx % 5 === 1 ? " delay-1" : idx % 5 === 2 ? " delay-2" : "");
+    card.innerHTML = `
+      <div class="card-img-box">
+        ${isSoldOut ? '<div class="badge-card-soldout">Tạm hết hàng</div>' : ''}
+        <img src="${p.mainImg}" alt="${esc(p.title)}" loading="lazy" onclick="openModal(${p.id})">
+        <button type="button" class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleWishlist(event, ${p.id})">♥</button>
+      </div>
+      <div class="card-body">
+        <h4 class="product-title" onclick="openModal(${p.id})">${esc(p.title)}</h4>
+        <div class="price-row">
+          <span class="price">${esc(p.price)}</span>
+          <button type="button" class="btn-add-cart-fast" ${isSoldOut ? 'disabled' : ''} onclick="addToCart(${p.id})">${isSoldOut ? 'Hết hàng' : '+ Mua'}</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  observeReveal();
+}
+
+/* ================= HIỆU ỨNG CUỘN (SCROLL REVEAL) ================= */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+function observeReveal() {
+  document.querySelectorAll('.reveal:not(.active)').forEach(el => revealObserver.observe(el));
+}
+
+function handleScrollTopBtn() {
+  const btn = document.getElementById('scrollTopBtn');
+  if (!btn) return;
+  btn.classList.toggle('show', window.scrollY > 400);
+}
+
+/* ================= BỘ LỌC & SẮP XẾP ================= */
+function applyFilters() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const priceVal = document.getElementById("priceFilter").value;
+  const sortVal = document.getElementById("sortFilter").value;
+
+  let filtered = products.filter(p => {
+    const matchCat = (currentCategory === "all") || (p.category === currentCategory) || (p.sub === currentCategory);
+    const matchSearch = p.title.toLowerCase().includes(query) || (p.code || "").toLowerCase().includes(query);
+    let matchPrice = true;
+    if (priceVal === "under200") matchPrice = p.rawPrice < 200000;
+    else if (priceVal === "200to400") matchPrice = p.rawPrice >= 200000 && p.rawPrice <= 400000;
+    else if (priceVal === "above400") matchPrice = p.rawPrice > 400000;
+    return matchCat && matchSearch && matchPrice;
+  });
+
+  if (sortVal === "price-asc") filtered.sort((a, b) => a.rawPrice - b.rawPrice);
+  else if (sortVal === "price-desc") filtered.sort((a, b) => b.rawPrice - a.rawPrice);
+
+  renderProducts(filtered);
+}
+
+function setCategoryTag(cat, btn) {
+  document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  currentCategory = cat;
+  document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
+  applyFilters();
+}
+
+function filterCategory(cat) {
+  currentCategory = cat;
+  document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
+  const matchBtn = Array.from(document.querySelectorAll(".category-tags .tag-btn")).find(b => b.getAttribute("onclick") && b.getAttribute("onclick").includes(`'${cat}'`));
+  document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
+  if (matchBtn) matchBtn.classList.add("active"); else document.querySelector(".category-tags .tag-btn").classList.add("active");
+  applyFilters();
+  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+}
+
+/* ================= YÊU THÍCH (WISHLIST) ================= */
+function toggleWishlist(e, id) {
+  e.stopPropagation();
+  const idx = wishlist.indexOf(id);
+  if (idx > -1) { wishlist.splice(idx, 1); showToast("Đã xóa khỏi danh sách yêu thích"); }
+  else { wishlist.push(id); showToast("Đã lưu hải sản yêu thích ❤️"); }
+  localStorage.setItem('tsmq_wishlist', JSON.stringify(wishlist));
+  document.getElementById("wishlistCount").innerText = wishlist.length;
+  applyFilters();
+}
+
+function filterWishlist() {
+  const favProducts = products.filter(p => wishlist.includes(p.id));
+  document.getElementById("breadcrumbText").innerText = "Trang chủ > Hải sản đã lưu";
+  renderProducts(favProducts);
+}
+
+/* ================= GIỎ HÀNG (có nhớ localStorage) ================= */
+function addToCart(id) {
+  const item = products.find(p => p.id === id);
+  if (!item || item.stock === 0) return;
+  const inCart = cart.find(c => c.id === id);
+  if (inCart) inCart.qty++;
+  else cart.push({ ...item, qty: 1 });
+  updateCartUI();
+  showToast("Đã thêm vào giỏ hàng 🛒");
+}
+
+function changeCartQty(id, delta) {
+  const item = cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  updateCartUI();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  updateCartUI();
+}
+
+function updateCartUI() {
+  localStorage.setItem('tsmq_cart', JSON.stringify(cart));
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").innerText = totalQty;
+  const cartBody = document.getElementById("cartBody");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+  cartBody.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartBody.innerHTML = `<div class="cart-empty-msg">Giỏ hàng đang trống.<br>Chọn thêm hải sản tươi ngon nhé!</div>`;
+    if (checkoutBtn) checkoutBtn.disabled = true;
+  } else {
+    if (checkoutBtn) checkoutBtn.disabled = false;
+    let totalPrice = 0;
+    cart.forEach(item => {
+      totalPrice += item.rawPrice * item.qty;
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        <img src="${item.mainImg}" alt="${esc(item.title)}">
+        <div class="cart-item-info">
+          <h5>${esc(item.title)}</h5>
+          <span style="color:var(--accent-color); font-weight:bold;">${esc(item.price)}</span>
+          <div class="cart-qty-control">
+            <button type="button" onclick="changeCartQty(${item.id}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button type="button" onclick="changeCartQty(${item.id}, 1)">+</button>
           </div>
-          <div class="card-body">
-            <h4 class="product-title" onclick="openModal(${p.id})">${p.title}</h4>
-            <div class="price-row">
-              <span class="price">${p.price}</span>
-              <button class="btn-add-cart-fast" onclick="addToCart(${p.id})">+ Mua</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+        </div>
+        <button type="button" class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
+      `;
+      cartBody.appendChild(div);
+    });
+    document.getElementById("cartTotalPrice").innerText = totalPrice.toLocaleString('vi-VN') + " đ";
+  }
+}
+
+function toggleCartDrawer() {
+  document.getElementById("cartDrawer").classList.toggle("open");
+}
+
+/* Bước 1: mở form nhập thông tin từ giỏ hàng */
+function checkoutCart() {
+  if (cart.length === 0) return;
+  document.getElementById("cartOrderFormArea").style.display = "block";
+  document.getElementById("cartBody").scrollTop = document.getElementById("cartBody").scrollHeight;
+}
+
+/* ================= XÁC NHẬN ĐƠN 2 BƯỚC ================= */
+function openConfirmFromCart() {
+  const name = document.getElementById('cartCustName').value.trim();
+  const phone = document.getElementById('cartCustPhone').value.trim();
+  const address = document.getElementById('cartCustAddress').value.trim();
+  const note = document.getElementById('cartCustNote').value.trim();
+  if (!name || !phone || !address) { showToast("Vui lòng nhập đủ thông tin nhận hàng.", false); return; }
+
+  let total = cart.reduce((sum, item) => sum + item.rawPrice * item.qty, 0);
+  const itemsText = cart.map(i => `${i.title} x${i.qty} = ${(i.rawPrice * i.qty).toLocaleString('vi-VN')}đ`).join(" | ");
+  pendingOrderPayload = { Loai_Don: "ĐẶT GIỎ HÀNG", Danh_Sach: itemsText, Tong_Tien: total.toLocaleString('vi-VN') + " đ", Ho_Ten: name, SDT: phone, Dia_Chi: address, Ghi_Chu: note || "Không có", isCart: true };
+
+  const itemsHtml = cart.map(i => `<div class="row"><span>${esc(i.title)} x${i.qty}</span><span>${(i.rawPrice * i.qty).toLocaleString('vi-VN')} đ</span></div>`).join("");
+  document.getElementById("confirmOrderSummary").innerHTML = `
+    ${itemsHtml}
+    <div class="row" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--border-color); font-weight:900; font-size:16px; color:var(--accent-color);"><span>Tổng tiền:</span><span>${total.toLocaleString('vi-VN')} đ</span></div>
+    <div class="row" style="margin-top:12px;"><span>Khách hàng:</span><span>${esc(name)} - ${esc(phone)}</span></div>
+    <div class="row"><span>Địa chỉ:</span><span style="text-align:right;">${esc(address)}</span></div>
+    ${note ? `<div class="row"><span>Ghi chú:</span><span style="text-align:right;">${esc(note)}</span></div>` : ''}
+  `;
+  document.getElementById("confirmOrderModal").style.display = "block";
+}
+
+function openConfirmFromModal() {
+  if (!currentSelectedProduct) return;
+  const nameEl = document.getElementById('directName'), phoneEl = document.getElementById('directPhone'), addrEl = document.getElementById('directAddress'), noteEl = document.getElementById('directNote');
+  const name = nameEl.value.trim(), phone = phoneEl.value.trim(), address = addrEl.value.trim(), note = noteEl.value.trim();
+  if (!name || !phone || !address) { showToast("Vui lòng nhập đủ thông tin nhận hàng.", false); return; }
+
+  pendingOrderPayload = { Loai_Don: "MUA TRỰC TIẾP", San_Pham: `${currentSelectedProduct.title} (${currentSelectedProduct.code})`, Gia: currentSelectedProduct.price, Ho_Ten: name, SDT: phone, Dia_Chi: address, Ghi_Chu: note || "Không có", isCart: false };
+
+  document.getElementById("confirmOrderSummary").innerHTML = `
+    <div class="row"><span>Sản phẩm:</span><span style="text-align:right;">${esc(currentSelectedProduct.title)}<br><small style="color:var(--text-muted);">Mã: ${esc(currentSelectedProduct.code)}</small></span></div>
+    <div class="row" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--border-color); font-weight:900; font-size:16px; color:var(--accent-color);"><span>Giá (thanh toán khi nhận):</span><span>${esc(currentSelectedProduct.price)}</span></div>
+    <div class="row" style="margin-top:12px;"><span>Khách hàng:</span><span>${esc(name)} - ${esc(phone)}</span></div>
+    <div class="row"><span>Địa chỉ:</span><span style="text-align:right;">${esc(address)}</span></div>
+    ${note ? `<div class="row"><span>Ghi chú:</span><span style="text-align:right;">${esc(note)}</span></div>` : ''}
+  `;
+  document.getElementById("confirmOrderModal").style.display = "block";
+}
+
+async function sendOrderToServer(payload) {
+  if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("yourFormID")) return Promise.resolve();
+  return fetch(FORMSPREE_ENDPOINT, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+}
+
+function executeFinalOrderSend() {
+  if (!pendingOrderPayload) return;
+  const btn = document.getElementById("finalConfirmBtn");
+  btn.innerText = "ĐANG GỬI ĐƠN..."; btn.disabled = true;
+  const isCart = pendingOrderPayload.isCart;
+  const payload = { ...pendingOrderPayload };
+  delete payload.isCart;
+
+  sendOrderToServer(payload).finally(() => {
+    showToast("Đặt hàng thành công! Thủy Sản Miền Quê sẽ gọi xác nhận và giao hàng ngay.");
+    closeModal("confirmOrderModal");
+    if (isCart) {
+      cart = []; updateCartUI();
+      document.getElementById("cartOrderFormArea").style.display = "none";
+      document.getElementById("cartDrawer").classList.remove("open");
+    } else {
+      closeModal("productModal");
     }
+    btn.innerText = "ĐỒNG Ý GỬI ĐƠN"; btn.disabled = false;
+    pendingOrderPayload = null;
+  });
+}
 
-    // Bộ lọc & Sắp xếp
-    function applyFilters() {
-      const query = document.getElementById("searchInput").value.toLowerCase().trim();
-      const priceVal = document.getElementById("priceFilter").value;
-      const sortVal = document.getElementById("sortFilter").value;
+/* ================= DARK MODE ================= */
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+  const isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem('tsmq_dark', isDark ? '1' : '0');
+  document.getElementById("themeBtn").innerText = isDark ? "☀️ Sáng" : "🌙 Tối";
+}
 
-      let filtered = products.filter(p => {
-        const matchCat = (currentCategory === "all") || (p.category === currentCategory) || (p.sub === currentCategory);
-        const matchSearch = p.title.toLowerCase().includes(query) || p.code.toLowerCase().includes(query);
-        let matchPrice = true;
-        if (priceVal === "under200") matchPrice = p.rawPrice < 200000;
-        else if (priceVal === "200to400") matchPrice = p.rawPrice >= 200000 && p.rawPrice <= 400000;
-        else if (priceVal === "above400") matchPrice = p.rawPrice > 400000;
+/* ================= TOAST ================= */
+function showToast(msg, isSuccess = true) {
+  const container = document.getElementById("toastContainer");
+  const toast = document.createElement("div");
+  toast.className = "toast" + (isSuccess ? "" : " toast-error");
+  toast.innerHTML = `<span class="toast-icon">${isSuccess ? '✓' : '!'}</span><span>${esc(msg)}</span>`;
+  container.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add("show"));
+  setTimeout(() => { toast.classList.remove("show"); setTimeout(() => toast.remove(), 350); }, 3000);
+}
 
-        return matchCat && matchSearch && matchPrice;
-      });
+/* ================= MODAL CHI TIẾT SẢN PHẨM ================= */
+function openModal(id) {
+  const p = products.find(item => item.id === id);
+  if (!p) return;
+  currentSelectedProduct = p;
 
-      if (sortVal === "price-asc") filtered.sort((a, b) => a.rawPrice - b.rawPrice);
-      else if (sortVal === "price-desc") filtered.sort((a, b) => b.rawPrice - a.rawPrice);
+  document.getElementById("modalTitle").innerText = p.title;
+  document.getElementById("modalCode").innerText = p.code;
+  document.getElementById("modalPrice").innerText = p.price;
+  document.getElementById("modalOldPrice").innerText = p.oldPrice;
+  document.getElementById("modalDesc").innerHTML = p.desc;
+  document.getElementById("modalMainImg").src = p.mainImg;
 
-      renderProducts(filtered);
-    }
+  const stockEl = document.getElementById("modalStock");
+  const actionArea = document.getElementById("modalActionArea");
+  const submitBtn = document.getElementById("directSubmitBtn");
+  if (p.stock === 0) {
+    stockEl.className = "stock-tag stock-out";
+    stockEl.innerText = "✖ Tạm hết (nhận đặt trước)";
+    actionArea.innerHTML = `<a href="https://zalo.me/0362442952" target="_blank" class="btn-modal-action btn-modal-zalo">💬 NHẮN ZALO ĐẶT TRƯỚC</a>`;
+    submitBtn.innerText = "GỬI YÊU CẦU ĐẶT TRƯỚC";
+  } else {
+    stockEl.className = "stock-tag stock-in";
+    stockEl.innerText = p.stock > 0 ? `✔ Còn ${p.stock} phần` : "✔ Hàng Tươi Sống Trong Ngày";
+    actionArea.innerHTML = `<button type="button" class="btn-modal-action" onclick="addToCartFromModal()">🛒 THÊM VÀO GIỎ HÀNG</button>`;
+    submitBtn.innerText = "XÁC NHẬN ĐẶT HÀNG (THANH TOÁN COD)";
+  }
 
-    function setCategoryTag(cat, btn) {
-      document.querySelectorAll(".category-tags .tag-btn").forEach(b => b.classList.remove("active"));
-      if(btn) btn.classList.add("active");
-      currentCategory = cat;
-      document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
-      applyFilters();
-    }
+  const thumbBox = document.getElementById("modalThumbnails");
+  thumbBox.innerHTML = "";
+  p.images.forEach((img, idx) => {
+    const t = document.createElement("img");
+    t.src = img;
+    if (idx === 0) t.className = "active-thumb";
+    t.onclick = () => {
+      document.getElementById("modalMainImg").src = img;
+      document.querySelectorAll(".thumbnail-list img").forEach(i => i.classList.remove("active-thumb"));
+      t.classList.add("active-thumb");
+    };
+    thumbBox.appendChild(t);
+  });
 
-    function filterCategory(cat) {
-      currentCategory = cat;
-      document.getElementById("breadcrumbText").innerText = "Trang chủ > Danh mục: " + cat.toUpperCase();
-      applyFilters();
-    }
+  document.getElementById("productModal").style.display = "block";
+}
 
-    // Yêu thích (Wishlist)
-    function toggleWishlist(e, id) {
-      e.stopPropagation();
-      const idx = wishlist.indexOf(id);
-      if (idx > -1) {
-        wishlist.splice(idx, 1);
-        showToast("Đã xóa khỏi danh sách yêu thích");
-      } else {
-        wishlist.push(id);
-        showToast("Đã lưu hải sản yêu thích ❤️");
-      }
-      document.getElementById("wishlistCount").innerText = wishlist.length;
-      applyFilters();
-    }
+function addToCartFromModal() {
+  if (!currentSelectedProduct) return;
+  addToCart(currentSelectedProduct.id);
+}
 
-    function filterWishlist() {
-      const favProducts = products.filter(p => wishlist.includes(p.id));
-      document.getElementById("breadcrumbText").innerText = "Trang chủ > Hải sản đã lưu";
-      renderProducts(favProducts);
-    }
+function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-    // Giỏ hàng (Cart)
-    function addToCart(id) {
-      const item = products.find(p => p.id === id);
-      const inCart = cart.find(c => c.id === id);
-      if (inCart) inCart.qty++;
-      else cart.push({ ...item, qty: 1 });
-      updateCartUI();
-      showToast("Đã thêm vào giỏ hàng 🛒");
-    }
+function handleOrderSubmit() { openConfirmFromModal(); }
 
-    function updateCartUI() {
-      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-      document.getElementById("cartCount").innerText = totalQty;
-      const cartBody = document.getElementById("cartBody");
-      cartBody.innerHTML = "";
+/* ================= MENU MOBILE ================= */
+function toggleMobileMenu(open) {
+  document.getElementById("mobileMenuOverlay").classList.toggle("open", open);
+  document.body.style.overflow = open ? "hidden" : "";
+}
 
-      let totalPrice = 0;
-      cart.forEach(item => {
-        totalPrice += item.rawPrice * item.qty;
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
-          <img src="${item.mainImg}" alt="${item.title}">
-          <div class="cart-item-info">
-            <h5>${item.title}</h5>
-            <p style="color:var(--accent-color); font-weight:bold;">${item.price} x ${item.qty}kg</p>
-          </div>
-          <button style="border:none; background:none; cursor:pointer;" onclick="removeFromCart(${item.id})">❌</button>
-        `;
-        cartBody.appendChild(div);
-      });
-      document.getElementById("cartTotalPrice").innerText = totalPrice.toLocaleString('vi-VN') + " đ";
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      updateCartUI();
-    }
-
-    function toggleCartDrawer() {
-      document.getElementById("cartDrawer").classList.toggle("open");
-    }
-
-    function checkoutCart() {
-      if (cart.length === 0) return alert("Giỏ hàng của bạn đang trống!");
-      alert("Cảm ơn bạn đã đặt hàng! Thủy Sản Miền Quê (SĐT: 0362442952) tại Quần Liêu Village sẽ gọi xác nhận và giao hàng ngay.");
-      cart = [];
-      updateCartUI();
-      toggleCartDrawer();
-    }
-
-    // Dark Mode
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      const btn = document.getElementById("themeBtn");
-      btn.innerText = document.body.classList.contains("dark-mode") ? "☀️ Sáng" : "🌙 Tối";
-    }
-
-    // Toast Notification
-    function showToast(msg) {
-      const container = document.getElementById("toastContainer");
-      const toast = document.createElement("div");
-      toast.className = "toast";
-      toast.innerText = msg;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 2500);
-    }
-
-    // Popup Chi tiết
-    function openModal(id) {
-      const p = products.find(item => item.id === id);
-      if (!p) return;
-      document.getElementById("modalTitle").innerText = p.title;
-      document.getElementById("modalCode").innerText = p.code;
-      document.getElementById("modalPrice").innerText = p.price;
-      document.getElementById("modalOldPrice").innerText = p.oldPrice;
-      document.getElementById("modalDesc").innerHTML = p.desc;
-      document.getElementById("modalMainImg").src = p.mainImg;
-      
-      const thumbBox = document.getElementById("modalThumbnails");
-      thumbBox.innerHTML = "";
-      p.images.forEach((img, idx) => {
-        const t = document.createElement("img");
-        t.src = img;
-        if(idx === 0) t.className = "active-thumb";
-        t.onclick = () => {
-          document.getElementById("modalMainImg").src = img;
-          document.querySelectorAll(".thumbnail-list img").forEach(i => i.classList.remove("active-thumb"));
-          t.classList.add("active-thumb");
-        };
-        thumbBox.appendChild(t);
-      });
-
-      document.getElementById("productModal").style.display = "block";
-    }
-
-    function closeModal() { document.getElementById("productModal").style.display = "none"; }
-    function handleOrderSubmit() {
-      alert("Đặt hàng thành công! Thủy Sản Miền Quê sẽ liên hệ giao hàng tận nơi tới Quần Liêu Village!");
-      closeModal();
-    }
-
-    // ====== CẤU HÌNH GEMINI AI (Google) ======
-    const GEMINI_API_KEY = "aaaaaaaaaa";
-    const GEMINI_MODEL = "gemini-2.5-flash";
-    let chatHistory = []; 
-
-    function buildShopContext() {
-      const list = products.map(p => `- ${p.title}: ${p.price} (mã ${p.code})`).join("\n");
-      return `Bạn là nhân viên tư vấn bán hàng của cửa hàng "Thủy Sản Miền Quê" tại Quần Liêu Village.
+/* ================= AI CHAT (Gemini) ================= */
+function buildShopContext() {
+  const list = products.map(p => `- ${p.title}: ${p.price} (mã ${p.code})${p.stock === 0 ? ' [Tạm hết hàng]' : ''}`).join("\n");
+  return `Bạn là nhân viên tư vấn bán hàng của cửa hàng "Thủy Sản Miền Quê" tại Quần Liêu Village.
 Quy tắc trả lời:
 - Trả lời NGẮN GỌN (tối đa 3-4 câu), giọng thân thiện, xưng "em", gọi khách là "bác/anh/chị".
 - Chỉ tư vấn về hải sản, giá cả, cách chế biến, bảo quản, và cách đặt hàng/giao hàng.
@@ -597,93 +997,92 @@ Quy tắc trả lời:
 
 Danh sách sản phẩm và giá hiện tại:
 ${list}`;
-    }
+}
 
-    // Chatbot AI
-    function toggleAIChat() {
-      const box = document.getElementById("aiChatBox");
-      box.style.display = (box.style.display === "flex") ? "none" : "flex";
-    }
+function toggleAIChat() {
+  const box = document.getElementById("aiChatBox");
+  box.style.display = (box.style.display === "flex") ? "none" : "flex";
+}
 
-    async function handleAISend() {
-      const input = document.getElementById("aiInput");
-      const sendBtn = document.querySelector(".ai-footer button");
-      const text = input.value.trim();
-      if (!text) return;
-      const body = document.getElementById("aiChatBody");
+function sendSuggestChip(text) {
+  document.getElementById("aiInput").value = text;
+  handleAISend();
+}
 
-      const uMsg = document.createElement("div");
-      uMsg.className = "msg msg-user";
-      uMsg.innerText = text;
-      body.appendChild(uMsg);
-      input.value = "";
-      body.scrollTop = body.scrollHeight;
+async function handleAISend() {
+  const input = document.getElementById("aiInput");
+  const sendBtn = document.querySelector(".ai-footer button");
+  const text = input.value.trim();
+  if (!text) return;
+  const body = document.getElementById("aiChatBody");
 
-      if (!GEMINI_API_KEY || GEMINI_API_KEY.includes("...QykA")) {
-        const warn = document.createElement("div");
-        warn.className = "msg msg-ai";
-        warn.innerText = "⚠️ Chatbot chưa được cấu hình API key Gemini. Vui lòng liên hệ hotline 0362442952 để được tư vấn trực tiếp ạ!";
-        body.appendChild(warn);
-        body.scrollTop = body.scrollHeight;
-        return;
+  const uMsg = document.createElement("div");
+  uMsg.className = "msg msg-user";
+  uMsg.innerText = text;
+  body.appendChild(uMsg);
+  input.value = "";
+  body.scrollTop = body.scrollHeight;
+
+  if (!GEMINI_API_KEY || GEMINI_API_KEY.length < 8) {
+    const warn = document.createElement("div");
+    warn.className = "msg msg-ai";
+    warn.innerText = "⚠️ Chatbot chưa được cấu hình API key. Vui lòng liên hệ hotline 0362442952 để được tư vấn trực tiếp ạ!";
+    body.appendChild(warn);
+    body.scrollTop = body.scrollHeight;
+    return;
+  }
+
+  const typingMsg = document.createElement("div");
+  typingMsg.className = "msg msg-ai";
+  typingMsg.id = "typingIndicator";
+  typingMsg.innerHTML = `<span class="msg-typing"><span></span><span></span><span></span></span>`;
+  body.appendChild(typingMsg);
+  body.scrollTop = body.scrollHeight;
+
+  input.disabled = true;
+  if (sendBtn) sendBtn.disabled = true;
+
+  chatHistory.push({ role: "user", parts: [{ text }] });
+
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: buildShopContext() }] },
+          contents: chatHistory,
+          generationConfig: { temperature: 0.4, maxOutputTokens: 300 }
+        })
       }
+    );
+    if (!res.ok) throw new Error("API lỗi: " + res.status);
+    const data = await res.json();
+    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
+      "Xin lỗi bác, em chưa trả lời được câu này. Bác gọi hotline 0362442952 giúp em nhé!";
+    chatHistory.push({ role: "model", parts: [{ text: reply }] });
 
-      const typingMsg = document.createElement("div");
-      typingMsg.className = "msg msg-ai";
-      typingMsg.id = "typingIndicator";
-      typingMsg.innerText = "Đang trả lời...";
-      body.appendChild(typingMsg);
-      body.scrollTop = body.scrollHeight;
+    document.getElementById("typingIndicator")?.remove();
+    const aMsg = document.createElement("div");
+    aMsg.className = "msg msg-ai";
+    aMsg.innerText = reply;
+    body.appendChild(aMsg);
+  } catch (err) {
+    document.getElementById("typingIndicator")?.remove();
+    const errMsg = document.createElement("div");
+    errMsg.className = "msg msg-ai";
+    errMsg.innerText = "Xin lỗi, kết nối AI đang gặp sự cố. Bác gọi hotline/Zalo 0362442952 để được hỗ trợ ngay ạ!";
+    body.appendChild(errMsg);
+    console.error("Gemini API error:", err);
+  } finally {
+    input.disabled = false;
+    if (sendBtn) sendBtn.disabled = false;
+    input.focus();
+    body.scrollTop = body.scrollHeight;
+  }
+}
 
-      input.disabled = true;
-      if (sendBtn) sendBtn.disabled = true;
-
-      chatHistory.push({ role: "user", parts: [{ text }] });
-
-      try {
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              system_instruction: { parts: [{ text: buildShopContext() }] },
-              contents: chatHistory,
-              generationConfig: { temperature: 0.4, maxOutputTokens: 300 }
-            })
-          }
-        );
-
-        if (!res.ok) throw new Error("API lỗi: " + res.status);
-        const data = await res.json();
-        const reply =
-          data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ||
-          "Xin lỗi bác, em chưa trả lời được câu này. Bác gọi hotline 0362442952 giúp em nhé!";
-
-        chatHistory.push({ role: "model", parts: [{ text: reply }] });
-
-        document.getElementById("typingIndicator")?.remove();
-        const aMsg = document.createElement("div");
-        aMsg.className = "msg msg-ai";
-        aMsg.innerText = reply;
-        body.appendChild(aMsg);
-      } catch (err) {
-        document.getElementById("typingIndicator")?.remove();
-        const errMsg = document.createElement("div");
-        errMsg.className = "msg msg-ai";
-        errMsg.innerText = "Xin lỗi, kết nối AI đang gặp sự cố. Bác gọi hotline/Zalo 0362442952 để được hỗ trợ ngay ạ!";
-        body.appendChild(errMsg);
-        console.error("Gemini API error:", err);
-      } finally {
-        input.disabled = false;
-        if (sendBtn) sendBtn.disabled = false;
-        input.focus();
-        body.scrollTop = body.scrollHeight;
-      }
-    }
-
-    // Khởi tạo
-    renderProducts(products);
   </script>
 </body>
 </html>
